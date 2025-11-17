@@ -12,8 +12,8 @@ const Hero = () => {
 
   return (
     <>
-      {/* Hero Section - Full screen */}
-      <div className="relative h-screen w-full">
+      {/* Hero Section - Slightly shorter */}
+      <div className="relative h-[85vh] w-full">
         {/* Hero Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
