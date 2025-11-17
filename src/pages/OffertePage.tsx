@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 interface FormData {
   package: string;
+  extraServices: string[];
   name: string;
   email: string;
   phone: string;
@@ -14,6 +15,7 @@ interface FormData {
 const OffertePage = () => {
   const [formData, setFormData] = useState<FormData>({
     package: '',
+    extraServices: [],
     name: '',
     email: '',
     phone: '',
@@ -33,6 +35,16 @@ const OffertePage = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      extraServices: checked
+        ? [...prev.extraServices, value]
+        : prev.extraServices.filter(service => service !== value)
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -93,14 +105,19 @@ const OffertePage = () => {
                     <div className="font-semibold text-gray-800">Pakket Masterline €19,50 per m²</div>
                   </div>
                 </label>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Extra diensten (optioneel)</h2>
+              <div className="space-y-3">
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
-                    type="radio"
-                    name="package"
+                    type="checkbox"
                     value="behanger-inhuren"
-                    checked={formData.package === 'behanger-inhuren'}
-                    onChange={handleInputChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
+                    checked={formData.extraServices.includes('behanger-inhuren')}
+                    onChange={handleCheckboxChange}
+                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
                   />
                   <div className="ml-3">
                     <div className="font-semibold text-gray-800">Behanger inhuren voor eigen behang</div>
@@ -108,12 +125,11 @@ const OffertePage = () => {
                 </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
-                    type="radio"
-                    name="package"
+                    type="checkbox"
                     value="schuren-wanden"
-                    checked={formData.package === 'schuren-wanden'}
-                    onChange={handleInputChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
+                    checked={formData.extraServices.includes('schuren-wanden')}
+                    onChange={handleCheckboxChange}
+                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
                   />
                   <div className="ml-3">
                     <div className="font-semibold text-gray-800">Schuren van de wanden</div>
@@ -121,12 +137,11 @@ const OffertePage = () => {
                 </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
-                    type="radio"
-                    name="package"
+                    type="checkbox"
                     value="airless-spuiten"
-                    checked={formData.package === 'airless-spuiten'}
-                    onChange={handleInputChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
+                    checked={formData.extraServices.includes('airless-spuiten')}
+                    onChange={handleCheckboxChange}
+                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
                   />
                   <div className="ml-3">
                     <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen</div>
