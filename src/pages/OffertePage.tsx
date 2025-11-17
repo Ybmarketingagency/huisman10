@@ -69,45 +69,91 @@ const OffertePage = () => {
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <input
-                    type="radio"
-                    name="package"
-                    value="comfort"
-                    checked={formData.package === 'comfort'}
-                    onChange={handleInputChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
-                    required
-                  />
-                  <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Pakket Comfort €9,50 per m²</div>
+              <div className="space-y-4">
+                {/* Pakket Comfort */}
+                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <div className="flex items-start">
+                    <input
+                      type="radio"
+                      name="package"
+                      value="comfort"
+                      checked={formData.package === 'comfort'}
+                      onChange={handleInputChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
+                      required
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Pakket Comfort</div>
+                        <div className="font-bold text-emerald-700 text-lg">€9,50/m²</div>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Aanbrengen renovlies 150 gram</li>
+                        <li>• Professionele behangers</li>
+                        <li>• Inclusief materiaal en afvoer bouwafval</li>
+                        <li>• Geen aanbetaling</li>
+                        <li>• Exclusief sauzen en kitten</li>
+                      </ul>
+                    </div>
                   </div>
                 </label>
-                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <input
-                    type="radio"
-                    name="package"
-                    value="pro"
-                    checked={formData.package === 'pro'}
-                    onChange={handleInputChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
-                  />
-                  <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Pakket Pro €14,50 per m²</div>
+
+                {/* Pakket Pro */}
+                <label className="block p-5 border-2 border-emerald-700 rounded-lg cursor-pointer hover:border-emerald-800 transition-colors bg-emerald-50">
+                  <div className="flex items-start">
+                    <input
+                      type="radio"
+                      name="package"
+                      value="pro"
+                      checked={formData.package === 'pro'}
+                      onChange={handleInputChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Pakket Pro</div>
+                        <div className="font-bold text-emerald-700 text-lg">€14,50/m²</div>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Aanbrengen renovlies 150 gram</li>
+                        <li>• Professionele behangers</li>
+                        <li>• Inclusief materiaal en afvoer bouwafval</li>
+                        <li>• Geen aanbetaling</li>
+                        <li>• Dekkend sauzen</li>
+                        <li>• Schrobklasse 1 latex</li>
+                        <li>• Naden en kieren kitten</li>
+                        <li>• 12 maanden garantie</li>
+                      </ul>
+                    </div>
                   </div>
                 </label>
-                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <input
-                    type="radio"
-                    name="package"
-                    value="master"
-                    checked={formData.package === 'master'}
-                    onChange={handleInputChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
-                  />
-                  <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Pakket Master €19,50 per m²</div>
+
+                {/* Pakket Master */}
+                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <div className="flex items-start">
+                    <input
+                      type="radio"
+                      name="package"
+                      value="master"
+                      checked={formData.package === 'master'}
+                      onChange={handleInputChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Pakket Master</div>
+                        <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Aanbrengen glasvlies 150 gram</li>
+                        <li>• Professionele behangers</li>
+                        <li>• Inclusief materiaal en afvoer bouwafval</li>
+                        <li>• Geen aanbetaling</li>
+                        <li>• Naden en kieren kitten</li>
+                        <li>• Twee lagen sauzen</li>
+                        <li>• 12 maanden garantie</li>
+                      </ul>
+                    </div>
                   </div>
                 </label>
               </div>

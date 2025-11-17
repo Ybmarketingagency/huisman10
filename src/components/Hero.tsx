@@ -148,7 +148,7 @@ const Hero = () => {
         {/* Hero Content - Only visible on mobile */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center md:hidden">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Professioneel Schilderwerk
+            Professioneel Behangwerk
           </h1>
           <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl">
             Vakmanschap en kwaliteit voor uw woning
