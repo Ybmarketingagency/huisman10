@@ -38,7 +38,7 @@ const Hero = () => {
 
             <div className="space-y-1.5 mb-4">
               {[
-                'Aanbrengen glasvlies 200 gram',
+                'Aanbrengen glasvlies 150 gram',
                 'Korte wachttijd',
                 'Professionele behangers',
                 'Afvoeren bouwafval',
