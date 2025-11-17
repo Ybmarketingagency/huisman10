@@ -24,19 +24,19 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 h-full container mx-auto px-4">
-        <div className="h-full flex items-center justify-start py-20">
+        <div className="h-full flex items-center justify-start pt-32 md:pt-24">
           {/* Pakket DELUXE Promo - Left Aligned */}
-          <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-xl shadow-2xl p-6 md:p-8 max-w-md w-full transform transition-all duration-300 hover:scale-105">
-            <div className="text-center mb-4">
-              <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">Pakket</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-emerald-700 mt-1">DELUXE</h2>
-              <div className="mt-2">
-                <span className="text-4xl md:text-5xl font-bold text-gray-900">€19,50</span>
-                <span className="text-lg text-gray-600"> per m²</span>
+          <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 md:p-6 max-w-xs w-full transform transition-all duration-300 hover:scale-105">
+            <div className="text-center mb-3">
+              <span className="text-xs font-medium text-gray-300 uppercase tracking-wide">Pakket</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-emerald-500 mt-1">DELUXE</h2>
+              <div className="mt-1">
+                <span className="text-3xl md:text-4xl font-bold text-white">€19,50</span>
+                <span className="text-sm text-gray-300"> per m²</span>
               </div>
             </div>
 
-            <div className="space-y-2 mb-6">
+            <div className="space-y-1.5 mb-4">
               {[
                 'Aanbrengen glasvlies 200 gram',
                 'Korte wachttijd',
@@ -50,15 +50,15 @@ const Hero = () => {
                 '12 maanden garantie'
               ].map((feature, index) => (
                 <div key={index} className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-emerald-700 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-gray-700">{feature}</span>
+                  <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-xs text-gray-100">{feature}</span>
                 </div>
               ))}
             </div>
 
             <Link
               to="/offerte"
-              className="block w-full bg-emerald-700 hover:bg-emerald-800 text-white text-center font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+              className="block w-full bg-emerald-700 hover:bg-emerald-800 text-white text-center font-semibold py-2.5 px-4 rounded-lg transition-colors duration-300 text-sm"
             >
               Offerte aanvragen
             </Link>
