@@ -65,26 +65,11 @@ const OffertePage = () => {
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Kies uw pakket</h2>
 
-              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <h3 className="text-sm font-semibold text-amber-800">Let op: Voorwaarden voor renovlies</h3>
-                    <div className="mt-2 text-sm text-amber-700">
-                      <p className="mb-2">De pakketten zijn geschikt voor wanden die behangklaar zijn. Vaak is de afwerking echter niet goed genoeg voor het aanbrengen van renovlies.</p>
-                      <p className="font-medium">Als wij tijdens inspectie constateren dat extra voorbereidingswerkzaamheden nodig zijn, zoals:</p>
-                      <ul className="list-disc list-inside mt-1 ml-2 space-y-1">
-                        <li>Schuren van de wanden</li>
-                        <li>Extra stucwerk</li>
-                        <li>Herstelwerkzaamheden</li>
-                      </ul>
-                      <p className="mt-2 font-medium">Dan komen hier extra kosten bij. We informeren u hierover voordat we beginnen met de werkzaamheden.</p>
-                    </div>
-                  </div>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="text-sm font-semibold text-gray-800 mb-2">Voorwaarden voor renovlies</h3>
+                <div className="text-sm text-gray-700 space-y-2">
+                  <p>De pakketten zijn geschikt voor wanden die behangklaar zijn. Vaak is de afwerking echter niet goed genoeg voor het aanbrengen van renovlies.</p>
+                  <p>Als wij tijdens inspectie constateren dat extra voorbereidingswerkzaamheden nodig zijn (zoals schuren, stucwerk of herstelwerkzaamheden), dan komen hier extra kosten bij. We informeren u hierover voordat we beginnen met de werkzaamheden.</p>
                 </div>
               </div>
 
@@ -107,26 +92,26 @@ const OffertePage = () => {
                   <input
                     type="radio"
                     name="package"
-                    value="profinish"
-                    checked={formData.package === 'profinish'}
+                    value="pro"
+                    checked={formData.package === 'pro'}
                     onChange={handleInputChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Pakket Pro Finish €14,50 per m²</div>
+                    <div className="font-semibold text-gray-800">Pakket Pro €14,50 per m²</div>
                   </div>
                 </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
                     type="radio"
                     name="package"
-                    value="masterline"
-                    checked={formData.package === 'masterline'}
+                    value="master"
+                    checked={formData.package === 'master'}
                     onChange={handleInputChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Pakket Masterline €19,50 per m²</div>
+                    <div className="font-semibold text-gray-800">Pakket Master €19,50 per m²</div>
                   </div>
                 </label>
               </div>

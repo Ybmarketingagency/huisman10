@@ -65,10 +65,10 @@ const Hero = () => {
                 </Link>
               </div>
 
-              {/* Pakket Pro Finish */}
+              {/* Pakket Pro */}
               <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 border-2 border-emerald-500">
                 <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Pro Finish</h2>
+                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Pro</h2>
                   <div>
                     <span className="text-2xl font-bold text-white">€14,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
@@ -104,10 +104,10 @@ const Hero = () => {
                 </Link>
               </div>
 
-              {/* Pakket Masterline */}
+              {/* Pakket Master */}
               <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105">
                 <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Masterline</h2>
+                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Master</h2>
                   <div>
                     <span className="text-2xl font-bold text-white">€19,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
@@ -222,10 +222,10 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* Pakket Pro Finish */}
+            {/* Pakket Pro */}
             <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 border-2 border-emerald-500">
               <div className="text-center mb-3">
-                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Pro Finish</h2>
+                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Pro</h2>
                 <div>
                   <span className="text-2xl font-bold text-white">€14,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
@@ -261,10 +261,10 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* Pakket Masterline */}
+            {/* Pakket Master */}
             <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105">
               <div className="text-center mb-3">
-                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Masterline</h2>
+                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Master</h2>
                 <div>
                   <span className="text-2xl font-bold text-white">€19,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
