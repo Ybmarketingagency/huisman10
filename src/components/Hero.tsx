@@ -61,7 +61,7 @@ const Hero = () => {
       </div>
 
       {/* Packages Section - Below hero on mobile, overlapping on desktop */}
-      <div className="relative bg-[#d1d1d1] md:bg-transparent md:-mt-40">
+      <div className="relative bg-[#d1d1d1] md:bg-transparent md:-mt-96">
         <div className="container mx-auto px-4 py-8 md:py-0">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
             {/* Pakket Comfort */}
