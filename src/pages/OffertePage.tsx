@@ -57,40 +57,79 @@ const OffertePage = () => {
                   <input
                     type="radio"
                     name="package"
-                    value="deluxe"
-                    checked={formData.package === 'deluxe'}
+                    value="comfort"
+                    checked={formData.package === 'comfort'}
                     onChange={handleInputChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
                     required
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Pakket Deluxe €19,50 per m²</div>
+                    <div className="font-semibold text-gray-800">Pakket Comfort €9,50 per m²</div>
                   </div>
                 </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
                     type="radio"
                     name="package"
-                    value="behangen"
-                    checked={formData.package === 'behangen'}
+                    value="profinish"
+                    checked={formData.package === 'profinish'}
                     onChange={handleInputChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Alleen behangen</div>
+                    <div className="font-semibold text-gray-800">Pakket Pro Finish €14,50 per m²</div>
                   </div>
                 </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
                     type="radio"
                     name="package"
-                    value="muurverf"
-                    checked={formData.package === 'muurverf'}
+                    value="masterline"
+                    checked={formData.package === 'masterline'}
                     onChange={handleInputChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Alleen voorzien van schrobklasse 1 muurverf</div>
+                    <div className="font-semibold text-gray-800">Pakket Masterline €19,50 per m²</div>
+                  </div>
+                </label>
+                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <input
+                    type="radio"
+                    name="package"
+                    value="behanger-inhuren"
+                    checked={formData.package === 'behanger-inhuren'}
+                    onChange={handleInputChange}
+                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
+                  />
+                  <div className="ml-3">
+                    <div className="font-semibold text-gray-800">Behanger inhuren voor eigen behang</div>
+                  </div>
+                </label>
+                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <input
+                    type="radio"
+                    name="package"
+                    value="schuren-wanden"
+                    checked={formData.package === 'schuren-wanden'}
+                    onChange={handleInputChange}
+                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
+                  />
+                  <div className="ml-3">
+                    <div className="font-semibold text-gray-800">Schuren van de wanden</div>
+                  </div>
+                </label>
+                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <input
+                    type="radio"
+                    name="package"
+                    value="airless-spuiten"
+                    checked={formData.package === 'airless-spuiten'}
+                    onChange={handleInputChange}
+                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700"
+                  />
+                  <div className="ml-3">
+                    <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen</div>
                   </div>
                 </label>
               </div>
