@@ -89,8 +89,8 @@ function App() {
           <Route path="/projectbouw" element={<Projectbouw />} />
         </Routes>
         <Footer />
-        <FloatingWhatsApp 
-          phoneNumber="31783690154"
+        <FloatingWhatsApp
+          phoneNumber="31618876465"
           accountName="Huisman Wandafwerking"
           chatMessage="Hallo! 👋 Hoe kunnen we u helpen?"
           placeholder="Typ een bericht..."
