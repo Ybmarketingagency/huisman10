@@ -53,7 +53,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-[#d1d1d1]">
+    <section id="services" className="py-12 md:py-16 bg-[#d1d1d1]">
       <div className="container mx-auto px-4 md:px-6">
         <FadeInSection>
           <SectionTitle
