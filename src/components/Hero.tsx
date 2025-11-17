@@ -11,22 +11,35 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative h-screen w-full">
-      {/* Hero Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-        style={{
-          backgroundImage: "url('https://imgur.com/3NM402m.jpg')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+    <>
+      {/* Hero Section - Full screen on mobile, partial on desktop */}
+      <div className="relative h-screen md:h-[60vh] w-full">
+        {/* Hero Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+          style={{
+            backgroundImage: "url('https://imgur.com/3NM402m.jpg')",
+          }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        </div>
+
+        {/* Scroll Down Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce md:hidden">
+          <button
+            onClick={scrollToServices}
+            className="text-white focus:outline-none"
+            aria-label="Scroll naar beneden"
+          >
+            <ChevronDown size={36} />
+          </button>
+        </div>
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 h-full container mx-auto px-4">
-        <div className="h-full flex items-center justify-center pt-32 md:pt-24 pb-20">
-          {/* Three Packages */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl w-full">
+      {/* Packages Section - Below hero on mobile, overlapping on desktop */}
+      <div className="relative bg-[#d1d1d1] md:bg-transparent md:-mt-40">
+        <div className="container mx-auto px-4 py-8 md:py-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
             {/* Pakket Comfort */}
             <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105">
               <div className="text-center mb-3">
@@ -142,19 +155,8 @@ const Hero = () => {
             </div>
           </div>
         </div>
-
-        {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <button
-            onClick={scrollToServices}
-            className="text-white focus:outline-none"
-            aria-label="Scroll naar beneden"
-          >
-            <ChevronDown size={36} />
-          </button>
-        </div>
       </div>
-    </div>
+    </>
   );
 };
 
