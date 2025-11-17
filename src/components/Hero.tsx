@@ -24,31 +24,9 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 h-full container mx-auto px-4">
-        <div className="h-full flex flex-col items-center justify-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in text-center">
-            Huisman Wandafwerking
-          </h1>
-          <p className="text-xl md:text-2xl text-white mb-8 text-center max-w-3xl">
-            Professionele afwerking voor uw wanden en plafonds door ervaren vakmensen in heel Nederland
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a
-              href="#contact"
-              className="bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105"
-            >
-              Neem Contact Op
-            </a>
-            <Link
-              to="/offerte"
-              className="bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white font-medium py-3 px-8 rounded-md transition-all duration-300 border border-white border-opacity-40"
-            >
-              Vraag Offerte Aan
-            </Link>
-          </div>
-
-          {/* Pakket DELUXE Promo */}
-          <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-xl shadow-2xl p-6 md:p-8 max-w-md w-full mx-4 transform transition-all duration-300 hover:scale-105">
+        <div className="h-full flex items-center justify-start py-20">
+          {/* Pakket DELUXE Promo - Left Aligned */}
+          <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-xl shadow-2xl p-6 md:p-8 max-w-md w-full transform transition-all duration-300 hover:scale-105">
             <div className="text-center mb-4">
               <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">Pakket</span>
               <h2 className="text-3xl md:text-4xl font-bold text-emerald-700 mt-1">DELUXE</h2>
