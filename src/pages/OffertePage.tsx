@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface FormData {
   package: string;
@@ -6,9 +6,8 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  width: string;
-  height: string;
-  area: string;
+  areaInput: string;
+  floorPlan: File | null;
   comments: string;
 }
 
@@ -19,22 +18,19 @@ const OffertePage = () => {
     name: '',
     email: '',
     phone: '',
-    width: '',
-    height: '',
-    area: '0.00',
+    areaInput: '',
+    floorPlan: null,
     comments: ''
   });
-
-  useEffect(() => {
-    const width = parseFloat(formData.width) || 0;
-    const height = parseFloat(formData.height) || 0;
-    const area = (width * height).toFixed(2);
-    setFormData(prev => ({ ...prev, area }));
-  }, [formData.width, formData.height]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData(prev => ({ ...prev, floorPlan: file }));
   };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -209,43 +205,81 @@ const OffertePage = () => {
 
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Oppervlakte</h2>
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <p className="text-sm text-gray-600 mb-4">Vul het aantal m² in of upload een plattegrond zodat wij dit kunnen berekenen.</p>
+
+              <div className="space-y-4">
                 <div>
-                  <label htmlFor="width" className="block text-sm font-medium text-gray-700 mb-1">
-                    Breedte (m)
+                  <label htmlFor="areaInput" className="block text-sm font-medium text-gray-700 mb-1">
+                    Aantal m² (optioneel)
                   </label>
                   <input
                     type="number"
-                    id="width"
-                    name="width"
-                    value={formData.width}
+                    id="areaInput"
+                    name="areaInput"
+                    value={formData.areaInput}
                     onChange={handleInputChange}
                     step="0.01"
                     min="0"
-                    required
+                    placeholder="Bijv. 150"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">of</span>
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
-                    Hoogte (m)
+                  <label htmlFor="floorPlan" className="block text-sm font-medium text-gray-700 mb-1">
+                    Upload plattegrond (optioneel)
                   </label>
-                  <input
-                    type="number"
-                    id="height"
-                    name="height"
-                    value={formData.height}
-                    onChange={handleInputChange}
-                    step="0.01"
-                    min="0"
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
+                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-emerald-500 transition-colors">
+                    <div className="space-y-1 text-center">
+                      <svg
+                        className="mx-auto h-12 w-12 text-gray-400"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 48 48"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <div className="flex text-sm text-gray-600">
+                        <label
+                          htmlFor="floorPlan"
+                          className="relative cursor-pointer bg-white rounded-md font-medium text-emerald-700 hover:text-emerald-800 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-emerald-500"
+                        >
+                          <span>Upload een bestand</span>
+                          <input
+                            id="floorPlan"
+                            name="floorPlan"
+                            type="file"
+                            accept="image/*,.pdf"
+                            onChange={handleFileChange}
+                            className="sr-only"
+                          />
+                        </label>
+                        <p className="pl-1">of sleep het hier naartoe</p>
+                      </div>
+                      <p className="text-xs text-gray-500">PNG, JPG, PDF tot 10MB</p>
+                      {formData.floorPlan && (
+                        <p className="text-sm text-emerald-700 font-medium mt-2">
+                          Bestand geselecteerd: {formData.floorPlan.name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="bg-emerald-50 p-4 rounded-md border border-emerald-200">
-                <p className="text-sm text-gray-700">Automatisch berekende m²:</p>
-                <p className="text-2xl font-bold text-emerald-700">{formData.area} m²</p>
               </div>
             </div>
 
