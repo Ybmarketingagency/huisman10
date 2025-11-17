@@ -24,6 +24,30 @@ const Hero = () => {
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
 
+        {/* Hero Content - Only visible on mobile */}
+        <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center md:hidden">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            Professioneel Schilderwerk
+          </h1>
+          <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl">
+            Vakmanschap en kwaliteit voor uw woning
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              to="/offerte"
+              className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 text-lg"
+            >
+              Offerte aanvragen
+            </Link>
+            <button
+              onClick={scrollToServices}
+              className="bg-white hover:bg-gray-100 text-emerald-700 font-semibold py-3 px-8 rounded-lg transition-colors duration-300 text-lg"
+            >
+              Bekijk diensten
+            </button>
+          </div>
+        </div>
+
         {/* Scroll Down Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce md:hidden">
           <button
