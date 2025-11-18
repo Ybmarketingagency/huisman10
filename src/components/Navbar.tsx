@@ -50,11 +50,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <button 
+          <button
             onClick={goToHome}
             className="flex-shrink-0"
           >
-            <img src="https://imgur.com/PWmTp3G.jpg" alt="Huisman Wandafwerking" className="h-12" />
+            <img src="https://i.imgur.com/DKSDjVc.png" alt="Huisman Wandafwerking" className="h-16" />
           </button>
 
           {/* Desktop Menu */}
