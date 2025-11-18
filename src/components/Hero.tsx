@@ -24,8 +24,17 @@ const Hero = () => {
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
 
-        {/* Packages Section - Desktop only, positioned at top */}
-        <div className="hidden md:block relative z-20 pt-24">
+        {/* Company Name - Desktop only */}
+        <div className="hidden md:block relative z-20 pt-24 pb-6">
+          <div className="container mx-auto px-4">
+            <h1 className="text-5xl font-bold text-center text-emerald-500">
+              Huisman Wandafwerking
+            </h1>
+          </div>
+        </div>
+
+        {/* Packages Section - Desktop only */}
+        <div className="hidden md:block relative z-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
               {/* Pakket Comfort */}
