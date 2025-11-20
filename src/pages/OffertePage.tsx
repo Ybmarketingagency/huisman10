@@ -130,7 +130,7 @@ ${formData.comments || 'Geen opmerkingen'}
     try {
       await emailjs.send(
         'service_dac928r',
-        'template_3hp1abi',
+        'template_ytp0ow4',
         templateParams,
         'o1zr2f6mQFLqSAGyJ'
       );
