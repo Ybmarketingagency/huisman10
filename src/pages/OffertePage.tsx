@@ -8,7 +8,9 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  address: string;
+  street: string;
+  houseNumber: string;
+  postcode: string;
   wallsArea: string;
   ceilingsArea: string;
   floorPlan: File | null;
@@ -23,7 +25,9 @@ const OffertePage = () => {
     name: '',
     email: '',
     phone: '',
-    address: '',
+    street: '',
+    houseNumber: '',
+    postcode: '',
     wallsArea: '',
     ceilingsArea: '',
     floorPlan: null,
@@ -120,7 +124,7 @@ CONTACTGEGEVENS:
 Naam: ${formData.name}
 E-mail: ${formData.email}
 Telefoon: ${formData.phone}
-Adres: ${formData.address}
+Adres: ${formData.street} ${formData.houseNumber}, ${formData.postcode}
 
 OPPERVLAKTE:
 Wanden: ${formData.wallsArea ? `${formData.wallsArea} m²` : 'Niet opgegeven'}
@@ -157,7 +161,9 @@ ${formData.comments || 'Geen opmerkingen'}
         name: '',
         email: '',
         phone: '',
-        address: '',
+        street: '',
+        houseNumber: '',
+        postcode: '',
         wallsArea: '',
         ceilingsArea: '',
         floorPlan: null,
@@ -381,17 +387,47 @@ ${formData.comments || 'Geen opmerkingen'}
                   />
                 </div>
                 <div>
-                  <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
-                    Volledig adres
+                  <label htmlFor="street" className="block text-sm font-medium text-gray-700 mb-1">
+                    Straatnaam
                   </label>
                   <input
                     type="text"
-                    id="address"
-                    name="address"
-                    value={formData.address}
+                    id="street"
+                    name="street"
+                    value={formData.street}
                     onChange={handleInputChange}
                     required
-                    placeholder="Straat, huisnummer, postcode, plaats"
+                    placeholder="Bijv. Hoofdstraat"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="houseNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                    Huisnummer
+                  </label>
+                  <input
+                    type="text"
+                    id="houseNumber"
+                    name="houseNumber"
+                    value={formData.houseNumber}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Bijv. 123"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="postcode" className="block text-sm font-medium text-gray-700 mb-1">
+                    Postcode
+                  </label>
+                  <input
+                    type="text"
+                    id="postcode"
+                    name="postcode"
+                    value={formData.postcode}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Bijv. 1234 AB"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>
