@@ -112,6 +112,9 @@ Telefoon: ${formData.phone}
 OPPERVLAKTE:
 ${formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload (zie hieronder)'}
 
+GEÜPLOADE FOTO:
+${imageUrl || 'Geen foto geüpload'}
+
 OPMERKINGEN:
 ${formData.comments || 'Geen opmerkingen'}
     `.trim();
@@ -121,8 +124,7 @@ ${formData.comments || 'Geen opmerkingen'}
       from_name: formData.name,
       from_email: formData.email,
       message: messageBody,
-      reply_to: formData.email,
-      image_url: imageUrl || ''
+      reply_to: formData.email
     };
 
     try {
