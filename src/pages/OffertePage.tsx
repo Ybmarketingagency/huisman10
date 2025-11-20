@@ -346,7 +346,7 @@ ${formData.comments || 'Geen opmerkingen'}
               <div className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Naam
+                    Naam <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -360,7 +360,7 @@ ${formData.comments || 'Geen opmerkingen'}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    E-mail
+                    E-mail <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="email"
@@ -374,7 +374,7 @@ ${formData.comments || 'Geen opmerkingen'}
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Telefoon
+                    Telefoon <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="tel"
@@ -388,7 +388,7 @@ ${formData.comments || 'Geen opmerkingen'}
                 </div>
                 <div>
                   <label htmlFor="street" className="block text-sm font-medium text-gray-700 mb-1">
-                    Straatnaam
+                    Straatnaam <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -403,7 +403,7 @@ ${formData.comments || 'Geen opmerkingen'}
                 </div>
                 <div>
                   <label htmlFor="houseNumber" className="block text-sm font-medium text-gray-700 mb-1">
-                    Huisnummer
+                    Huisnummer <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -418,7 +418,7 @@ ${formData.comments || 'Geen opmerkingen'}
                 </div>
                 <div>
                   <label htmlFor="postcode" className="block text-sm font-medium text-gray-700 mb-1">
-                    Postcode
+                    Postcode <span className="text-red-600">*</span>
                   </label>
                   <input
                     type="text"
