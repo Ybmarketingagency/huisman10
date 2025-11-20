@@ -19,6 +19,7 @@ import Behangploeg from './pages/services/Behangploeg';
 import BinnenSchilderwerk from './pages/services/BinnenSchilderwerk';
 import Zolderplaten from './pages/services/Zolderplaten';
 import AirlessSpuiten from './pages/services/AirlessSpuiten';
+import Vescom from './pages/services/Vescom';
 import Nieuwbouw from './pages/construction/Nieuwbouw';
 import Projectbouw from './pages/construction/Projectbouw';
 import './App.css';
@@ -85,6 +86,7 @@ function App() {
           <Route path="/diensten/binnen-schilderwerk/*" element={<BinnenSchilderwerk />} />
           <Route path="/diensten/zolderplaten/*" element={<Zolderplaten />} />
           <Route path="/diensten/airless-spuiten/*" element={<AirlessSpuiten />} />
+          <Route path="/diensten/vescom/*" element={<Vescom />} />
           <Route path="/nieuwbouw/*" element={<Nieuwbouw />} />
           <Route path="/projectbouw/*" element={<Projectbouw />} />
         </Routes>
