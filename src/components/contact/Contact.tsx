@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  useEffect(() => {
-    emailjs.init('o1zr2f6mQFLqSAGyJ');
-  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',

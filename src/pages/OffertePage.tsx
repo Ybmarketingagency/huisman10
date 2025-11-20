@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 interface FormData {
@@ -13,10 +13,6 @@ interface FormData {
 }
 
 const OffertePage = () => {
-  useEffect(() => {
-    emailjs.init('o1zr2f6mQFLqSAGyJ');
-  }, []);
-
   const [formData, setFormData] = useState<FormData>({
     package: '',
     extraServices: [],
