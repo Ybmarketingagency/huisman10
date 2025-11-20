@@ -14,7 +14,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ name, email, phone, onChang
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Naam *
+            Naam <span className="text-red-600">*</span>
           </label>
           <input
             type="text"
@@ -27,7 +27,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ name, email, phone, onChang
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            E-mail *
+            E-mail <span className="text-red-600">*</span>
           </label>
           <input
             type="email"
@@ -40,7 +40,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ name, email, phone, onChang
         </div>
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Telefoon *
+            Telefoon <span className="text-red-600">*</span>
           </label>
           <input
             type="tel"
