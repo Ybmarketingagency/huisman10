@@ -32,7 +32,7 @@ const Services = () => {
     {
       title: "Vescom Behang",
       description: "Luxe en kwaliteit voor uw interieur. Vescom staat voor hoogwaardige wandbekleding met tijdloze designs.",
-      imageSrc: "https://imgur.com/DkCqDEp.jpg",
+      imageSrc: "https://imgur.com/174AL3v.jpg",
       link: "/diensten/vescom"
     }
   ];

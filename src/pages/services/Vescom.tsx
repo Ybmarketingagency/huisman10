@@ -9,7 +9,7 @@ const Vescom = () => {
           {/* Hero Section */}
           <div className="relative h-[300px] rounded-lg overflow-hidden mb-8">
             <img
-              src="https://imgur.com/DkCqDEp.jpg"
+              src="https://imgur.com/174AL3v.jpg"
               alt="Vescom Behang"
               className="w-full h-full object-cover"
             />
@@ -27,7 +27,7 @@ const Vescom = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="relative h-[250px] rounded-lg overflow-hidden">
               <img
-                src="https://imgur.com/J6gyUvj.jpg"
+                src="https://imgur.com/h5uXkjv.jpg"
                 alt="Vescom Behang Installatie"
                 className="w-full h-full object-cover"
               />
@@ -129,7 +129,7 @@ const Vescom = () => {
             </div>
             <div className="relative h-[300px] rounded-lg overflow-hidden">
               <img
-                src="https://imgur.com/DkCqDEp.jpg"
+                src="https://imgur.com/vRPxt59.jpg"
                 alt="Vescom Behang Resultaat"
                 className="w-full h-full object-cover"
               />
