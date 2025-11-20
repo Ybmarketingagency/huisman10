@@ -44,6 +44,27 @@ const OffertePage = () => {
     }));
   };
 
+  const uploadImageToImgBB = async (file: File): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const response = await fetch('https://api.imgbb.com/1/upload?key=d2c6f8e3f3e9a7f7c3c1a3e5f7c3c1a3', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        return data.data.url;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      return null;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -63,6 +84,16 @@ const OffertePage = () => {
       ? formData.extraServices.map(service => serviceNames[service] || service).join(', ')
       : 'Geen';
 
+    let imageUrl: string | null = null;
+
+    if (formData.floorPlan) {
+      imageUrl = await uploadImageToImgBB(formData.floorPlan);
+    }
+
+    const imageSection = imageUrl
+      ? `\n\nGEÜPLOADE PLATTEGROND:\n${imageUrl}`
+      : '';
+
     // Maak een complete message body met alle informatie
     const messageBody = `
 Nieuwe offerte aanvraag van:
@@ -79,7 +110,7 @@ E-mail: ${formData.email}
 Telefoon: ${formData.phone}
 
 OPPERVLAKTE:
-${formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload (zie bijlage indien aanwezig)'}
+${formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload (zie hieronder)'}${imageSection}
 
 OPMERKINGEN:
 ${formData.comments || 'Geen opmerkingen'}
