@@ -63,6 +63,9 @@ const Footer = () => {
               <li>
                 <a href="#services" className="text-gray-400 hover:text-white transition-colors">Airless Spuiten</a>
               </li>
+              <li>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Vescom Behang</a>
+              </li>
             </ul>
           </div>
           

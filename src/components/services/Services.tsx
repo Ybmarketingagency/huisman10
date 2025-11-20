@@ -28,6 +28,12 @@ const Services = () => {
       description: "Bent u op zoek naar een behangploeg? Onze behangploeg kan tot 500m2 per dag behangen (renovlies).",
       imageSrc: "https://imgur.com/aEMX98E.jpg",
       link: "/diensten/behangploeg"
+    },
+    {
+      title: "Vescom Behang",
+      description: "Luxe en kwaliteit voor uw interieur. Vescom staat voor hoogwaardige wandbekleding met tijdloze designs.",
+      imageSrc: "https://imgur.com/DkCqDEp.jpg",
+      link: "/diensten/vescom"
     }
   ];
 
