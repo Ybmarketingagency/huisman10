@@ -354,7 +354,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>
@@ -368,7 +367,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>
@@ -382,7 +380,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>
@@ -396,7 +393,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     name="street"
                     value={formData.street}
                     onChange={handleInputChange}
-                    required
                     placeholder="Bijv. Hoofdstraat"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
@@ -411,7 +407,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     name="houseNumber"
                     value={formData.houseNumber}
                     onChange={handleInputChange}
-                    required
                     placeholder="Bijv. 123"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
@@ -426,7 +421,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     name="postcode"
                     value={formData.postcode}
                     onChange={handleInputChange}
-                    required
                     placeholder="Bijv. 1234 AB"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
