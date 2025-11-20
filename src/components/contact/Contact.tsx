@@ -50,10 +50,10 @@ ${formData.message || 'Geen bericht'}
 
     try {
       await emailjs.send(
-        'service_w2mxty6',
-        'template_2oeb857',
+        'service_dac928r',
+        'template_3hp1abi',
         templateParams,
-        'UH5Q5b_vC1BDR3z7A'
+        'o1zr2f6mQFLqSAGyJ'
       );
       alert('Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.');
       setFormData({
