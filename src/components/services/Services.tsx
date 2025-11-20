@@ -72,7 +72,7 @@ const Services = () => {
           <FadeInSection>
             <h2 className="text-2xl font-semibold text-emerald-700 mb-8">Behangen</h2>
           </FadeInSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {wallpaperServices.map((service, index) => (
               <FadeInSection key={`wallpaper-${index}`} delay={index * 100}>
                 <ServiceCard
