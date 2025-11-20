@@ -63,15 +63,34 @@ const OffertePage = () => {
       ? formData.extraServices.map(service => serviceNames[service] || service).join(', ')
       : 'Geen';
 
+    // Maak een complete message body met alle informatie
+    const messageBody = `
+Nieuwe offerte aanvraag van:
+
+GEKOZEN PAKKET:
+${packageNames[formData.package] || formData.package}
+
+EXTRA DIENSTEN:
+${extraServicesText}
+
+CONTACTGEGEVENS:
+Naam: ${formData.name}
+E-mail: ${formData.email}
+Telefoon: ${formData.phone}
+
+OPPERVLAKTE:
+${formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload (zie bijlage indien aanwezig)'}
+
+OPMERKINGEN:
+${formData.comments || 'Geen opmerkingen'}
+    `.trim();
+
     const templateParams = {
       to_name: 'Huisman Wandafwerking',
-      pakket: packageNames[formData.package] || formData.package,
-      extra_diensten: extraServicesText,
-      naam: formData.name,
-      email: formData.email,
-      telefoon: formData.phone,
-      oppervlakte: formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload',
-      opmerkingen: formData.comments || 'Geen opmerkingen'
+      from_name: formData.name,
+      from_email: formData.email,
+      message: messageBody,
+      reply_to: formData.email
     };
 
     try {
