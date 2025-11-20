@@ -52,7 +52,7 @@ const OffertePage = () => {
       const response = await fetch('https://api.imgur.com/3/image', {
         method: 'POST',
         headers: {
-          'Authorization': 'Client-ID 4b0b91f5c0e5d65',
+          'Authorization': 'Client-ID 546c25a59c58ad7',
         },
         body: formData,
       });
@@ -112,9 +112,6 @@ Telefoon: ${formData.phone}
 OPPERVLAKTE:
 ${formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload (zie hieronder)'}
 
-FOTO'S:
-${imageUrl ? imageUrl : 'Geen foto\'s geüpload'}
-
 OPMERKINGEN:
 ${formData.comments || 'Geen opmerkingen'}
     `.trim();
@@ -124,7 +121,8 @@ ${formData.comments || 'Geen opmerkingen'}
       from_name: formData.name,
       from_email: formData.email,
       message: messageBody,
-      reply_to: formData.email
+      reply_to: formData.email,
+      image_url: imageUrl || ''
     };
 
     try {
