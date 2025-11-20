@@ -77,16 +77,16 @@ function App() {
               <Contact />
             </>
           } />
-          <Route path="/offerte" element={<OffertePage />} />
-          <Route path="/diensten/behanger-inhuren" element={<BehangerInhuren />} />
-          <Route path="/diensten/renovlies" element={<Renovlies />} />
-          <Route path="/diensten/glasweefsel" element={<Glasweefsel />} />
-          <Route path="/diensten/behangploeg" element={<Behangploeg />} />
-          <Route path="/diensten/binnen-schilderwerk" element={<BinnenSchilderwerk />} />
-          <Route path="/diensten/zolderplaten" element={<Zolderplaten />} />
-          <Route path="/diensten/airless-spuiten" element={<AirlessSpuiten />} />
-          <Route path="/nieuwbouw" element={<Nieuwbouw />} />
-          <Route path="/projectbouw" element={<Projectbouw />} />
+          <Route path="/offerte/*" element={<OffertePage />} />
+          <Route path="/diensten/behanger-inhuren/*" element={<BehangerInhuren />} />
+          <Route path="/diensten/renovlies/*" element={<Renovlies />} />
+          <Route path="/diensten/glasweefsel/*" element={<Glasweefsel />} />
+          <Route path="/diensten/behangploeg/*" element={<Behangploeg />} />
+          <Route path="/diensten/binnen-schilderwerk/*" element={<BinnenSchilderwerk />} />
+          <Route path="/diensten/zolderplaten/*" element={<Zolderplaten />} />
+          <Route path="/diensten/airless-spuiten/*" element={<AirlessSpuiten />} />
+          <Route path="/nieuwbouw/*" element={<Nieuwbouw />} />
+          <Route path="/projectbouw/*" element={<Projectbouw />} />
         </Routes>
         <Footer />
         <FloatingWhatsApp
