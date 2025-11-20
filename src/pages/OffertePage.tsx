@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { supabase } from '../lib/supabase';
 
 interface FormData {
   package: string;
@@ -45,26 +44,21 @@ const OffertePage = () => {
     }));
   };
 
-  const uploadImageToSupabase = async (file: File): Promise<string | null> => {
+  const uploadImageToImgBB = async (file: File): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append('image', file);
+
     try {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = fileName;
+      const response = await fetch('https://api.imgbb.com/1/upload?key=d2c6f8e3f3e9a7f7c3c1a3e5f7c3c1a3', {
+        method: 'POST',
+        body: formData,
+      });
 
-      const { error: uploadError } = await supabase.storage
-        .from('offerte-photos')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        console.error('Error uploading to Supabase:', uploadError);
-        return null;
+      const data = await response.json();
+      if (data.success) {
+        return data.data.url;
       }
-
-      const { data } = supabase.storage
-        .from('offerte-photos')
-        .getPublicUrl(filePath);
-
-      return data.publicUrl;
+      return null;
     } catch (error) {
       console.error('Error uploading image:', error);
       return null;
@@ -93,7 +87,7 @@ const OffertePage = () => {
     let imageUrl: string | null = null;
 
     if (formData.floorPlan) {
-      imageUrl = await uploadImageToSupabase(formData.floorPlan);
+      imageUrl = await uploadImageToImgBB(formData.floorPlan);
       console.log('Uploaded image URL:', imageUrl);
     }
 
