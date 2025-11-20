@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 interface FormData {
   package: string;
@@ -43,10 +44,58 @@ const OffertePage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Bedankt voor uw aanvraag! We nemen zo snel mogelijk contact met u op.');
+
+    const packageNames: Record<string, string> = {
+      comfort: 'Pakket Comfort (€9,50/m²)',
+      pro: 'Pakket Pro (€14,50/m²)',
+      master: 'Pakket Master (€19,50/m²)'
+    };
+
+    const serviceNames: Record<string, string> = {
+      'behanger-inhuren': 'Behanger inhuren voor eigen behang',
+      'schuren-wanden': 'Schuren van de wanden',
+      'airless-spuiten': 'Airless spuiten van zolderkappen'
+    };
+
+    const extraServicesText = formData.extraServices.length > 0
+      ? formData.extraServices.map(service => serviceNames[service] || service).join(', ')
+      : 'Geen';
+
+    const templateParams = {
+      to_name: 'Huisman Wandafwerking',
+      pakket: packageNames[formData.package] || formData.package,
+      extra_diensten: extraServicesText,
+      naam: formData.name,
+      email: formData.email,
+      telefoon: formData.phone,
+      oppervlakte: formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload',
+      opmerkingen: formData.comments || 'Geen opmerkingen'
+    };
+
+    try {
+      await emailjs.send(
+        'service_w2mxty6',
+        'template_2oeb857',
+        templateParams,
+        'UH5Q5b_vC1BDR3z7A'
+      );
+      alert('Bedankt voor uw aanvraag! We nemen zo snel mogelijk contact met u op.');
+      setFormData({
+        package: '',
+        extraServices: [],
+        name: '',
+        email: '',
+        phone: '',
+        areaInput: '',
+        floorPlan: null,
+        comments: ''
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Er is een fout opgetreden bij het verzenden van uw aanvraag. Probeer het later opnieuw.');
+    }
   };
 
   return (
