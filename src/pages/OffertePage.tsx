@@ -44,19 +44,22 @@ const OffertePage = () => {
     }));
   };
 
-  const uploadImageToImgBB = async (file: File): Promise<string | null> => {
+  const uploadImageToImgur = async (file: File): Promise<string | null> => {
     const formData = new FormData();
     formData.append('image', file);
 
     try {
-      const response = await fetch('https://api.imgbb.com/1/upload?key=d2c6f8e3f3e9a7f7c3c1a3e5f7c3c1a3', {
+      const response = await fetch('https://api.imgur.com/3/image', {
         method: 'POST',
+        headers: {
+          'Authorization': 'Client-ID 4b0b91f5c0e5d65',
+        },
         body: formData,
       });
 
       const data = await response.json();
-      if (data.success) {
-        return data.data.url;
+      if (data.success && data.data) {
+        return data.data.link;
       }
       return null;
     } catch (error) {
@@ -87,7 +90,7 @@ const OffertePage = () => {
     let imageUrl: string | null = null;
 
     if (formData.floorPlan) {
-      imageUrl = await uploadImageToImgBB(formData.floorPlan);
+      imageUrl = await uploadImageToImgur(formData.floorPlan);
       console.log('Uploaded image URL:', imageUrl);
     }
 
