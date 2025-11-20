@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,17 +17,56 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: ''
-    });
+
+    // Validatie
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      alert('Vul alle verplichte velden in.');
+      return;
+    }
+
+    const messageBody = `
+Nieuw contactformulier bericht:
+
+NAAM: ${formData.name}
+E-MAIL: ${formData.email}
+TELEFOON: ${formData.phone}
+
+GESELECTEERDE DIENST:
+${formData.service || 'Geen dienst geselecteerd'}
+
+BERICHT:
+${formData.message || 'Geen bericht'}
+    `.trim();
+
+    const templateParams = {
+      to_name: 'Huisman Wandafwerking',
+      from_name: formData.name,
+      from_email: formData.email,
+      message: messageBody,
+      reply_to: formData.email
+    };
+
+    try {
+      await emailjs.send(
+        'service_w2mxty6',
+        'template_2oeb857',
+        templateParams,
+        'UH5Q5b_vC1BDR3z7A'
+      );
+      alert('Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Fout bij versturen:', error);
+      alert('Er is iets misgegaan. Probeer het opnieuw of neem direct contact met ons op.');
+    }
   };
 
   return (
