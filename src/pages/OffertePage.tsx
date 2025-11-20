@@ -88,6 +88,7 @@ const OffertePage = () => {
 
     if (formData.floorPlan) {
       imageUrl = await uploadImageToImgBB(formData.floorPlan);
+      console.log('Uploaded image URL:', imageUrl);
     }
 
     // Maak een complete message body met alle informatie
@@ -109,7 +110,7 @@ OPPERVLAKTE:
 ${formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload (zie hieronder)'}
 
 FOTO'S:
-${imageUrl || 'Geen foto\'s geüpload'}
+${imageUrl ? imageUrl : 'Geen foto\'s geüpload'}
 
 OPMERKINGEN:
 ${formData.comments || 'Geen opmerkingen'}
