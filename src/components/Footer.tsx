@@ -15,11 +15,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           <div>
             <div className="flex items-center mb-4">
-              <img
-                src="https://i.imgur.com/DKSDjVc.png"
-                alt="Huisman Wandafwerking"
-                className="h-16"
+              <img 
+                src="https://imgur.com/PWmTp3G.jpg" 
+                alt="Huisman Wandafwerking" 
+                className="h-12 mr-3"
               />
+              <h3 className="text-xl font-bold">Huisman<br/>Wandafwerking</h3>
             </div>
             <p className="text-gray-400 mb-4">
               Professionele wandafwerking en schildersdiensten voor particulieren en bedrijven door heel Nederland.

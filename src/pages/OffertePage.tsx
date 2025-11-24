@@ -4,15 +4,10 @@ import emailjs from '@emailjs/browser';
 interface FormData {
   package: string;
   extraServices: string[];
-  otherService: string;
   name: string;
   email: string;
   phone: string;
-  street: string;
-  houseNumber: string;
-  postcode: string;
-  wallsArea: string;
-  ceilingsArea: string;
+  areaInput: string;
   floorPlan: File | null;
   comments: string;
 }
@@ -21,15 +16,10 @@ const OffertePage = () => {
   const [formData, setFormData] = useState<FormData>({
     package: '',
     extraServices: [],
-    otherService: '',
     name: '',
     email: '',
     phone: '',
-    street: '',
-    houseNumber: '',
-    postcode: '',
-    wallsArea: '',
-    ceilingsArea: '',
+    areaInput: '',
     floorPlan: null,
     comments: ''
   });
@@ -93,15 +83,9 @@ const OffertePage = () => {
       'airless-spuiten': 'Airless spuiten van zolderkappen'
     };
 
-    let extraServicesText = formData.extraServices.length > 0
+    const extraServicesText = formData.extraServices.length > 0
       ? formData.extraServices.map(service => serviceNames[service] || service).join(', ')
       : 'Geen';
-
-    if (formData.otherService) {
-      extraServicesText += extraServicesText === 'Geen'
-        ? formData.otherService
-        : `, ${formData.otherService}`;
-    }
 
     let imageUrl: string | null = null;
 
@@ -124,12 +108,9 @@ CONTACTGEGEVENS:
 Naam: ${formData.name}
 E-mail: ${formData.email}
 Telefoon: ${formData.phone}
-Adres: ${formData.street} ${formData.houseNumber}, ${formData.postcode}
 
 OPPERVLAKTE:
-Wanden: ${formData.wallsArea ? `${formData.wallsArea} m²` : 'Niet opgegeven'}
-Plafonds: ${formData.ceilingsArea ? `${formData.ceilingsArea} m²` : 'Niet opgegeven'}
-${!formData.wallsArea && !formData.ceilingsArea ? 'Plattegrond geüpload (zie hieronder)' : ''}
+${formData.areaInput ? `${formData.areaInput} m²` : 'Plattegrond geüpload (zie hieronder)'}
 
 GEÜPLOADE FOTO:
 ${imageUrl || 'Geen foto geüpload'}
@@ -157,15 +138,10 @@ ${formData.comments || 'Geen opmerkingen'}
       setFormData({
         package: '',
         extraServices: [],
-        otherService: '',
         name: '',
         email: '',
         phone: '',
-        street: '',
-        houseNumber: '',
-        postcode: '',
-        wallsArea: '',
-        ceilingsArea: '',
+        areaInput: '',
         floorPlan: null,
         comments: ''
       });
@@ -277,7 +253,6 @@ ${formData.comments || 'Geen opmerkingen'}
                         <li>• Geen aanbetaling</li>
                         <li>• Naden en kieren kitten</li>
                         <li>• Twee lagen sauzen</li>
-                        <li>• Schrobklasse 1</li>
                         <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
@@ -325,19 +300,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen</div>
                   </div>
                 </label>
-                <div className="p-4 border-2 border-gray-300 rounded-lg">
-                  <label className="block">
-                    <div className="font-semibold text-gray-800 mb-2">Anders</div>
-                    <input
-                      type="text"
-                      name="otherService"
-                      value={formData.otherService}
-                      onChange={handleInputChange}
-                      placeholder="Beschrijf andere dienst..."
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                    />
-                  </label>
-                </div>
               </div>
             </div>
 
@@ -346,7 +308,7 @@ ${formData.comments || 'Geen opmerkingen'}
               <div className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Naam <span className="text-red-600">*</span>
+                    Naam
                   </label>
                   <input
                     type="text"
@@ -360,7 +322,7 @@ ${formData.comments || 'Geen opmerkingen'}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    E-mail <span className="text-red-600">*</span>
+                    E-mail
                   </label>
                   <input
                     type="email"
@@ -374,7 +336,7 @@ ${formData.comments || 'Geen opmerkingen'}
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Telefoon <span className="text-red-600">*</span>
+                    Telefoon
                   </label>
                   <input
                     type="tel"
@@ -386,51 +348,6 @@ ${formData.comments || 'Geen opmerkingen'}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>
-                <div>
-                  <label htmlFor="street" className="block text-sm font-medium text-gray-700 mb-1">
-                    Straatnaam <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="street"
-                    name="street"
-                    value={formData.street}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Bijv. Hoofdstraat"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="houseNumber" className="block text-sm font-medium text-gray-700 mb-1">
-                    Huisnummer <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="houseNumber"
-                    name="houseNumber"
-                    value={formData.houseNumber}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Bijv. 123"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="postcode" className="block text-sm font-medium text-gray-700 mb-1">
-                    Postcode <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="postcode"
-                    name="postcode"
-                    value={formData.postcode}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Bijv. 1234 AB"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
               </div>
             </div>
 
@@ -439,39 +356,21 @@ ${formData.comments || 'Geen opmerkingen'}
               <p className="text-sm text-gray-600 mb-4">Vul het aantal m² in of upload een plattegrond zodat wij dit kunnen berekenen.</p>
 
               <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="wallsArea" className="block text-sm font-medium text-gray-700 mb-1">
-                      Wanden in m² (optioneel)
-                    </label>
-                    <input
-                      type="number"
-                      id="wallsArea"
-                      name="wallsArea"
-                      value={formData.wallsArea}
-                      onChange={handleInputChange}
-                      step="0.01"
-                      min="0"
-                      placeholder="Bijv. 100"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="ceilingsArea" className="block text-sm font-medium text-gray-700 mb-1">
-                      Plafonds in m² (optioneel)
-                    </label>
-                    <input
-                      type="number"
-                      id="ceilingsArea"
-                      name="ceilingsArea"
-                      value={formData.ceilingsArea}
-                      onChange={handleInputChange}
-                      step="0.01"
-                      min="0"
-                      placeholder="Bijv. 50"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                    />
-                  </div>
+                <div>
+                  <label htmlFor="areaInput" className="block text-sm font-medium text-gray-700 mb-1">
+                    Aantal m² (optioneel)
+                  </label>
+                  <input
+                    type="number"
+                    id="areaInput"
+                    name="areaInput"
+                    value={formData.areaInput}
+                    onChange={handleInputChange}
+                    step="0.01"
+                    min="0"
+                    placeholder="Bijv. 150"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
+                  />
                 </div>
 
                 <div className="relative">
