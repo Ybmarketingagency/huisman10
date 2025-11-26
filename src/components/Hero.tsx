@@ -42,7 +42,7 @@ const Hero = () => {
                 <div className="text-center mb-3">
                   <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Comfort</h2>
                   <div>
-                    <span className="text-2xl font-bold text-white">€9,50</span>
+                    <span className="text-2xl font-bold text-white">€11,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const Hero = () => {
                 <div className="text-center mb-3">
                   <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Pro</h2>
                   <div>
-                    <span className="text-2xl font-bold text-white">€14,50</span>
+                    <span className="text-2xl font-bold text-white">€17,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
                 </div>
@@ -199,7 +199,7 @@ const Hero = () => {
               <div className="text-center mb-3">
                 <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Comfort</h2>
                 <div>
-                  <span className="text-2xl font-bold text-white">€9,50</span>
+                  <span className="text-2xl font-bold text-white">€11,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
               </div>
@@ -236,7 +236,7 @@ const Hero = () => {
               <div className="text-center mb-3">
                 <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Pro</h2>
                 <div>
-                  <span className="text-2xl font-bold text-white">€14,50</span>
+                  <span className="text-2xl font-bold text-white">€17,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
               </div>

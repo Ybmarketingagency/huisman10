@@ -82,8 +82,8 @@ const OffertePage = () => {
     e.preventDefault();
 
     const packageNames: Record<string, string> = {
-      comfort: 'Pakket Comfort (€9,50/m²)',
-      pro: 'Pakket Pro (€14,50/m²)',
+      comfort: 'Pakket Comfort (€11,50/m²)',
+      pro: 'Pakket Pro (€17,50/m²)',
       master: 'Pakket Master (€19,50/m²)'
     };
 
@@ -211,7 +211,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Pakket Comfort</div>
-                        <div className="font-bold text-emerald-700 text-lg">€9,50/m²</div>
+                        <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Aanbrengen renovlies 150 gram</li>
@@ -238,7 +238,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Pakket Pro</div>
-                        <div className="font-bold text-emerald-700 text-lg">€14,50/m²</div>
+                        <div className="font-bold text-emerald-700 text-lg">€17,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Aanbrengen renovlies 150 gram</li>
