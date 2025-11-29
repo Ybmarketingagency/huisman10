@@ -3,7 +3,8 @@ import React, { useEffect } from 'react';
 const Testimonials = () => {
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = "https://elfsightcdn.com/platform.js";
+    script.src = "https://ta-widget.netlify.app/widget-loader.js";
+    script.setAttribute('data-widget-id', 'be69b558-4d0c-4d1d-9e00-4fc00115e2e7');
     script.async = true;
     document.body.appendChild(script);
 
@@ -15,7 +16,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-20 bg-[#d1d1d1]">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="elfsight-app-42e45f1b-bc33-435d-a2a8-d98c1cb4c564" data-elfsight-app-lazy></div>
+        <div id="google-reviews-widget-be69b558-4d0c-4d1d-9e00-4fc00115e2e7"></div>
       </div>
     </section>
   );
