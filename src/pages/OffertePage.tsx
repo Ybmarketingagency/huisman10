@@ -82,9 +82,9 @@ const OffertePage = () => {
     e.preventDefault();
 
     const packageNames: Record<string, string> = {
-      comfort: 'Pakket Comfort (€11,50/m²)',
-      pro: 'Pakket Pro (€17,50/m²)',
-      master: 'Pakket Master (€19,50/m²)'
+      comfort: 'Pakket Renovlies Comfort (€12,50/m²)',
+      pro: 'Pakket Renovlies Pro (€19,50/m²)',
+      master: 'Pakket Renovlies Master (€22,50/m²)'
     };
 
     const serviceNames: Record<string, string> = {
@@ -187,14 +187,6 @@ ${formData.comments || 'Geen opmerkingen'}
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Kies uw pakket</h2>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                <h3 className="text-sm font-semibold text-gray-800 mb-2">Voorwaarden voor renovlies</h3>
-                <div className="text-sm text-gray-700 space-y-2">
-                  <p>De pakketten zijn geschikt voor wanden die behangklaar zijn. Vaak is de afwerking echter niet goed genoeg voor het aanbrengen van renovlies.</p>
-                  <p>Als wij tijdens inspectie constateren dat extra voorbereidingswerkzaamheden nodig zijn (zoals schuren, stucwerk of herstelwerkzaamheden), dan komen hier extra kosten bij. We informeren u hierover voordat we beginnen met de werkzaamheden.</p>
-                </div>
-              </div>
-
               <div className="space-y-4">
                 {/* Pakket Comfort */}
                 <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
@@ -210,10 +202,11 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Comfort</div>
-                        <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
+                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Comfort</div>
+                        <div className="font-bold text-emerald-700 text-lg">€12,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Wanden/schuren voorbereiden</li>
                         <li>• Aanbrengen renovlies 150 gram</li>
                         <li>• Professionele behangers</li>
                         <li>• Inclusief materiaal en afvoer bouwafval</li>
@@ -237,10 +230,11 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Pro</div>
-                        <div className="font-bold text-emerald-700 text-lg">€17,50/m²</div>
+                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Pro</div>
+                        <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Wanden/schuren voorbereiden</li>
                         <li>• Aanbrengen renovlies 150 gram</li>
                         <li>• Professionele behangers</li>
                         <li>• Inclusief materiaal en afvoer bouwafval</li>
@@ -267,10 +261,11 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Master</div>
-                        <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
+                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Master</div>
+                        <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Wanden/schuren voorbereiden</li>
                         <li>• Aanbrengen glasvlies 150 gram</li>
                         <li>• Professionele behangers</li>
                         <li>• Inclusief materiaal en afvoer bouwafval</li>
