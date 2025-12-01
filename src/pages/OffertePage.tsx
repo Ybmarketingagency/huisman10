@@ -93,9 +93,9 @@ const OffertePage = () => {
     };
 
     const serviceNames: Record<string, string> = {
+      'airless-spuiten': 'Airless spuiten van zolderkappen',
       'behanger-inhuren': 'Behanger inhuren voor eigen behang',
-      'schuren-wanden': 'Schuren van de wanden',
-      'airless-spuiten': 'Airless spuiten van zolderkappen'
+      'muren-schilderen': 'Muren schilderen'
     };
 
     let extraServicesText = formData.extraServices.length > 0
@@ -377,8 +377,20 @@ ${formData.comments || 'Geen opmerkingen'}
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Andere diensten (optioneel)</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Aanvullende Diensten (optioneel)</h2>
               <div className="space-y-3">
+                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <input
+                    type="checkbox"
+                    value="airless-spuiten"
+                    checked={formData.extraServices.includes('airless-spuiten')}
+                    onChange={handleCheckboxChange}
+                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
+                  />
+                  <div className="ml-3">
+                    <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen</div>
+                  </div>
+                </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
                     type="checkbox"
@@ -394,40 +406,15 @@ ${formData.comments || 'Geen opmerkingen'}
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
                     type="checkbox"
-                    value="schuren-wanden"
-                    checked={formData.extraServices.includes('schuren-wanden')}
+                    value="muren-schilderen"
+                    checked={formData.extraServices.includes('muren-schilderen')}
                     onChange={handleCheckboxChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Schuren van de wanden</div>
+                    <div className="font-semibold text-gray-800">Muren schilderen</div>
                   </div>
                 </label>
-                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <input
-                    type="checkbox"
-                    value="airless-spuiten"
-                    checked={formData.extraServices.includes('airless-spuiten')}
-                    onChange={handleCheckboxChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
-                  />
-                  <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen</div>
-                  </div>
-                </label>
-                <div className="p-4 border-2 border-gray-300 rounded-lg">
-                  <label className="block">
-                    <div className="font-semibold text-gray-800 mb-2">Anders</div>
-                    <input
-                      type="text"
-                      name="otherService"
-                      value={formData.otherService}
-                      onChange={handleInputChange}
-                      placeholder="Beschrijf andere dienst..."
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                    />
-                  </label>
-                </div>
               </div>
             </div>
 
