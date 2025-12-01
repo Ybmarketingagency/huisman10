@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { FloatingWhatsApp } from 'react-floating-whatsapp';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import AdditionalServices from './components/AdditionalServices';
 import Services from './components/services/Services';
 import About from './components/about/About';
 import ConstructionTypes from './components/construction/ConstructionTypes';
@@ -68,6 +69,7 @@ function App() {
           <Route path="/" element={
             <>
               <Hero />
+              <AdditionalServices />
               <Services />
               <About />
               <ConstructionTypes />
