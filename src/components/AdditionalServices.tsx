@@ -17,7 +17,7 @@ const AdditionalServices = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* Schilderen */}
-          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
+          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Muren Schilderen</h3>
               <div>
@@ -26,7 +26,7 @@ const AdditionalServices = () => {
               </div>
             </div>
 
-            <div className="space-y-2 mb-6 flex-grow">
+            <div className="space-y-2 mb-6">
               {[
                 'Schrobklasse 1 latex',
                 'Korte wachttijd',
@@ -54,7 +54,7 @@ const AdditionalServices = () => {
           </div>
 
           {/* Behanger Inhuren */}
-          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
+          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Behanger Inhuren</h3>
               <div>
@@ -64,7 +64,7 @@ const AdditionalServices = () => {
               <p className="text-xs text-gray-600 mt-1">+ €125 opstartkosten</p>
             </div>
 
-            <div className="space-y-2 mb-6 flex-grow">
+            <div className="space-y-2 mb-6">
               {[
                 'Voor grotere projecten',
                 'Professionele behangers',
@@ -91,15 +91,16 @@ const AdditionalServices = () => {
           </div>
 
           {/* Airless Spuiter Inhuren */}
-          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
+          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Airless Spuiter</h3>
               <div>
-                <span className="text-3xl font-bold text-gray-800">Op aanvraag</span>
+                <span className="text-3xl font-bold text-gray-800">€XX</span>
+                <span className="text-lg text-gray-600">/m²</span>
               </div>
             </div>
 
-            <div className="space-y-2 mb-6 flex-grow">
+            <div className="space-y-2 mb-6">
               {[
                 'Voor grote oppervlakken',
                 'Professionele spuiters',
