@@ -17,7 +17,7 @@ const AdditionalServices = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {/* Schilderen */}
-          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
+          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Muren Schilderen</h3>
               <div>
@@ -26,7 +26,7 @@ const AdditionalServices = () => {
               </div>
             </div>
 
-            <div className="space-y-2 mb-6">
+            <div className="space-y-2 mb-6 flex-grow">
               {[
                 'Schrobklasse 1 latex',
                 'Korte wachttijd',
@@ -54,23 +54,25 @@ const AdditionalServices = () => {
           </div>
 
           {/* Behanger Inhuren */}
-          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
+          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Behanger Inhuren</h3>
               <div>
-                <span className="text-3xl font-bold text-gray-800">€XX</span>
+                <span className="text-3xl font-bold text-gray-800">€19,95</span>
                 <span className="text-lg text-gray-600">/m²</span>
               </div>
+              <p className="text-xs text-gray-600 mt-1">+ €125 opstartkosten</p>
             </div>
 
-            <div className="space-y-2 mb-6">
+            <div className="space-y-2 mb-6 flex-grow">
               {[
                 'Voor grotere projecten',
                 'Professionele behangers',
                 'Eigen behang mogelijk',
+                'Behandelen van de wanden',
+                'Inclusief lijm',
                 'Korte wachttijd',
                 'Vakkundig resultaat',
-                'Inclusief voorrij',
                 'Flexibele planning'
               ].map((feature, index) => (
                 <div key={index} className="flex items-start gap-2">
@@ -89,16 +91,15 @@ const AdditionalServices = () => {
           </div>
 
           {/* Airless Spuiter Inhuren */}
-          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
+          <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Airless Spuiter</h3>
               <div>
-                <span className="text-3xl font-bold text-gray-800">€XX</span>
-                <span className="text-lg text-gray-600">/m²</span>
+                <span className="text-3xl font-bold text-gray-800">Op aanvraag</span>
               </div>
             </div>
 
-            <div className="space-y-2 mb-6">
+            <div className="space-y-2 mb-6 flex-grow">
               {[
                 'Voor grote oppervlakken',
                 'Professionele spuiters',
