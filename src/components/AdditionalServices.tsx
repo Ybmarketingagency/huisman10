@@ -58,8 +58,8 @@ const AdditionalServices = () => {
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Behanger Inhuren</h3>
               <div>
-                <span className="text-3xl font-bold text-gray-800">€XX</span>
-                <span className="text-lg text-gray-600">/m²</span>
+                <span className="text-3xl font-bold text-gray-800">€70</span>
+                <span className="text-lg text-gray-600">/uur</span>
               </div>
             </div>
 
@@ -70,7 +70,8 @@ const AdditionalServices = () => {
                 'Eigen behang mogelijk',
                 'Korte wachttijd',
                 'Vakkundig resultaat',
-                'Inclusief voorrij',
+                'Inclusief lijm',
+                'Inclusief voorrijkosten',
                 'Flexibele planning'
               ].map((feature, index) => (
                 <div key={index} className="flex items-start gap-2">

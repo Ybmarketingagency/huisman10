@@ -129,7 +129,7 @@ const OffertePage = () => {
 
     const serviceNames: Record<string, string> = {
       'muren-schilderen': 'Muren schilderen (€11,50/m²)',
-      'behanger-inhuren': 'Behanger inhuren (€XX/m²)',
+      'behanger-inhuren': 'Behanger inhuren (€70/uur)',
       'airless-spuiten': 'Airless spuiten van zolderkappen (€XX/m²)'
     };
 
@@ -380,7 +380,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
-                        <div className="font-bold text-emerald-700 text-lg">€XX/m²</div>
+                        <div className="font-bold text-emerald-700 text-lg">€70/uur</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Voor grotere projecten</li>
@@ -388,7 +388,8 @@ ${formData.comments || 'Geen opmerkingen'}
                         <li>• Eigen behang mogelijk</li>
                         <li>• Korte wachttijd</li>
                         <li>• Vakkundig resultaat</li>
-                        <li>• Inclusief voorrij</li>
+                        <li>• Inclusief lijm</li>
+                        <li>• Inclusief voorrijkosten</li>
                         <li>• Flexibele planning</li>
                       </ul>
                     </div>
