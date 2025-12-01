@@ -67,7 +67,7 @@ const OffertePage = () => {
   const addAreaCalculation = () => {
     const newCalculation: AreaCalculation = {
       id: nextId,
-      service: formData.package || (formData.extraServices[0] || ''),
+      service: formData.package || (formData.extraServices.filter(s => s !== 'airless-spuiten')[0] || ''),
       roomName: '',
       area: ''
     };
@@ -76,6 +76,34 @@ const OffertePage = () => {
       areaCalculations: [...prev.areaCalculations, newCalculation]
     }));
     setNextId(nextId + 1);
+  };
+
+  const calculateEstimate = () => {
+    let total = 0;
+    let hasBehanger = false;
+
+    formData.areaCalculations.forEach(calc => {
+      const area = parseFloat(calc.area) || 0;
+
+      if (calc.service === 'comfort') {
+        total += area * 12.50;
+      } else if (calc.service === 'pro') {
+        total += area * 19.50;
+      } else if (calc.service === 'master') {
+        total += area * 22.50;
+      } else if (calc.service === 'muren-schilderen') {
+        total += area * 11.50;
+      } else if (calc.service === 'behanger-inhuren') {
+        total += area * 19.95;
+        hasBehanger = true;
+      }
+    });
+
+    if (hasBehanger) {
+      total += 125;
+    }
+
+    return total;
   };
 
   const removeAreaCalculation = (id: number) => {
@@ -130,7 +158,7 @@ const OffertePage = () => {
     const serviceNames: Record<string, string> = {
       'muren-schilderen': 'Muren schilderen (€11,50/m²)',
       'behanger-inhuren': 'Behanger inhuren (€19,95/m² + €125 opstartkosten)',
-      'airless-spuiten': 'Airless spuiten van zolderkappen (€XX/m²)'
+      'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)'
     };
 
     let extraServicesText = formData.extraServices.length > 0
@@ -412,7 +440,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Airless Spuiter</div>
-                        <div className="font-bold text-emerald-700 text-lg">€XX/m²</div>
+                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Voor grote oppervlakken</li>
@@ -562,13 +590,15 @@ ${formData.comments || 'Geen opmerkingen'}
                               </option>
                             </optgroup>
                           )}
-                          {formData.extraServices.length > 0 && (
+                          {formData.extraServices.filter(s => s !== 'airless-spuiten').length > 0 && (
                             <optgroup label="Aanvullende Diensten">
-                              {formData.extraServices.map(service => (
-                                <option key={service} value={service}>
-                                  {serviceNames[service]}
-                                </option>
-                              ))}
+                              {formData.extraServices
+                                .filter(s => s !== 'airless-spuiten')
+                                .map(service => (
+                                  <option key={service} value={service}>
+                                    {serviceNames[service]}
+                                  </option>
+                                ))}
                             </optgroup>
                           )}
                         </select>
@@ -616,11 +646,32 @@ ${formData.comments || 'Geen opmerkingen'}
                 <button
                   type="button"
                   onClick={addAreaCalculation}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                  disabled={!formData.package && formData.extraServices.filter(s => s !== 'airless-spuiten').length === 0}
                 >
                   <Plus className="w-5 h-5" />
                   <span className="font-medium">Voeg ruimte toe</span>
                 </button>
+
+                {(!formData.package && formData.extraServices.filter(s => s !== 'airless-spuiten').length === 0) && (
+                  <p className="text-sm text-amber-600 text-center">
+                    Selecteer eerst een pakket of dienst hierboven om ruimtes toe te voegen
+                  </p>
+                )}
+
+                {formData.areaCalculations.length > 0 && calculateEstimate() > 0 && (
+                  <div className="p-4 bg-emerald-50 border-2 border-emerald-700 rounded-lg">
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-semibold text-gray-800">Geschatte totaalprijs:</span>
+                      <span className="text-2xl font-bold text-emerald-700">
+                        €{calculateEstimate().toFixed(2).replace('.', ',')}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2">
+                      Dit is een indicatie op basis van de ingevoerde oppervlaktes. De exacte prijs wordt bepaald na een opname.
+                    </p>
+                  </div>
+                )}
 
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
