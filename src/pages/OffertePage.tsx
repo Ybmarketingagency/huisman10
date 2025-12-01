@@ -37,14 +37,7 @@ const OffertePage = () => {
     houseNumber: '',
     postcode: '',
     city: '',
-    areaCalculations: [
-      {
-        id: 0,
-        service: '',
-        roomName: '',
-        area: ''
-      }
-    ],
+    areaCalculations: [],
     floorPlan: null,
     comments: ''
   });
@@ -74,7 +67,7 @@ const OffertePage = () => {
   const addAreaCalculation = () => {
     const newCalculation: AreaCalculation = {
       id: nextId,
-      service: '',
+      service: formData.package || (formData.extraServices.filter(s => s !== 'airless-spuiten')[0] || ''),
       roomName: '',
       area: ''
     };
@@ -590,15 +583,24 @@ ${formData.comments || 'Geen opmerkingen'}
                           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                         >
                           <option value="">Selecteer dienst</option>
-                          <optgroup label="Renovlies Pakketten">
-                            <option value="comfort">{packageNames.comfort}</option>
-                            <option value="pro">{packageNames.pro}</option>
-                            <option value="master">{packageNames.master}</option>
-                          </optgroup>
-                          <optgroup label="Aanvullende Diensten">
-                            <option value="muren-schilderen">{serviceNames['muren-schilderen']}</option>
-                            <option value="behanger-inhuren">{serviceNames['behanger-inhuren']}</option>
-                          </optgroup>
+                          {formData.package && (
+                            <optgroup label="Geselecteerd Pakket">
+                              <option value={formData.package}>
+                                {packageNames[formData.package]}
+                              </option>
+                            </optgroup>
+                          )}
+                          {formData.extraServices.filter(s => s !== 'airless-spuiten').length > 0 && (
+                            <optgroup label="Aanvullende Diensten">
+                              {formData.extraServices
+                                .filter(s => s !== 'airless-spuiten')
+                                .map(service => (
+                                  <option key={service} value={service}>
+                                    {serviceNames[service]}
+                                  </option>
+                                ))}
+                            </optgroup>
+                          )}
                         </select>
                       </div>
                       <div className="md:col-span-4">
@@ -644,11 +646,18 @@ ${formData.comments || 'Geen opmerkingen'}
                 <button
                   type="button"
                   onClick={addAreaCalculation}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                  disabled={!formData.package && formData.extraServices.filter(s => s !== 'airless-spuiten').length === 0}
                 >
                   <Plus className="w-5 h-5" />
                   <span className="font-medium">Voeg ruimte toe</span>
                 </button>
+
+                {(!formData.package && formData.extraServices.filter(s => s !== 'airless-spuiten').length === 0) && (
+                  <p className="text-sm text-amber-600 text-center">
+                    Selecteer eerst een pakket of dienst hierboven om ruimtes toe te voegen
+                  </p>
+                )}
 
                 {formData.areaCalculations.length > 0 && calculateEstimate() > 0 && (
                   <div className="p-4 bg-emerald-50 border-2 border-emerald-700 rounded-lg">
