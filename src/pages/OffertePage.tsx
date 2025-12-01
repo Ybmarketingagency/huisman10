@@ -86,16 +86,13 @@ const OffertePage = () => {
     const packageNames: Record<string, string> = {
       comfort: 'Pakket Renovlies Comfort (€12,50/m²)',
       pro: 'Pakket Renovlies Pro (€19,50/m²)',
-      master: 'Pakket Renovlies Master (€22,50/m²)',
-      schilderen: 'Muren Schilderen (€11,50/m²)',
-      'behanger-inhuren': 'Behanger Inhuren (€XX/m²)',
-      'airless-spuiter': 'Airless Spuiter Inhuren (€XX/m²)'
+      master: 'Pakket Renovlies Master (€22,50/m²)'
     };
 
     const serviceNames: Record<string, string> = {
-      'airless-spuiten': 'Airless spuiten van zolderkappen',
-      'behanger-inhuren': 'Behanger inhuren voor eigen behang',
-      'muren-schilderen': 'Muren schilderen'
+      'muren-schilderen': 'Muren schilderen (€11,50/m²)',
+      'behanger-inhuren': 'Behanger inhuren (€XX/m²)',
+      'airless-spuiten': 'Airless spuiten van zolderkappen (€XX/m²)'
     };
 
     let extraServicesText = formData.extraServices.length > 0
@@ -120,9 +117,9 @@ const OffertePage = () => {
 Nieuwe offerte aanvraag van:
 
 GEKOZEN PAKKET:
-${packageNames[formData.package] || formData.package}
+${packageNames[formData.package] || 'Geen renovlies pakket geselecteerd'}
 
-EXTRA DIENSTEN:
+AANVULLENDE DIENSTEN:
 ${extraServicesText}
 
 CONTACTGEGEVENS:
@@ -191,7 +188,8 @@ ${formData.comments || 'Geen opmerkingen'}
 
           <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 md:p-8 space-y-8">
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Kies uw pakket</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Kies uw pakket (optioneel)</h2>
+              <p className="text-sm text-gray-600 mb-4">Selecteer een renovlies pakket of gebruik alleen de aanvullende diensten.</p>
 
               <div className="space-y-4">
                 {/* Pakket Comfort */}
@@ -204,7 +202,6 @@ ${formData.comments || 'Geen opmerkingen'}
                       checked={formData.package === 'comfort'}
                       onChange={handleInputChange}
                       className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                      required
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
@@ -285,110 +282,24 @@ ${formData.comments || 'Geen opmerkingen'}
                   </div>
                 </label>
 
-                {/* Schilderen */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="schilderen"
-                      checked={formData.package === 'schilderen'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
-                        <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
-                      </div>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Schrobklasse 1 latex</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Professionele schilders</li>
-                        <li>• Afvoeren bouwafval</li>
-                        <li>• Inclusief materiaal</li>
-                        <li>• Inclusief afplakken</li>
-                        <li>• Inclusief voorrij en parkeerkosten</li>
-                        <li>• Geen aanbetaling</li>
-                        <li>• Naden en kieren kitten</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Behanger Inhuren */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="behanger-inhuren"
-                      checked={formData.package === 'behanger-inhuren'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
-                        <div className="font-bold text-emerald-700 text-lg">€XX/m²</div>
-                      </div>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Voor grotere projecten</li>
-                        <li>• Professionele behangers</li>
-                        <li>• Eigen behang mogelijk</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Vakkundig resultaat</li>
-                        <li>• Inclusief voorrij</li>
-                        <li>• Flexibele planning</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Airless Spuiter */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="airless-spuiter"
-                      checked={formData.package === 'airless-spuiter'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Airless Spuiter Inhuren</div>
-                        <div className="font-bold text-emerald-700 text-lg">€XX/m²</div>
-                      </div>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Voor grote oppervlakken</li>
-                        <li>• Professionele spuiters</li>
-                        <li>• Snelle uitvoering</li>
-                        <li>• Egaal resultaat</li>
-                        <li>• Geschikt voor zolderkappen</li>
-                        <li>• Inclusief materiaal</li>
-                        <li>• Inclusief voorrij</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
               </div>
             </div>
 
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Aanvullende Diensten (optioneel)</h2>
+              <p className="text-sm text-gray-600 mb-4">U kunt meerdere aanvullende diensten selecteren.</p>
               <div className="space-y-3">
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
                     type="checkbox"
-                    value="airless-spuiten"
-                    checked={formData.extraServices.includes('airless-spuiten')}
+                    value="muren-schilderen"
+                    checked={formData.extraServices.includes('muren-schilderen')}
                     onChange={handleCheckboxChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen</div>
+                    <div className="font-semibold text-gray-800">Muren schilderen (€11,50/m²)</div>
+                    <p className="text-xs text-gray-600 mt-1">Schrobklasse 1 latex, inclusief materiaal, afplakken en kitten</p>
                   </div>
                 </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
@@ -400,19 +311,21 @@ ${formData.comments || 'Geen opmerkingen'}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Behanger inhuren voor eigen behang</div>
+                    <div className="font-semibold text-gray-800">Behanger inhuren (€XX/m²)</div>
+                    <p className="text-xs text-gray-600 mt-1">Voor grotere projecten, professionele behangers</p>
                   </div>
                 </label>
                 <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <input
                     type="checkbox"
-                    value="muren-schilderen"
-                    checked={formData.extraServices.includes('muren-schilderen')}
+                    value="airless-spuiten"
+                    checked={formData.extraServices.includes('airless-spuiten')}
                     onChange={handleCheckboxChange}
                     className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
                   />
                   <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Muren schilderen</div>
+                    <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen (€XX/m²)</div>
+                    <p className="text-xs text-gray-600 mt-1">Voor grote oppervlakken, snelle uitvoering</p>
                   </div>
                 </label>
               </div>
