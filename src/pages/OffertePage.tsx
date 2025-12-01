@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { Plus, Trash2 } from 'lucide-react';
+
+interface AreaCalculation {
+  id: number;
+  service: string;
+  roomName: string;
+  area: string;
+}
 
 interface FormData {
   package: string;
@@ -12,8 +20,7 @@ interface FormData {
   houseNumber: string;
   postcode: string;
   city: string;
-  wallsArea: string;
-  ceilingsArea: string;
+  areaCalculations: AreaCalculation[];
   floorPlan: File | null;
   comments: string;
 }
@@ -30,11 +37,12 @@ const OffertePage = () => {
     houseNumber: '',
     postcode: '',
     city: '',
-    wallsArea: '',
-    ceilingsArea: '',
+    areaCalculations: [],
     floorPlan: null,
     comments: ''
   });
+
+  const [nextId, setNextId] = useState(1);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -53,6 +61,36 @@ const OffertePage = () => {
       extraServices: checked
         ? [...prev.extraServices, value]
         : prev.extraServices.filter(service => service !== value)
+    }));
+  };
+
+  const addAreaCalculation = () => {
+    const newCalculation: AreaCalculation = {
+      id: nextId,
+      service: formData.package || (formData.extraServices[0] || ''),
+      roomName: '',
+      area: ''
+    };
+    setFormData(prev => ({
+      ...prev,
+      areaCalculations: [...prev.areaCalculations, newCalculation]
+    }));
+    setNextId(nextId + 1);
+  };
+
+  const removeAreaCalculation = (id: number) => {
+    setFormData(prev => ({
+      ...prev,
+      areaCalculations: prev.areaCalculations.filter(calc => calc.id !== id)
+    }));
+  };
+
+  const updateAreaCalculation = (id: number, field: keyof AreaCalculation, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      areaCalculations: prev.areaCalculations.map(calc =>
+        calc.id === id ? { ...calc, [field]: value } : calc
+      )
     }));
   };
 
@@ -112,6 +150,17 @@ const OffertePage = () => {
       console.log('Uploaded image URL:', imageUrl);
     }
 
+    // Maak oppervlakte berekeningen tekst
+    let areaCalculationsText = 'Geen berekeningen opgegeven';
+    if (formData.areaCalculations.length > 0) {
+      areaCalculationsText = formData.areaCalculations
+        .map((calc, index) => {
+          const serviceName = packageNames[calc.service] || serviceNames[calc.service] || calc.service;
+          return `${index + 1}. ${calc.roomName || 'Naamloze ruimte'} - ${calc.area} m² (${serviceName})`;
+        })
+        .join('\n');
+    }
+
     // Maak een complete message body met alle informatie
     const messageBody = `
 Nieuwe offerte aanvraag van:
@@ -128,10 +177,9 @@ E-mail: ${formData.email}
 Telefoon: ${formData.phone}
 Adres: ${formData.street} ${formData.houseNumber}, ${formData.postcode} ${formData.city}
 
-OPPERVLAKTE:
-Wanden: ${formData.wallsArea ? `${formData.wallsArea} m²` : 'Niet opgegeven'}
-Plafonds: ${formData.ceilingsArea ? `${formData.ceilingsArea} m²` : 'Niet opgegeven'}
-${!formData.wallsArea && !formData.ceilingsArea ? 'Plattegrond geüpload (zie hieronder)' : ''}
+OPPERVLAKTE BEREKENINGEN:
+${areaCalculationsText}
+${formData.areaCalculations.length === 0 && !formData.floorPlan ? '\nPlattegrond geüpload (zie hieronder)' : ''}
 
 GEÜPLOADE FOTO:
 ${imageUrl || 'Geen foto geüpload'}
@@ -167,11 +215,11 @@ ${formData.comments || 'Geen opmerkingen'}
         houseNumber: '',
         postcode: '',
         city: '',
-        wallsArea: '',
-        ceilingsArea: '',
+        areaCalculations: [],
         floorPlan: null,
         comments: ''
       });
+      setNextId(1);
     } catch (error) {
       console.error('Error sending email:', error);
       alert('Er is een fout opgetreden bij het verzenden van uw aanvraag. Probeer het later opnieuw.');
@@ -288,44 +336,90 @@ ${formData.comments || 'Geen opmerkingen'}
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Aanvullende Diensten (optioneel)</h2>
               <p className="text-sm text-gray-600 mb-4">U kunt meerdere aanvullende diensten selecteren.</p>
-              <div className="space-y-3">
-                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <input
-                    type="checkbox"
-                    value="muren-schilderen"
-                    checked={formData.extraServices.includes('muren-schilderen')}
-                    onChange={handleCheckboxChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
-                  />
-                  <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Muren schilderen (€11,50/m²)</div>
-                    <p className="text-xs text-gray-600 mt-1">Schrobklasse 1 latex, inclusief materiaal, afplakken en kitten</p>
+              <div className="space-y-4">
+                {/* Muren Schilderen */}
+                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      value="muren-schilderen"
+                      checked={formData.extraServices.includes('muren-schilderen')}
+                      onChange={handleCheckboxChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
+                        <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Schrobklasse 1 latex</li>
+                        <li>• Korte wachttijd</li>
+                        <li>• Professionele schilders</li>
+                        <li>• Afvoeren bouwafval</li>
+                        <li>• Inclusief materiaal</li>
+                        <li>• Inclusief afplakken</li>
+                        <li>• Inclusief voorrij en parkeerkosten</li>
+                        <li>• Geen aanbetaling</li>
+                        <li>• Naden en kieren kitten</li>
+                      </ul>
+                    </div>
                   </div>
                 </label>
-                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <input
-                    type="checkbox"
-                    value="behanger-inhuren"
-                    checked={formData.extraServices.includes('behanger-inhuren')}
-                    onChange={handleCheckboxChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
-                  />
-                  <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Behanger inhuren (€XX/m²)</div>
-                    <p className="text-xs text-gray-600 mt-1">Voor grotere projecten, professionele behangers</p>
+
+                {/* Behanger Inhuren */}
+                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      value="behanger-inhuren"
+                      checked={formData.extraServices.includes('behanger-inhuren')}
+                      onChange={handleCheckboxChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
+                        <div className="font-bold text-emerald-700 text-lg">€XX/m²</div>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Voor grotere projecten</li>
+                        <li>• Professionele behangers</li>
+                        <li>• Eigen behang mogelijk</li>
+                        <li>• Korte wachttijd</li>
+                        <li>• Vakkundig resultaat</li>
+                        <li>• Inclusief voorrij</li>
+                        <li>• Flexibele planning</li>
+                      </ul>
+                    </div>
                   </div>
                 </label>
-                <label className="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <input
-                    type="checkbox"
-                    value="airless-spuiten"
-                    checked={formData.extraServices.includes('airless-spuiten')}
-                    onChange={handleCheckboxChange}
-                    className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded"
-                  />
-                  <div className="ml-3">
-                    <div className="font-semibold text-gray-800">Airless spuiten van zolderkappen (€XX/m²)</div>
-                    <p className="text-xs text-gray-600 mt-1">Voor grote oppervlakken, snelle uitvoering</p>
+
+                {/* Airless Spuiter */}
+                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      value="airless-spuiten"
+                      checked={formData.extraServices.includes('airless-spuiten')}
+                      onChange={handleCheckboxChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Airless Spuiter</div>
+                        <div className="font-bold text-emerald-700 text-lg">€XX/m²</div>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Voor grote oppervlakken</li>
+                        <li>• Professionele spuiters</li>
+                        <li>• Snelle uitvoering</li>
+                        <li>• Egaal resultaat</li>
+                        <li>• Geschikt voor zolderkappen</li>
+                        <li>• Inclusief materiaal</li>
+                        <li>• Inclusief voorrij</li>
+                      </ul>
+                    </div>
                   </div>
                 </label>
               </div>
@@ -440,44 +534,89 @@ ${formData.comments || 'Geen opmerkingen'}
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Oppervlakte</h2>
-              <p className="text-sm text-gray-600 mb-4">Vul het aantal m² in of upload een plattegrond zodat wij dit kunnen berekenen.</p>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Oppervlakte Berekening</h2>
+              <p className="text-sm text-gray-600 mb-4">Voeg ruimtes toe met de gewenste dienst en oppervlakte in m². Of upload een plattegrond zodat wij dit kunnen berekenen.</p>
 
               <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="wallsArea" className="block text-sm font-medium text-gray-700 mb-1">
-                      Wanden in m² (optioneel)
-                    </label>
-                    <input
-                      type="number"
-                      id="wallsArea"
-                      name="wallsArea"
-                      value={formData.wallsArea}
-                      onChange={handleInputChange}
-                      step="0.01"
-                      min="0"
-                      placeholder="Bijv. 100"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                    />
+                {formData.areaCalculations.map((calc) => (
+                  <div key={calc.id} className="p-4 border-2 border-gray-300 rounded-lg bg-gray-50">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+                      <div className="md:col-span-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Dienst
+                        </label>
+                        <select
+                          value={calc.service}
+                          onChange={(e) => updateAreaCalculation(calc.id, 'service', e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
+                        >
+                          <option value="">Selecteer dienst</option>
+                          {formData.package && (
+                            <optgroup label="Geselecteerd Pakket">
+                              <option value={formData.package}>
+                                {packageNames[formData.package]}
+                              </option>
+                            </optgroup>
+                          )}
+                          {formData.extraServices.length > 0 && (
+                            <optgroup label="Aanvullende Diensten">
+                              {formData.extraServices.map(service => (
+                                <option key={service} value={service}>
+                                  {serviceNames[service]}
+                                </option>
+                              ))}
+                            </optgroup>
+                          )}
+                        </select>
+                      </div>
+                      <div className="md:col-span-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Ruimte naam
+                        </label>
+                        <input
+                          type="text"
+                          value={calc.roomName}
+                          onChange={(e) => updateAreaCalculation(calc.id, 'roomName', e.target.value)}
+                          placeholder="Bijv. Woonkamer"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
+                        />
+                      </div>
+                      <div className="md:col-span-3">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Oppervlakte (m²)
+                        </label>
+                        <input
+                          type="number"
+                          value={calc.area}
+                          onChange={(e) => updateAreaCalculation(calc.id, 'area', e.target.value)}
+                          step="0.01"
+                          min="0"
+                          placeholder="Bijv. 25"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
+                        />
+                      </div>
+                      <div className="md:col-span-1 flex items-end">
+                        <button
+                          type="button"
+                          onClick={() => removeAreaCalculation(calc.id)}
+                          className="w-full p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                          title="Verwijder"
+                        >
+                          <Trash2 className="w-5 h-5 mx-auto" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="ceilingsArea" className="block text-sm font-medium text-gray-700 mb-1">
-                      Plafonds in m² (optioneel)
-                    </label>
-                    <input
-                      type="number"
-                      id="ceilingsArea"
-                      name="ceilingsArea"
-                      value={formData.ceilingsArea}
-                      onChange={handleInputChange}
-                      step="0.01"
-                      min="0"
-                      placeholder="Bijv. 50"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                    />
-                  </div>
-                </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={addAreaCalculation}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors"
+                >
+                  <Plus className="w-5 h-5" />
+                  <span className="font-medium">Voeg ruimte toe</span>
+                </button>
 
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
