@@ -163,7 +163,7 @@ const Hero = () => {
             Professioneel Behangwerk
           </h1>
           <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl">
-            Vakmanschap en kwaliteit voor uw woning
+            Vakmanschap en kwaliteit voor uw woning of bedrijf
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
