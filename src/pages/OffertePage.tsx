@@ -25,6 +25,18 @@ interface FormData {
   comments: string;
 }
 
+const packageNames: Record<string, string> = {
+  comfort: 'Pakket Renovlies Comfort (€12,50/m²)',
+  pro: 'Pakket Renovlies Pro (€19,50/m²)',
+  master: 'Pakket Renovlies Master (€22,50/m²)'
+};
+
+const serviceNames: Record<string, string> = {
+  'muren-schilderen': 'Muren schilderen (€11,50/m²)',
+  'behanger-inhuren': 'Behanger inhuren (€19,95/m² + €125 opstartkosten)',
+  'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)'
+};
+
 const OffertePage = () => {
   const [formData, setFormData] = useState<FormData>({
     package: '',
@@ -65,17 +77,19 @@ const OffertePage = () => {
   };
 
   const addAreaCalculation = () => {
-    const newCalculation: AreaCalculation = {
-      id: nextId,
-      service: formData.package || (formData.extraServices.filter(s => s !== 'airless-spuiten')[0] || ''),
-      roomName: '',
-      area: ''
-    };
-    setFormData(prev => ({
-      ...prev,
-      areaCalculations: [...prev.areaCalculations, newCalculation]
-    }));
-    setNextId(nextId + 1);
+    setFormData(prev => {
+      const newCalculation: AreaCalculation = {
+        id: nextId,
+        service: prev.package || (prev.extraServices.filter(s => s !== 'airless-spuiten')[0] || ''),
+        roomName: '',
+        area: ''
+      };
+      return {
+        ...prev,
+        areaCalculations: [...prev.areaCalculations, newCalculation]
+      };
+    });
+    setNextId(prev => prev + 1);
   };
 
   const calculateEstimate = () => {
@@ -148,18 +162,6 @@ const OffertePage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const packageNames: Record<string, string> = {
-      comfort: 'Pakket Renovlies Comfort (€12,50/m²)',
-      pro: 'Pakket Renovlies Pro (€19,50/m²)',
-      master: 'Pakket Renovlies Master (€22,50/m²)'
-    };
-
-    const serviceNames: Record<string, string> = {
-      'muren-schilderen': 'Muren schilderen (€11,50/m²)',
-      'behanger-inhuren': 'Behanger inhuren (€19,95/m² + €125 opstartkosten)',
-      'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)'
-    };
 
     let extraServicesText = formData.extraServices.length > 0
       ? formData.extraServices.map(service => serviceNames[service] || service).join(', ')
