@@ -37,7 +37,14 @@ const OffertePage = () => {
     houseNumber: '',
     postcode: '',
     city: '',
-    areaCalculations: [],
+    areaCalculations: [
+      {
+        id: 0,
+        service: '',
+        roomName: '',
+        area: ''
+      }
+    ],
     floorPlan: null,
     comments: ''
   });
