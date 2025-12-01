@@ -11,6 +11,7 @@ interface FormData {
   street: string;
   houseNumber: string;
   postcode: string;
+  city: string;
   wallsArea: string;
   ceilingsArea: string;
   floorPlan: File | null;
@@ -28,6 +29,7 @@ const OffertePage = () => {
     street: '',
     houseNumber: '',
     postcode: '',
+    city: '',
     wallsArea: '',
     ceilingsArea: '',
     floorPlan: null,
@@ -127,7 +129,7 @@ CONTACTGEGEVENS:
 Naam: ${formData.name}
 E-mail: ${formData.email}
 Telefoon: ${formData.phone}
-Adres: ${formData.street} ${formData.houseNumber}, ${formData.postcode}
+Adres: ${formData.street} ${formData.houseNumber}, ${formData.postcode} ${formData.city}
 
 OPPERVLAKTE:
 Wanden: ${formData.wallsArea ? `${formData.wallsArea} m²` : 'Niet opgegeven'}
@@ -167,6 +169,7 @@ ${formData.comments || 'Geen opmerkingen'}
         street: '',
         houseNumber: '',
         postcode: '',
+        city: '',
         wallsArea: '',
         ceilingsArea: '',
         floorPlan: null,
@@ -515,6 +518,21 @@ ${formData.comments || 'Geen opmerkingen'}
                     onChange={handleInputChange}
                     required
                     placeholder="Bijv. 1234 AB"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                    Stad/Plaats <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Bijv. Amsterdam"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>
