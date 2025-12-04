@@ -123,7 +123,7 @@ const Hero = () => {
               {/* Pakket Master */}
               <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 flex flex-col">
                 <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Master</h2>
+                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Ultra</h2>
                   <div>
                     <span className="text-2xl font-bold text-white">€22,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
