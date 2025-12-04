@@ -382,7 +382,7 @@ ${formData.comments || 'Geen opmerkingen'}
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Aanvullende Diensten (optioneel)</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Diensten (optioneel)</h2>
               <p className="text-sm text-gray-600 mb-4">U kunt meerdere aanvullende diensten selecteren.</p>
               <div className="space-y-4">
                 {/* Muren Schilderen */}
