@@ -383,7 +383,7 @@ ${formData.comments || 'Geen opmerkingen'}
 
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Diensten (optioneel)</h2>
-              <p className="text-sm text-gray-600 mb-4">U kunt meerdere aanvullende diensten selecteren.</p>
+              <p className="text-sm text-gray-600 mb-4">U kunt meerdere diensten selecteren.</p>
               <div className="space-y-4">
                 {/* Muren Schilderen */}
                 <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
