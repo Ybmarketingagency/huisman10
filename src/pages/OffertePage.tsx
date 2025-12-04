@@ -198,7 +198,7 @@ Nieuwe offerte aanvraag van:
 GEKOZEN PAKKET:
 ${packageNames[formData.package] || 'Geen renovlies pakket geselecteerd'}
 
-AANVULLENDE DIENSTEN:
+DIENSTEN:
 ${extraServicesText}
 
 CONTACTGEGEVENS:
