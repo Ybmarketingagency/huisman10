@@ -28,7 +28,7 @@ interface FormData {
 const packageNames: Record<string, string> = {
   comfort: 'Renovlies Behanger Inhuren (€12,50/m²)',
   pro: 'Pakket Renovlies Compleet (€19,50/m²)',
-  master: 'Pakket Renovlies Master (€22,50/m²)'
+  master: 'Pakket Renovlies Ultra (€22,50/m²)'
 };
 
 const serviceNames: Record<string, string> = {
