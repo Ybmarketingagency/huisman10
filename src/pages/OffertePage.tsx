@@ -26,7 +26,7 @@ interface FormData {
 }
 
 const packageNames: Record<string, string> = {
-  comfort: 'Pakket Renovlies Comfort (€12,50/m²)',
+  comfort: 'Renovlies Behanger Inhuren (€12,50/m²)',
   pro: 'Pakket Renovlies Pro (€19,50/m²)',
   master: 'Pakket Renovlies Master (€22,50/m²)'
 };
