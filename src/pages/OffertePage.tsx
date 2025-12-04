@@ -267,7 +267,7 @@ ${formData.comments || 'Geen opmerkingen'}
           <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 md:p-8 space-y-8">
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Kies uw pakket (optioneel)</h2>
-              <p className="text-sm text-gray-600 mb-4">Selecteer een renovlies pakket of gebruik alleen de aanvullende diensten.</p>
+              <p className="text-sm text-gray-600 mb-4">Selecteer een renovlies pakket of gebruik alleen de diensten.</p>
 
               <div className="space-y-4">
                 {/* Pakket Comfort */}
