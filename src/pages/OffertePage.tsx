@@ -612,7 +612,7 @@ ${formData.comments || 'Geen opmerkingen'}
                             </optgroup>
                           )}
                           {formData.extraServices.filter(s => s !== 'airless-spuiten').length > 0 && (
-                            <optgroup label="Aanvullende Diensten">
+                            <optgroup label="Diensten">
                               {formData.extraServices
                                 .filter(s => s !== 'airless-spuiten')
                                 .map(service => (
