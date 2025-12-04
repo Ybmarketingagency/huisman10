@@ -28,11 +28,11 @@ interface FormData {
 const packageNames: Record<string, string> = {
   comfort: 'Pakket Renovlies Comfort (€12,50/m²)',
   pro: 'Pakket Renovlies Pro (€19,50/m²)',
-  master: 'Pakket Renovlies Master (€22,50/m²)'
+  master: 'Pakket Renovlies Ultra (€22,50/m²)'
 };
 
 const serviceNames: Record<string, string> = {
-  'muren-schilderen': 'Muren schilderen (€11,50/m²)',
+  'muren-schilderen': 'Muren schilderen (€12,50/m²)',
   'behanger-inhuren': 'Behanger inhuren (€19,95/m² + €125 opstartkosten)',
   'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)'
 };
@@ -106,7 +106,7 @@ const OffertePage = () => {
       } else if (calc.service === 'master') {
         total += area * 22.50;
       } else if (calc.service === 'muren-schilderen') {
-        total += area * 11.50;
+        total += area * 12.50;
       } else if (calc.service === 'behanger-inhuren') {
         total += area * 19.95;
         hasBehanger = true;
@@ -287,12 +287,15 @@ ${formData.comments || 'Geen opmerkingen'}
                         <div className="font-bold text-emerald-700 text-lg">€12,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden/schuren voorbereiden</li>
-                        <li>• Aanbrengen renovlies 150 gram</li>
-                        <li>• Professionele behangers</li>
-                        <li>• Inclusief materiaal en afvoer bouwafval</li>
+                        <li>• Wanden professioneel schuren</li>
+                        <li>• Aanbrengen van 150 grams renovlies</li>
+                        <li>• Professionele renovlies specialisten</li>
+                        <li>• Inclusief materiaal: renovlies 150 grams + lijm</li>
+                        <li>• Bouwafval wordt netjes afgevoerd</li>
+                        <li>• Korte wachttijd</li>
+                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
                         <li>• Geen aanbetaling</li>
-                        <li>• Exclusief sauzen en kitten</li>
+                        <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
                   </div>
@@ -315,14 +318,17 @@ ${formData.comments || 'Geen opmerkingen'}
                         <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden/schuren voorbereiden</li>
-                        <li>• Aanbrengen renovlies 150 gram</li>
-                        <li>• Professionele behangers</li>
-                        <li>• Inclusief materiaal en afvoer bouwafval</li>
+                        <li>• Wanden professioneel schuren</li>
+                        <li>• Professionele renovlies specialisten</li>
+                        <li>• Aanbrengen van 150 grams renovlies</li>
+                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
+                        <li>• Alle naden en kieren professioneel gekit</li>
+                        <li>• Dekkend schilderen in 1 kleur naar keuze</li>
+                        <li>• Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf</li>
+                        <li>• Bouwafval wordt netjes afgevoerd</li>
+                        <li>• Korte wachttijd</li>
+                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
                         <li>• Geen aanbetaling</li>
-                        <li>• Dekkend sauzen</li>
-                        <li>• Schrobklasse 1 latex</li>
-                        <li>• Naden en kieren kitten</li>
                         <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
@@ -342,18 +348,21 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Master</div>
+                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Ultra</div>
                         <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden/schuren voorbereiden</li>
-                        <li>• Aanbrengen glasvlies 150 gram</li>
-                        <li>• Professionele behangers</li>
-                        <li>• Inclusief materiaal en afvoer bouwafval</li>
+                        <li>• Wanden professioneel schuren</li>
+                        <li>• Professionele renovlies specialisten</li>
+                        <li>• Aanbrengen van 150 grams renovlies</li>
+                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
+                        <li>• Alle naden en kieren professioneel gekit</li>
+                        <li>• Dekkend schilderen in maximaal 3 kleuren naar keuze</li>
+                        <li>• Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf</li>
+                        <li>• Bouwafval wordt netjes afgevoerd</li>
+                        <li>• Korte wachttijd</li>
+                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
                         <li>• Geen aanbetaling</li>
-                        <li>• Naden en kieren kitten</li>
-                        <li>• Twee lagen sauzen</li>
-                        <li>• Schrobklasse 1</li>
                         <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
@@ -380,18 +389,19 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
-                        <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
+                        <div className="font-bold text-emerald-700 text-lg">€12,50/m²</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Schrobklasse 1 latex</li>
+                        <li>• Wanden professioneel schuren</li>
+                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
+                        <li>• Alle naden en kieren professioneel gekit</li>
+                        <li>• Dekkend schilderen in 1 kleur naar keuze</li>
+                        <li>• Inclusief materiaal: schrobklasse 1 muurverf + kit + afplak materiaal</li>
+                        <li>• Bouwafval wordt netjes afgevoerd</li>
                         <li>• Korte wachttijd</li>
-                        <li>• Professionele schilders</li>
-                        <li>• Afvoeren bouwafval</li>
-                        <li>• Inclusief materiaal</li>
-                        <li>• Inclusief afplakken</li>
-                        <li>• Inclusief voorrij en parkeerkosten</li>
+                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
                         <li>• Geen aanbetaling</li>
-                        <li>• Naden en kieren kitten</li>
+                        <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
                   </div>
@@ -416,14 +426,12 @@ ${formData.comments || 'Geen opmerkingen'}
                         </div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Voor grotere projecten</li>
-                        <li>• Professionele behangers</li>
-                        <li>• Eigen behang mogelijk</li>
-                        <li>• Behandelen van de wanden</li>
-                        <li>• Inclusief lijm</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Vakkundig resultaat</li>
-                        <li>• Flexibele planning</li>
+                        <li>• Aanbrengen van door u zelf aangeschaft behang</li>
+                        <li>• Geschikt voor grote en kleine projecten</li>
+                        <li>• Professionele en ervaren behangers</li>
+                        <li>• Snelle en efficiënte uitvoering</li>
+                        <li>• Strak en vakkundig eindresultaat</li>
+                        <li>• Flexibele planning, afgestemd op uw project</li>
                       </ul>
                     </div>
                   </div>
@@ -445,13 +453,12 @@ ${formData.comments || 'Geen opmerkingen'}
                         <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Voor grote oppervlakken</li>
-                        <li>• Professionele spuiters</li>
-                        <li>• Snelle uitvoering</li>
-                        <li>• Egaal resultaat</li>
-                        <li>• Geschikt voor zolderkappen</li>
-                        <li>• Inclusief materiaal</li>
-                        <li>• Inclusief voorrij</li>
+                        <li>• Perfect geschikt voor grote oppervlakken, wanden en plafonds</li>
+                        <li>• Professionele en ervaren airless spuiters</li>
+                        <li>• Snelle en efficiënte uitvoering dankzij geavanceerde apparatuur</li>
+                        <li>• Egaal, streeploos en zeer dekkend resultaat</li>
+                        <li>• Uitermate geschikt voor zolderkappen, nieuwbouwwoningen en renovatie</li>
+                        <li>• Strakke afwerking binnen korte tijd</li>
                       </ul>
                     </div>
                   </div>

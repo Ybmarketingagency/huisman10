@@ -49,16 +49,15 @@ const Hero = () => {
 
                 <div className="space-y-1.5 mb-4 flex-grow">
                   {[
-                    'Wanden/schuren voorbereiden',
-                    'Aanbrengen renovlies 150 gram',
+                    'Wanden professioneel schuren',
+                    'Aanbrengen van 150 grams renovlies',
+                    'Professionele renovlies specialisten',
+                    'Inclusief materiaal: renovlies 150 grams + lijm',
+                    'Bouwafval wordt netjes afgevoerd',
                     'Korte wachttijd',
-                    'Professionele behangers',
-                    'Afvoeren bouwafval',
-                    'Inclusief materiaal',
-                    'Inclusief voorrij en parkeerkosten',
-                    'Latex leveren mogelijk',
+                    'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
                     'Geen aanbetaling',
-                    'Exclusief sauzen en kitten'
+                    '12 maanden garantie'
                   ].map((feature, index) => (
                     <div key={index} className="flex items-start gap-2">
                       <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
@@ -87,17 +86,17 @@ const Hero = () => {
 
                 <div className="space-y-1.5 mb-4 flex-grow">
                   {[
-                    'Wanden/schuren voorbereiden',
-                    'Aanbrengen renovlies 150 gram',
+                    'Wanden professioneel schuren',
+                    'Professionele renovlies specialisten',
+                    'Aanbrengen van 150 grams renovlies',
+                    'Professionele schilders voor strak en duurzaam schilderwerk',
+                    'Alle naden en kieren professioneel gekit',
+                    'Dekkend schilderen in 1 kleur naar keuze',
+                    'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
+                    'Bouwafval wordt netjes afgevoerd',
                     'Korte wachttijd',
-                    'Professionele behangers',
-                    'Afvoeren bouwafval',
-                    'Inclusief materiaal',
-                    'Inclusief voorrij en parkeerkosten',
+                    'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
                     'Geen aanbetaling',
-                    'Dekkend sauzen',
-                    'Schrobklasse 1 latex',
-                    'Naden en kieren kitten',
                     '12 maanden garantie'
                   ].map((feature, index) => (
                     <div key={index} className="flex items-start gap-2">
@@ -118,7 +117,7 @@ const Hero = () => {
               {/* Pakket Master */}
               <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 flex flex-col">
                 <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Master</h2>
+                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Ultra</h2>
                   <div>
                     <span className="text-2xl font-bold text-white">€22,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
@@ -127,16 +126,17 @@ const Hero = () => {
 
                 <div className="space-y-1.5 mb-4 flex-grow">
                   {[
-                    'Wanden/schuren voorbereiden',
-                    'Aanbrengen glasvlies 150 gram',
+                    'Wanden professioneel schuren',
+                    'Professionele renovlies specialisten',
+                    'Aanbrengen van 150 grams renovlies',
+                    'Professionele schilders voor strak en duurzaam schilderwerk',
+                    'Alle naden en kieren professioneel gekit',
+                    'Dekkend schilderen in maximaal 3 kleuren naar keuze',
+                    'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
+                    'Bouwafval wordt netjes afgevoerd',
                     'Korte wachttijd',
-                    'Professionele behangers',
-                    'Afvoeren bouwafval',
-                    'Inclusief materiaal',
-                    'Inclusief voorrij en parkeerkosten',
+                    'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
                     'Geen aanbetaling',
-                    'Naden en kieren kitten',
-                    'Twee lagen sauzen',
                     '12 maanden garantie'
                   ].map((feature, index) => (
                     <div key={index} className="flex items-start gap-2">
@@ -209,16 +209,15 @@ const Hero = () => {
 
               <div className="space-y-1.5 mb-4 flex-grow">
                 {[
-                  'Wanden/schuren voorbereiden',
-                  'Aanbrengen renovlies 150 gram',
+                  'Wanden professioneel schuren',
+                  'Aanbrengen van 150 grams renovlies',
+                  'Professionele renovlies specialisten',
+                  'Inclusief materiaal: renovlies 150 grams + lijm',
+                  'Bouwafval wordt netjes afgevoerd',
                   'Korte wachttijd',
-                  'Professionele behangers',
-                  'Afvoeren bouwafval',
-                  'Inclusief materiaal',
-                  'Inclusief voorrij en parkeerkosten',
-                  'Latex leveren mogelijk',
+                  'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
                   'Geen aanbetaling',
-                  'Exclusief sauzen en kitten'
+                  '12 maanden garantie'
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start gap-2">
                     <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
@@ -247,17 +246,17 @@ const Hero = () => {
 
               <div className="space-y-1.5 mb-4 flex-grow">
                 {[
-                  'Wanden/schuren voorbereiden',
-                  'Aanbrengen renovlies 150 gram',
+                  'Wanden professioneel schuren',
+                  'Professionele renovlies specialisten',
+                  'Aanbrengen van 150 grams renovlies',
+                  'Professionele schilders voor strak en duurzaam schilderwerk',
+                  'Alle naden en kieren professioneel gekit',
+                  'Dekkend schilderen in 1 kleur naar keuze',
+                  'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
+                  'Bouwafval wordt netjes afgevoerd',
                   'Korte wachttijd',
-                  'Professionele behangers',
-                  'Afvoeren bouwafval',
-                  'Inclusief materiaal',
-                  'Inclusief voorrij en parkeerkosten',
+                  'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
                   'Geen aanbetaling',
-                  'Dekkend sauzen',
-                  'Schrobklasse 1 latex',
-                  'Naden en kieren kitten',
                   '12 maanden garantie'
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start gap-2">
@@ -275,10 +274,10 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* Pakket Master */}
+            {/* Pakket Ultra */}
             <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 flex flex-col">
               <div className="text-center mb-3">
-                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Master</h2>
+                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Ultra</h2>
                 <div>
                   <span className="text-2xl font-bold text-white">€22,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
@@ -287,16 +286,17 @@ const Hero = () => {
 
               <div className="space-y-1.5 mb-4 flex-grow">
                 {[
-                  'Wanden/schuren voorbereiden',
-                  'Aanbrengen glasvlies 150 gram',
+                  'Wanden professioneel schuren',
+                  'Professionele renovlies specialisten',
+                  'Aanbrengen van 150 grams renovlies',
+                  'Professionele schilders voor strak en duurzaam schilderwerk',
+                  'Alle naden en kieren professioneel gekit',
+                  'Dekkend schilderen in maximaal 3 kleuren naar keuze',
+                  'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
+                  'Bouwafval wordt netjes afgevoerd',
                   'Korte wachttijd',
-                  'Professionele behangers',
-                  'Afvoeren bouwafval',
-                  'Inclusief materiaal',
-                  'Inclusief voorrij en parkeerkosten',
+                  'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
                   'Geen aanbetaling',
-                  'Naden en kieren kitten',
-                  'Twee lagen sauzen',
                   '12 maanden garantie'
                 ].map((feature, index) => (
                   <div key={index} className="flex items-start gap-2">
