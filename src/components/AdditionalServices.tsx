@@ -21,7 +21,7 @@ const AdditionalServices = () => {
             <div className="text-center mb-4">
               <h3 className="text-2xl font-bold text-emerald-700 mb-2">Muren Schilderen</h3>
               <div>
-                <span className="text-3xl font-bold text-gray-800">€11,50</span>
+                <span className="text-3xl font-bold text-gray-800">€12,50</span>
                 <span className="text-lg text-gray-600">/m²</span>
               </div>
             </div>
