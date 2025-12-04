@@ -354,7 +354,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Master</div>
+                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Ultra</div>
                         <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
