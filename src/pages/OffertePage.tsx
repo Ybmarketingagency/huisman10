@@ -28,7 +28,7 @@ interface FormData {
 const packageNames: Record<string, string> = {
   comfort: 'Pakket Renovlies Comfort (€12,50/m²)',
   pro: 'Pakket Renovlies Pro (€19,50/m²)',
-  master: 'Pakket Renovlies Ultra (€22,50/m²)'
+  master: 'Pakket Renovlies Master (€22,50/m²)'
 };
 
 const serviceNames: Record<string, string> = {
@@ -286,6 +286,9 @@ ${formData.comments || 'Geen opmerkingen'}
                         <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Comfort</div>
                         <div className="font-bold text-emerald-700 text-lg">€12,50/m²</div>
                       </div>
+                      <p className="text-sm text-gray-700 mb-3 italic">
+                        Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
+                      </p>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Wanden professioneel schuren</li>
                         <li>• Aanbrengen van 150 grams renovlies</li>
@@ -317,6 +320,9 @@ ${formData.comments || 'Geen opmerkingen'}
                         <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Pro</div>
                         <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
                       </div>
+                      <p className="text-sm text-gray-700 mb-3 italic">
+                        Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                      </p>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Wanden professioneel schuren</li>
                         <li>• Professionele renovlies specialisten</li>
@@ -348,9 +354,12 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Ultra</div>
+                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Master</div>
                         <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
                       </div>
+                      <p className="text-sm text-gray-700 mb-3 italic">
+                        Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
+                      </p>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Wanden professioneel schuren</li>
                         <li>• Professionele renovlies specialisten</li>
@@ -391,6 +400,9 @@ ${formData.comments || 'Geen opmerkingen'}
                         <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
                         <div className="font-bold text-emerald-700 text-lg">€12,50/m²</div>
                       </div>
+                      <p className="text-sm text-gray-700 mb-3 italic">
+                        Professionele schilders voor strak, egaal en duurzaam schilderwerk. Geschikt voor: renovatie, nieuwbouw, opfrissen van bestaande wanden of na renovlies.
+                      </p>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Wanden professioneel schuren</li>
                         <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>

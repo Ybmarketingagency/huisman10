@@ -45,6 +45,9 @@ const Hero = () => {
                     <span className="text-2xl font-bold text-white">€12,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
+                  <p className="text-xs text-gray-200 mt-2 leading-relaxed">
+                    Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
+                  </p>
                 </div>
 
                 <div className="space-y-1.5 mb-4 flex-grow">
@@ -82,6 +85,9 @@ const Hero = () => {
                     <span className="text-2xl font-bold text-white">€19,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
+                  <p className="text-xs text-gray-200 mt-2 leading-relaxed">
+                    Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                  </p>
                 </div>
 
                 <div className="space-y-1.5 mb-4 flex-grow">
@@ -117,11 +123,14 @@ const Hero = () => {
               {/* Pakket Master */}
               <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 flex flex-col">
                 <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Ultra</h2>
+                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Master</h2>
                   <div>
                     <span className="text-2xl font-bold text-white">€22,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
+                  <p className="text-xs text-gray-200 mt-2 leading-relaxed">
+                    Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
+                  </p>
                 </div>
 
                 <div className="space-y-1.5 mb-4 flex-grow">
@@ -205,6 +214,9 @@ const Hero = () => {
                   <span className="text-2xl font-bold text-white">€12,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
+                <p className="text-xs text-gray-200 mt-2 leading-relaxed">
+                  Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
+                </p>
               </div>
 
               <div className="space-y-1.5 mb-4 flex-grow">
@@ -242,6 +254,9 @@ const Hero = () => {
                   <span className="text-2xl font-bold text-white">€19,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
+                <p className="text-xs text-gray-200 mt-2 leading-relaxed">
+                  Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                </p>
               </div>
 
               <div className="space-y-1.5 mb-4 flex-grow">
@@ -274,14 +289,17 @@ const Hero = () => {
               </Link>
             </div>
 
-            {/* Pakket Ultra */}
+            {/* Pakket Master */}
             <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 flex flex-col">
               <div className="text-center mb-3">
-                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Ultra</h2>
+                <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Master</h2>
                 <div>
                   <span className="text-2xl font-bold text-white">€22,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
+                <p className="text-xs text-gray-200 mt-2 leading-relaxed">
+                  Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
+                </p>
               </div>
 
               <div className="space-y-1.5 mb-4 flex-grow">
