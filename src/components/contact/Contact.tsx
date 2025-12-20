@@ -107,13 +107,13 @@ ${formData.message || 'Geen bericht'}
                   <MapPin className="text-emerald-600 mr-4 flex-shrink-0" size={20} />
                   <div>
                     <p className="text-sm text-gray-500">Adres</p>
-                    <a 
-                      href="https://maps.google.com/?q=Voltastraat+6a,+3316AW+Dordrecht" 
-                      target="_blank" 
+                    <a
+                      href="https://maps.google.com/?q=Drienerstraat+77,+7551+HL+Hengelo"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-800 hover:text-emerald-600 transition-colors"
                     >
-                      Voltastraat 6a<br />3316AW Dordrecht
+                      Drienerstraat 77<br />7551 HL Hengelo
                     </a>
                   </div>
                 </div>

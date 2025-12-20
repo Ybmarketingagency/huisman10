@@ -83,15 +83,15 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <MapPin size={18} className="mr-3 text-emerald-500 mt-1" />
-                <a 
-                  href="https://maps.google.com/?q=Voltastraat+6a,+3316AW+Dordrecht" 
-                  target="_blank" 
+                <a
+                  href="https://maps.google.com/?q=Drienerstraat+77,+7551+HL+Hengelo"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-emerald-500 transition-colors"
                 >
                   <div>
-                    <p>Voltastraat 6a</p>
-                    <p>3316AW - Dordrecht</p>
+                    <p>Drienerstraat 77</p>
+                    <p>7551 HL - Hengelo</p>
                     <p className="text-sm text-gray-400 mt-1">(Werkzaam door heel Nederland)</p>
                   </div>
                 </a>
