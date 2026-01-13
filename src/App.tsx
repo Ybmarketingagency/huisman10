@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { FloatingWhatsApp } from 'react-floating-whatsapp';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AdditionalServices from './components/AdditionalServices';
@@ -12,6 +11,7 @@ import FAQ from './components/faq/FAQ';
 import Testimonials from './components/testimonials/Testimonials';
 import Contact from './components/contact/Contact';
 import Footer from './components/Footer';
+import FloatingContactWidget from './components/FloatingContactWidget';
 import OffertePage from './pages/OffertePage';
 import BehangerInhuren from './pages/services/BehangerInhuren';
 import Renovlies from './pages/services/Renovlies';
@@ -93,21 +93,7 @@ function App() {
           <Route path="/projectbouw/*" element={<Projectbouw />} />
         </Routes>
         <Footer />
-        <FloatingWhatsApp
-          phoneNumber="31618876465"
-          accountName="Huisman Wandafwerking"
-          chatMessage="Hallo! 👋 Hoe kunnen we u helpen?"
-          placeholder="Typ een bericht..."
-          statusMessage="Reageert meestal binnen 1 uur"
-          allowClickAway={true}
-          allowEsc={true}
-          notification={true}
-          notificationDelay={30000}
-          notificationSound={true}
-          avatar="https://imgur.com/PWmTp3G.jpg"
-          darkMode={false}
-          messageDelay={2}
-        />
+        <FloatingContactWidget />
       </div>
     </Router>
   );
