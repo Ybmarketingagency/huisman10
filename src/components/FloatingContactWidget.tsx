@@ -76,14 +76,24 @@ const FloatingContactWidget = () => {
                 className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-4 px-6 rounded-lg transition-colors flex items-center justify-center gap-3 shadow-md hover:shadow-lg"
               >
                 <Phone size={20} />
-                Bel ons direct: 078-3690154
+                Bel ons direct
+              </a>
+
+              <a
+                href="https://wa.me/31618876465?text=Hallo,%20ik%20heb%20een%20vraag%20over%20uw%20diensten"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-medium py-4 px-6 rounded-lg transition-colors flex items-center justify-center gap-3 shadow-md hover:shadow-lg"
+              >
+                <MessageCircle size={20} />
+                WhatsApp
               </a>
 
               <button
                 onClick={() => setShowCallback(true)}
                 className="w-full bg-white hover:bg-gray-50 text-emerald-700 font-medium py-4 px-6 rounded-lg transition-colors border-2 border-emerald-700 flex items-center justify-center gap-3"
               >
-                <MessageCircle size={20} />
+                <Phone size={20} />
                 Word u liever terug gebeld?
               </button>
 
