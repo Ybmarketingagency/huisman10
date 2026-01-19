@@ -233,6 +233,16 @@ ${formData.comments || 'Geen opmerkingen'}
         templateParams,
         'o1zr2f6mQFLqSAGyJ'
       );
+
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'Lead', {
+          content_name: 'Offerte Aanvraag',
+          content_category: 'Quote Request',
+          value: calculateEstimate(),
+          currency: 'EUR'
+        });
+      }
+
       alert('Bedankt voor uw aanvraag! We nemen zo snel mogelijk contact met u op.');
       setFormData({
         package: '',
