@@ -97,8 +97,8 @@ ${formData.message || 'Geen bericht'}
                   <Mail className="text-emerald-600 mr-4 flex-shrink-0" size={20} />
                   <div>
                     <p className="text-sm text-gray-500">E-mail</p>
-                    <a href="mailto:info@huismanwandafwerking.nl" className="text-gray-800 hover:text-emerald-600 transition-colors text-sm break-all">
-                      info@huismanwandafwerking.nl
+                    <a href="mailto:info@behangenschilderservice.nl" className="text-gray-800 hover:text-emerald-600 transition-colors text-sm break-all">
+                      info@behangenschilderservice.nl
                     </a>
                   </div>
                 </div>
