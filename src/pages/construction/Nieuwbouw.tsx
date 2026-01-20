@@ -21,7 +21,7 @@ const Nieuwbouw = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Heeft u net een nieuwbouwwoning gekocht of bent u van plan binnenkort te verhuizen? Dan komt er veel op u af, inclusief de afwerking van uw wanden en plafonds. Huisman Wandafwerking begrijpt als geen ander dat een hoogwaardige afwerking essentieel is voor het comfort en de esthetiek van uw nieuwe huis.
+            Heeft u net een nieuwbouwwoning gekocht of bent u van plan binnenkort te verhuizen? Dan komt er veel op u af, inclusief de afwerking van uw wanden en plafonds. Behang & Schilderservice begrijpt als geen ander dat een hoogwaardige afwerking essentieel is voor het comfort en de esthetiek van uw nieuwe huis.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">

@@ -21,7 +21,7 @@ const Glasweefsel = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Op zoek naar een elegante wandafwerking met een unieke structuur? Glasweefselbehang is uw ideale keuze. Bij Huisman Wandafwerking zijn we experts in het aanbrengen van dit veelzijdige materiaal, verkrijgbaar in verschillende structuren zoals visgraat, ruit en zigzag.
+            Op zoek naar een elegante wandafwerking met een unieke structuur? Glasweefselbehang is uw ideale keuze. Bij Behang & Schilderservice zijn we experts in het aanbrengen van dit veelzijdige materiaal, verkrijgbaar in verschillende structuren zoals visgraat, ruit en zigzag.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -43,7 +43,7 @@ const Glasweefsel = () => {
           </div>
 
           <h2 className="text-2xl font-semibold text-emerald-700 mb-6">
-            Waarom Kiezen voor Glasweefselbehang bij Huisman Wandafwerking?
+            Waarom Kiezen voor Glasweefselbehang bij Behang & Schilderservice?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

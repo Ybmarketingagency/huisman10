@@ -21,7 +21,7 @@ const Behangploeg = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Bij Huisman Wandafwerking ligt de nadruk op onberispelijke kwaliteit, van voorbereiding tot de uiteindelijke afwerking. Wij zijn er trots op dat we met ons team van gespecialiseerde behangprofessionals nieuwe maatstaven zetten in efficiëntie en nauwkeurigheid.
+            Bij Behang & Schilderservice ligt de nadruk op onberispelijke kwaliteit, van voorbereiding tot de uiteindelijke afwerking. Wij zijn er trots op dat we met ons team van gespecialiseerde behangprofessionals nieuwe maatstaven zetten in efficiëntie en nauwkeurigheid.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">

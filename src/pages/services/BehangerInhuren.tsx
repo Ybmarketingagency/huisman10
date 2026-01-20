@@ -21,7 +21,7 @@ const BehangerInhuren = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Overweegt u om uw muren te verfraaien met een nieuw laagje behang, maar mist u de ervaring of het zelfvertrouwen om dit zelf te doen? Geen zorgen, bij Huisman Wandafwerking hebben we de perfecte oplossing voor u.
+            Overweegt u om uw muren te verfraaien met een nieuw laagje behang, maar mist u de ervaring of het zelfvertrouwen om dit zelf te doen? Geen zorgen, bij Behang & Schilderservice hebben we de perfecte oplossing voor u.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -34,7 +34,7 @@ const BehangerInhuren = () => {
             </div>
             <div>
               <h2 className="text-2xl font-semibold text-emerald-700 mb-4">
-                Waarom Huisman Wandafwerking als Behanger Inhuren?
+                Waarom Behang & Schilderservice als Behanger Inhuren?
               </h2>
               <div className="space-y-4">
                 <div>

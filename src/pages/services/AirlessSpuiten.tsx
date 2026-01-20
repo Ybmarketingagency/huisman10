@@ -21,7 +21,7 @@ const AirlessSpuiten = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Voor wie een snelle, efficiënte maar vooral ook strakke wand- en plafondafwerking zoekt, is airless spuiten de ideale oplossing. Huisman Wandafwerking is uw expert in deze moderne techniek, die zorgt voor een onberispelijk en duurzaam resultaat.
+            Voor wie een snelle, efficiënte maar vooral ook strakke wand- en plafondafwerking zoekt, is airless spuiten de ideale oplossing. Behang & Schilderservice is uw expert in deze moderne techniek, die zorgt voor een onberispelijk en duurzaam resultaat.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">

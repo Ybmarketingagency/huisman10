@@ -21,7 +21,7 @@ const Projectbouw = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Bent u actief in de zakelijke sector en zoekt u een betrouwbare partner voor de afwerking van wanden en plafonds in uw nieuwbouw- of renovatieprojecten? Zoek niet verder! Huisman Wandafwerking is uw one-stop-shop voor al uw afwerkingsbehoeften.
+            Bent u actief in de zakelijke sector en zoekt u een betrouwbare partner voor de afwerking van wanden en plafonds in uw nieuwbouw- of renovatieprojecten? Zoek niet verder! Behang & Schilderservice is uw one-stop-shop voor al uw afwerkingsbehoeften.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
