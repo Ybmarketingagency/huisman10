@@ -54,7 +54,7 @@ const Navbar = () => {
             onClick={goToHome}
             className="flex-shrink-0"
           >
-            <img src="https://i.imgur.com/N8OCXeL.png" alt="Behang & Schilderservice" className="h-16" />
+            <img src="https://i.imgur.com/1B18QpN.png" alt="Behang & Schilderservice" className="h-16" />
           </button>
 
           {/* Desktop Menu */}
