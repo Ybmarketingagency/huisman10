@@ -26,13 +26,13 @@ interface FormData {
 }
 
 const packageNames: Record<string, string> = {
-  comfort: 'Renovlies Behanger Inhuren (€12,50/m²)',
+  comfort: 'Renovlies Behanger Inhuren (€11,50/m²)',
   pro: 'Pakket Renovlies Compleet (€19,50/m²)',
   master: 'Pakket Renovlies Ultra (€22,50/m²)'
 };
 
 const serviceNames: Record<string, string> = {
-  'muren-schilderen': 'Muren schilderen (€12,50/m²)',
+  'muren-schilderen': 'Muren schilderen (€11,50/m²)',
   'behanger-inhuren': 'Behanger inhuren (€19,95/m² + €125 opstartkosten)',
   'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)'
 };
@@ -100,13 +100,13 @@ const OffertePage = () => {
       const area = parseFloat(calc.area) || 0;
 
       if (calc.service === 'comfort') {
-        total += area * 12.50;
+        total += area * 11.50;
       } else if (calc.service === 'pro') {
         total += area * 19.50;
       } else if (calc.service === 'master') {
         total += area * 22.50;
       } else if (calc.service === 'muren-schilderen') {
-        total += area * 12.50;
+        total += area * 11.50;
       } else if (calc.service === 'behanger-inhuren') {
         total += area * 19.95;
         hasBehanger = true;
@@ -294,7 +294,10 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Renovlies Behanger Inhuren</div>
-                        <div className="font-bold text-emerald-700 text-lg">€12,50/m²</div>
+                        <div>
+                          <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
+                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
+                        </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
                         Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
@@ -328,7 +331,10 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Compleet</div>
-                        <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
+                        <div>
+                          <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
+                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
+                        </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
                         Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
@@ -365,7 +371,10 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Ultra</div>
-                        <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
+                        <div>
+                          <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
+                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
+                        </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
                         Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
@@ -408,7 +417,10 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
-                        <div className="font-bold text-emerald-700 text-lg">€12,50/m²</div>
+                        <div>
+                          <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
+                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
+                        </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
                         Professionele schilders voor strak, egaal en duurzaam schilderwerk. Geschikt voor: renovatie, nieuwbouw, opfrissen van bestaande wanden of na renovlies.
@@ -444,7 +456,7 @@ ${formData.comments || 'Geen opmerkingen'}
                         <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
                         <div>
                           <div className="font-bold text-emerald-700 text-lg">€19,95/m²</div>
-                          <div className="text-xs text-gray-600 text-right">+ €125 opstartkosten</div>
+                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m² | + €125 opstartkosten</div>
                         </div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">

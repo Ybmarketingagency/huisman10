@@ -42,7 +42,7 @@ const Hero = () => {
                 <div className="text-center mb-3">
                   <h2 className="text-xl font-bold text-emerald-500 mb-1">Renovlies Behanger Inhuren</h2>
                   <div>
-                    <span className="text-2xl font-bold text-white">€12,50</span>
+                    <span className="text-2xl font-bold text-white">€11,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
                   <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
@@ -214,7 +214,7 @@ const Hero = () => {
               <div className="text-center mb-3">
                 <h2 className="text-xl font-bold text-emerald-500 mb-1">Renovlies Behanger Inhuren</h2>
                 <div>
-                  <span className="text-2xl font-bold text-white">€12,50</span>
+                  <span className="text-2xl font-bold text-white">€11,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
                 <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
