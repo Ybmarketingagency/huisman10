@@ -24,6 +24,7 @@ const AdditionalServices = () => {
                 <span className="text-3xl font-bold text-gray-800">€12,50</span>
                 <span className="text-lg text-gray-600">/m²</span>
               </div>
+              <p className="text-xs text-gray-600 mt-1">excl. BTW | vanaf 100m²</p>
             </div>
 
             <p className="text-sm text-gray-700 mb-4 text-center italic">
@@ -68,7 +69,7 @@ const AdditionalServices = () => {
                 <span className="text-3xl font-bold text-gray-800">€19,95</span>
                 <span className="text-lg text-gray-600">/m²</span>
               </div>
-              <p className="text-xs text-gray-600 mt-1">+ €125 opstartkosten</p>
+              <p className="text-xs text-gray-600 mt-1">excl. BTW | vanaf 100m² | + €125 opstartkosten</p>
             </div>
 
             <p className="text-sm text-gray-600 mb-4 text-center">

@@ -45,6 +45,7 @@ const Hero = () => {
                     <span className="text-2xl font-bold text-white">€12,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
+                  <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                   <p className="text-xs text-gray-200 mt-2 leading-relaxed">
                     Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
                   </p>
@@ -85,6 +86,7 @@ const Hero = () => {
                     <span className="text-2xl font-bold text-white">€19,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
+                  <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                   <p className="text-xs text-gray-200 mt-2 leading-relaxed">
                     Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
                   </p>
@@ -128,6 +130,7 @@ const Hero = () => {
                     <span className="text-2xl font-bold text-white">€22,50</span>
                     <span className="text-sm text-gray-300">/m²</span>
                   </div>
+                  <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                   <p className="text-xs text-gray-200 mt-2 leading-relaxed">
                     Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
                   </p>
@@ -214,6 +217,7 @@ const Hero = () => {
                   <span className="text-2xl font-bold text-white">€12,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
+                <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                 <p className="text-xs text-gray-200 mt-2 leading-relaxed">
                   Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
                 </p>
@@ -254,6 +258,7 @@ const Hero = () => {
                   <span className="text-2xl font-bold text-white">€19,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
+                <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                 <p className="text-xs text-gray-200 mt-2 leading-relaxed">
                   Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
                 </p>
@@ -297,6 +302,7 @@ const Hero = () => {
                   <span className="text-2xl font-bold text-white">€22,50</span>
                   <span className="text-sm text-gray-300">/m²</span>
                 </div>
+                <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                 <p className="text-xs text-gray-200 mt-2 leading-relaxed">
                   Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
                 </p>
