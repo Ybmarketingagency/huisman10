@@ -15,9 +15,9 @@ const GlasweefselPackages = () => {
           />
         </FadeInSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12">
-          <FadeInSection delay={0}>
-            <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12 md:items-stretch">
+          <FadeInSection delay={0} className="h-full">
+            <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col h-full">
               <div className="text-center mb-4">
                 <h3 className="text-2xl font-bold text-emerald-700 mb-2">Glasweefsel Behanger Inhuren</h3>
                 <div>
@@ -59,8 +59,8 @@ const GlasweefselPackages = () => {
             </div>
           </FadeInSection>
 
-          <FadeInSection delay={100}>
-            <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 border-2 border-emerald-700 flex flex-col">
+          <FadeInSection delay={100} className="h-full">
+            <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 border-2 border-emerald-700 flex flex-col h-full">
               <div className="text-center mb-4">
                 <h3 className="text-2xl font-bold text-emerald-700 mb-2">Pakket Glasweefsel Compleet</h3>
                 <div>
@@ -105,8 +105,8 @@ const GlasweefselPackages = () => {
             </div>
           </FadeInSection>
 
-          <FadeInSection delay={200}>
-            <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
+          <FadeInSection delay={200} className="h-full">
+            <div className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col h-full">
               <div className="text-center mb-4">
                 <h3 className="text-2xl font-bold text-emerald-700 mb-2">Pakket Glasweefsel Ultra</h3>
                 <div>
