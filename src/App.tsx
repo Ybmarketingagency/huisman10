@@ -70,10 +70,10 @@ function App() {
           <Route path="/" element={
             <>
               <Hero />
-              <AdditionalServices />
+              <GlasweefselPackages />
               <About />
               <Services />
-              <GlasweefselPackages />
+              <AdditionalServices />
               <ConstructionTypes />
               <Projects />
               <FAQ />
