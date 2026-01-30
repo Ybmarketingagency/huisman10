@@ -72,8 +72,8 @@ function App() {
               <Hero />
               <AdditionalServices />
               <About />
-              <GlasweefselPackages />
               <Services />
+              <GlasweefselPackages />
               <ConstructionTypes />
               <Projects />
               <FAQ />
