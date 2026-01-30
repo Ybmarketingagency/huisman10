@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AdditionalServices from './components/AdditionalServices';
+import GlasweefselPackages from './components/GlasweefselPackages';
 import Services from './components/services/Services';
 import About from './components/about/About';
 import ConstructionTypes from './components/construction/ConstructionTypes';
@@ -70,8 +71,9 @@ function App() {
             <>
               <Hero />
               <AdditionalServices />
-              <Services />
+              <GlasweefselPackages />
               <About />
+              <Services />
               <ConstructionTypes />
               <Projects />
               <FAQ />
