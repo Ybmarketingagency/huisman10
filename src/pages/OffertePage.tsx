@@ -797,7 +797,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     value={formData.city}
                     onChange={handleInputChange}
                     required
-                    placeholder="Bijv. Amsterdam"
+                    placeholder="Bijv. Hengelo"
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
                   />
                 </div>

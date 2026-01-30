@@ -140,7 +140,7 @@ ${formData.message || 'Geen bericht'}
                   <p>KVK-nummer: 56495978</p>
                   <p>Eenmanszaak</p>
                   <p>Vestigingsnummer: 000026044196</p>
-                  <p>Pilotenstraat 42, 1059CR Amsterdam</p>
+                  <p>Drienerstraat 77, 7551 HL Hengelo</p>
                 </div>
               </div>
             </div>
