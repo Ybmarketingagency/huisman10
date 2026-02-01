@@ -61,7 +61,7 @@ const About = () => {
           <FadeInSection direction="right" className="order-1 lg:order-2">
             <div className="relative h-[500px] rounded-lg overflow-hidden shadow-xl">
               <img
-                src="https://imgur.com/Bo8TjWU.jpg"
+                src="https://imgur.com/CMGsn7n.jpg"
                 alt="Behang & Schilderservice Team"
                 className="w-full h-full object-cover"
               />
