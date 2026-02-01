@@ -348,7 +348,7 @@ ${formData.comments || 'Geen opmerkingen'}
                         </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
-                        Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                        Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
                       </p>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Wanden professioneel schuren</li>
@@ -473,7 +473,7 @@ ${formData.comments || 'Geen opmerkingen'}
                         </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
-                        Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                        Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
                       </p>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Wanden professioneel schuren</li>
