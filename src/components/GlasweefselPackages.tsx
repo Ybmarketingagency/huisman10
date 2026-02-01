@@ -71,7 +71,7 @@ const GlasweefselPackages = () => {
               </div>
 
               <p className="text-sm text-gray-700 mb-4 text-center italic">
-                Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
               </p>
 
               <div className="space-y-2 mb-6 flex-grow">

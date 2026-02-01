@@ -88,7 +88,7 @@ const Hero = () => {
                   </div>
                   <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                   <p className="text-xs text-gray-200 mt-2 leading-relaxed">
-                    Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                    Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
                   </p>
                 </div>
 
@@ -260,7 +260,7 @@ const Hero = () => {
                 </div>
                 <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
                 <p className="text-xs text-gray-200 mt-2 leading-relaxed">
-                  Onze meest gekozen optie voor een strak afgewerkt en direct schilderklaar resultaat. Voordeel: uw wanden zijn direct klaar, strak én volledig afgewerkt.
+                  Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
                 </p>
               </div>
 
