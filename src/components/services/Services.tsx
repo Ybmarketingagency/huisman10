@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
 import ServiceCard from './ServiceCard';
 import FadeInSection from '../common/FadeInSection';
 
 const Services = () => {
+  const [wallpaperSlide, setWallpaperSlide] = useState(0);
+  const [paintingSlide, setPaintingSlide] = useState(0);
   const wallpaperServices = [
     {
       title: "Behanger Inhuren",
@@ -72,7 +75,9 @@ const Services = () => {
           <FadeInSection>
             <h2 className="text-2xl font-semibold text-emerald-700 mb-8">Behangen</h2>
           </FadeInSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {wallpaperServices.map((service, index) => (
               <FadeInSection key={`wallpaper-${index}`} delay={index * 100}>
                 <ServiceCard
@@ -84,13 +89,66 @@ const Services = () => {
               </FadeInSection>
             ))}
           </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden relative max-w-sm mx-auto">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${wallpaperSlide * 100}%)` }}
+              >
+                {wallpaperServices.map((service, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-2">
+                    <ServiceCard
+                      title={service.title}
+                      description={service.description}
+                      imageSrc={service.imageSrc}
+                      link={service.link}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={() => setWallpaperSlide((prev) => (prev - 1 + wallpaperServices.length) % wallpaperServices.length)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
+              aria-label="Vorige dienst"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => setWallpaperSlide((prev) => (prev + 1) % wallpaperServices.length)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
+              aria-label="Volgende dienst"
+            >
+              <ChevronRight size={20} />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+              {wallpaperServices.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setWallpaperSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    wallpaperSlide === index ? 'bg-emerald-700' : 'bg-gray-400'
+                  }`}
+                  aria-label={`Ga naar dienst ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="mt-16">
           <FadeInSection>
             <h2 className="text-2xl font-semibold text-emerald-700 mb-8">Schilderswerk</h2>
           </FadeInSection>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
             {paintingServices.map((service, index) => (
               <FadeInSection key={`painting-${index}`} delay={index * 100}>
                 <ServiceCard
@@ -101,6 +159,57 @@ const Services = () => {
                 />
               </FadeInSection>
             ))}
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden relative max-w-sm mx-auto">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${paintingSlide * 100}%)` }}
+              >
+                {paintingServices.map((service, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-2">
+                    <ServiceCard
+                      title={service.title}
+                      description={service.description}
+                      imageSrc={service.imageSrc}
+                      link={service.link}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={() => setPaintingSlide((prev) => (prev - 1 + paintingServices.length) % paintingServices.length)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
+              aria-label="Vorige dienst"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => setPaintingSlide((prev) => (prev + 1) % paintingServices.length)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
+              aria-label="Volgende dienst"
+            >
+              <ChevronRight size={20} />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+              {paintingServices.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setPaintingSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    paintingSlide === index ? 'bg-emerald-700' : 'bg-gray-400'
+                  }`}
+                  aria-label={`Ga naar dienst ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
