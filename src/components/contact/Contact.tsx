@@ -50,7 +50,7 @@ ${formData.message || 'Geen bericht'}
 
     try {
       await emailjs.send(
-        'service_dac928r',
+        'service_z20osse',
         'template_ytp0ow4',
         templateParams,
         'o1zr2f6mQFLqSAGyJ'
