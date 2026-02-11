@@ -16,7 +16,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <img
-                src="https://i.imgur.com/1B18QpN.png"
+                src="https://imgur.com/5TMlnlx.png"
                 alt="Huisman Wandafwerking"
                 className="h-16"
               />
