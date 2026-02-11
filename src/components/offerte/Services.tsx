@@ -18,7 +18,7 @@ const Services: React.FC<ServicesProps> = ({ services, onCheckboxChange }) => {
             checked={services.includes('woning_opmeten')}
             className="mt-1 mr-2"
           />
-          <span>Woning laten opmeten door Behang & Schilderservice</span>
+          <span>Woning laten opmeten door Huisman Wandafwerking</span>
         </label>
         <label className="flex items-start">
           <input

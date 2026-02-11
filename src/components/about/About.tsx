@@ -24,7 +24,7 @@ const About = () => {
               />
               
               <p className="text-gray-600 mt-6 mb-8">
-                Behang & Schilderservice is een gerenommeerd familiebedrijf dat zich specialiseert in hoogwaardige
+                Huisman Wandafwerking is een gerenommeerd familiebedrijf dat zich specialiseert in hoogwaardige
                 wandafwerking en schilderdiensten. Met jarenlange ervaring in de branche bieden wij
                 professionele oplossingen voor zowel particuliere als zakelijke klanten.
               </p>
@@ -62,7 +62,7 @@ const About = () => {
             <div className="relative h-[500px] rounded-lg overflow-hidden shadow-xl">
               <img
                 src="https://imgur.com/CMGsn7n.jpg"
-                alt="Behang & Schilderservice Team"
+                alt="Huisman Wandafwerking Team"
                 className="w-full h-full object-cover"
               />
             </div>

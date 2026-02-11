@@ -98,7 +98,7 @@ const Hero = () => {
         <div className="hidden md:block relative z-20 pt-24 pb-6">
           <div className="container mx-auto px-4">
             <h1 className="text-5xl font-bold text-center text-emerald-500">
-              Behang & Schilderservice
+              Huisman Wandafwerking
             </h1>
           </div>
         </div>

@@ -21,7 +21,7 @@ const Renovlies = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Zoekt u een alternatief voor stucwerk dat zowel stijlvol als functioneel is? Dan is Renovliesbehang de perfecte keuze voor u. Bij Behang & Schilderservice leveren we superstrak en naadloos Renovliesbehang, aangebracht door ons ervaren team van professionals.
+            Zoekt u een alternatief voor stucwerk dat zowel stijlvol als functioneel is? Dan is Renovliesbehang de perfecte keuze voor u. Bij Huisman Wandafwerking leveren we superstrak en naadloos Renovliesbehang, aangebracht door ons ervaren team van professionals.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -43,7 +43,7 @@ const Renovlies = () => {
           </div>
 
           <h2 className="text-2xl font-semibold text-emerald-700 mb-6">
-            Waarom Kiezen voor Renovliesbehang bij Behang & Schilderservice?
+            Waarom Kiezen voor Renovliesbehang bij Huisman Wandafwerking?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

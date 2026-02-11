@@ -21,7 +21,7 @@ const BinnenSchilderwerk = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Een nieuwe laag verf kan wonderen doen voor het interieur van uw woning of bedrijfspand. Bij Behang & Schilderservice leveren we professioneel binnenschilderwerk dat uw ruimte niet alleen verfraait, maar ook beschermt.
+            Een nieuwe laag verf kan wonderen doen voor het interieur van uw woning of bedrijfspand. Bij Huisman Wandafwerking leveren we professioneel binnenschilderwerk dat uw ruimte niet alleen verfraait, maar ook beschermt.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">

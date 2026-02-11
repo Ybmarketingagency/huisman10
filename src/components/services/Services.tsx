@@ -49,7 +49,7 @@ const Services = () => {
     },
     {
       title: "Zolderplaten Afwerking",
-      description: "Bij Behang & Schilderservice bieden we u een totaaloplossing voor de perfecte afwerking van deze zolderplaten.",
+      description: "Bij Huisman Wandafwerking bieden we u een totaaloplossing voor de perfecte afwerking van deze zolderplaten.",
       imageSrc: "https://imgur.com/dxyMfja.jpg",
       link: "/diensten/zolderplaten"
     },

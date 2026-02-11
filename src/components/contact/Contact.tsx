@@ -41,7 +41,7 @@ ${formData.message || 'Geen bericht'}
     `.trim();
 
     const templateParams = {
-      to_name: 'Behang & Schilderservice',
+      to_name: 'Huisman Wandafwerking',
       from_name: formData.name,
       from_email: formData.email,
       message: messageBody,

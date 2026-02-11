@@ -21,7 +21,7 @@ const Zolderplaten = () => {
           </div>
           
           <p className="text-gray-600 mb-12 text-lg">
-            Nieuwbouwwoningen komen vaak met onafgewerkte zolderplaten in standaard groen of bruin. Bij Behang & Schilderservice bieden we u een totaaloplossing voor de perfecte afwerking van deze zolderplaten.
+            Nieuwbouwwoningen komen vaak met onafgewerkte zolderplaten in standaard groen of bruin. Bij Huisman Wandafwerking bieden we u een totaaloplossing voor de perfecte afwerking van deze zolderplaten.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">

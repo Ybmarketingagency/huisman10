@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="flex items-center mb-4">
               <img
                 src="https://i.imgur.com/1B18QpN.png"
-                alt="Behang & Schilderservice"
+                alt="Huisman Wandafwerking"
                 className="h-16"
               />
             </div>
@@ -114,7 +114,7 @@ const Footer = () => {
         
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <div className="text-center mb-4 md:mb-0">
-            <p className="text-gray-400">© 2025 Behang & Schilderservice. Alle rechten voorbehouden.</p>
+            <p className="text-gray-400">© 2025 Huisman Wandafwerking. Alle rechten voorbehouden.</p>
           </div>
           <div className="text-center">
             <p className="text-gray-400">By <a href="https://techazura.com" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:text-emerald-400 transition-colors">TechAzura</a></p>

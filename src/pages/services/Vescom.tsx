@@ -21,7 +21,7 @@ const Vescom = () => {
           </div>
 
           <p className="text-gray-600 mb-12 text-lg">
-            Vescom staat synoniem voor hoogwaardige wandbekleding die design en functionaliteit perfect combineert. Met jarenlange ervaring in het plaatsen van Vescom behang, zorgen wij bij Behang & Schilderservice voor een professionele en naadloze afwerking die uw interieur naar een hoger niveau tilt.
+            Vescom staat synoniem voor hoogwaardige wandbekleding die design en functionaliteit perfect combineert. Met jarenlange ervaring in het plaatsen van Vescom behang, zorgen wij bij Huisman Wandafwerking voor een professionele en naadloze afwerking die uw interieur naar een hoger niveau tilt.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -118,7 +118,7 @@ const Vescom = () => {
                 Klaar voor Vescom Behang?
               </h2>
               <p className="text-gray-600 mb-6">
-                Geef uw interieur de luxe uitstraling die het verdient met Vescom behang, professioneel geplaatst door Behang & Schilderservice. Neem vrijblijvend contact met ons op voor een persoonlijk advies en een offerte op maat.
+                Geef uw interieur de luxe uitstraling die het verdient met Vescom behang, professioneel geplaatst door Huisman Wandafwerking. Neem vrijblijvend contact met ons op voor een persoonlijk advies en een offerte op maat.
               </p>
               <Link
                 to="/offerte"
