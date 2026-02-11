@@ -1,14 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NieuwbouwIntro from '../../components/NieuwbouwIntro';
 
 const Nieuwbouw = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <NieuwbouwIntro asHero={true} />
-
-      <div className="container mx-auto px-4 md:px-6 py-20">
+    <div className="min-h-screen bg-gray-100 pt-20 pb-20">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
+          {/* Hero Section */}
+          <div className="relative h-[300px] rounded-lg overflow-hidden mb-8">
+            <img 
+              src="https://imgur.com/TnZinVI.jpg"
+              alt="Nieuwbouw Wandafwerking" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <h1 className="text-3xl md:text-4xl font-bold text-white text-center px-4">
+                Uw Expert in Wandafwerking voor Nieuwbouw projecten
+              </h1>
+            </div>
+          </div>
+          
           <p className="text-gray-600 mb-12 text-lg">
             Heeft u net een nieuwbouwwoning gekocht of bent u van plan binnenkort te verhuizen? Dan komt er veel op u af, inclusief de afwerking van uw wanden en plafonds. Huisman Wandafwerking begrijpt als geen ander dat een hoogwaardige afwerking essentieel is voor het comfort en de esthetiek van uw nieuwe huis.
           </p>

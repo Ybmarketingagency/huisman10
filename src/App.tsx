@@ -70,9 +70,9 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <NieuwbouwIntro asHero={true} />
               <Hero />
               <GlasweefselPackages />
+              <NieuwbouwIntro />
               <About />
               <Services />
               <AdditionalServices />
