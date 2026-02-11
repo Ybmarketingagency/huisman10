@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import NieuwbouwIntro from './components/NieuwbouwIntro';
 import AdditionalServices from './components/AdditionalServices';
 import GlasweefselPackages from './components/GlasweefselPackages';
 import Services from './components/services/Services';
@@ -71,6 +72,7 @@ function App() {
             <>
               <Hero />
               <GlasweefselPackages />
+              <NieuwbouwIntro />
               <About />
               <Services />
               <AdditionalServices />
