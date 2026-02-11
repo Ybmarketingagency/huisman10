@@ -78,7 +78,7 @@ const Footer = () => {
               <li className="flex items-center">
                 <Mail size={18} className="mr-3 text-emerald-500" />
                 <a href="mailto:info@huismanwandafwerking.nl" className="hover:text-emerald-500 transition-colors">
-                  info@behangenschilderservice.nl
+                  info@huismanwandafwerking.nl
                 </a>
               </li>
               <li className="flex items-start">
