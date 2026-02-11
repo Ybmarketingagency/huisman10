@@ -106,7 +106,7 @@ ${formData.message || 'Geen bericht'}
                   <div>
                     <p className="text-sm text-gray-500">E-mail</p>
                     <a href="mailto:info@huismanwandafwerking.nl" className="text-gray-800 hover:text-emerald-600 transition-colors text-sm break-all">
-                      info@behangenschilderservice.nl
+                      info@huismanwandafwerking.nl
                     </a>
                   </div>
                 </div>
