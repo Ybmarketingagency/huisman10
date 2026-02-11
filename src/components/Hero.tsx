@@ -83,7 +83,7 @@ const Hero = () => {
   return (
     <>
       {/* Hero Section - Slightly shorter */}
-      <div className="relative h-[95vh] w-full">
+      <div className="relative h-[85vh] w-full">
         {/* Hero Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
@@ -95,10 +95,10 @@ const Hero = () => {
         </div>
 
         {/* Company Name - Desktop only */}
-        <div className="hidden md:block relative z-20 pt-32 pb-8">
+        <div className="hidden md:block relative z-20 pt-24 pb-6">
           <div className="container mx-auto px-4">
             <h1 className="text-5xl font-bold text-center text-emerald-500">
-              Dé Partner voor Nieuwbouw Wandafwerking
+              Huisman Wandafwerking
             </h1>
           </div>
         </div>
@@ -242,10 +242,10 @@ const Hero = () => {
         {/* Hero Content - Only visible on mobile */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center md:hidden">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Dé Partner voor Nieuwbouw Wandafwerking
+            Professioneel Behangwerk en Schilderwerk
           </h1>
           <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl">
-            Professionele wand- en plafondafwerking voor uw nieuwbouwwoning
+            Vakmanschap en kwaliteit voor uw woning of bedrijf
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
