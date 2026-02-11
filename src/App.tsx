@@ -71,8 +71,8 @@ function App() {
           <Route path="/" element={
             <>
               <Hero />
-              <GlasweefselPackages />
               <NieuwbouwIntro />
+              <GlasweefselPackages />
               <About />
               <Services />
               <AdditionalServices />
