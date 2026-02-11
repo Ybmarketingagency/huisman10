@@ -1,7 +1,108 @@
 import React from 'react';
 import { Home, Paintbrush, Sparkles, CheckCircle } from 'lucide-react';
 
-const NieuwbouwIntro = () => {
+interface NieuwbouwIntroProps {
+  asHero?: boolean;
+}
+
+const NieuwbouwIntro = ({ asHero = false }: NieuwbouwIntroProps) => {
+  if (asHero) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center pt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(https://imgur.com/TnZinVI.jpg)' }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 py-16">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="flex justify-center items-center gap-3 mb-4">
+                <Home className="w-12 h-12 text-white" />
+                <h1 className="text-4xl md:text-5xl font-bold text-white">
+                  Dé Partner voor Nieuwbouw Wandafwerking
+                </h1>
+              </div>
+              <div className="w-24 h-1 bg-emerald-500 mx-auto mb-6"></div>
+            </div>
+
+            <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-lg shadow-2xl p-8 md:p-10">
+              <div className="prose max-w-none">
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  Huisman Wandafwerking is gespecialiseerd in professionele <strong>wandafwerking</strong> en <strong>plafondafwerking</strong> voor nieuwbouwwoningen en bedrijfspanden. Met jarenlange ervaring in de nieuwbouwsector leveren wij hoogwaardige afwerking die perfect aansluit bij uw project.
+                </p>
+
+                <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                  Heeft u een nieuwbouwwoning en bent u op zoek naar een betrouwbare partij voor de <strong>wand- en plafondafwerking</strong>? Dan bent u bij ons aan het juiste adres. Wij verzorgen zowel <strong>airless spuiten</strong> als traditioneel schilderwerk, en combineren dit met glasweefsel, renovlies en andere hoogwaardige wandbedekkingen.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-emerald-50 rounded-lg p-6 border border-emerald-200">
+                    <div className="flex items-start gap-3 mb-3">
+                      <Paintbrush className="w-6 h-6 text-emerald-700 flex-shrink-0 mt-1" />
+                      <h3 className="text-xl font-semibold text-gray-800">Onze Expertise</h3>
+                    </div>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Professionele wandafwerking</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Vakkundige plafondafwerking</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Airless spuiten voor grote oppervlaktes</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Glasweefsel en renovlies toepassing</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-emerald-50 rounded-lg p-6 border border-emerald-200">
+                    <div className="flex items-start gap-3 mb-3">
+                      <Sparkles className="w-6 h-6 text-emerald-700 flex-shrink-0 mt-1" />
+                      <h3 className="text-xl font-semibold text-gray-800">Waarom Huisman?</h3>
+                    </div>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Ruime ervaring in nieuwbouw</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Kwaliteit en betrouwbaarheid</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Aandacht voor detail en afwerking</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700">Scherpe prijzen en korte levertijden</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-emerald-700 to-emerald-600 text-white rounded-lg p-6 text-center">
+                  <p className="text-lg font-semibold">
+                    Van nieuwbouwwoningen tot grootschalige projecten – wij leveren strakke, duurzame afwerking waar u jarenlang plezier van heeft.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
       <div className="container mx-auto px-4">
