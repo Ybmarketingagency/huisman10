@@ -5,10 +5,10 @@ import FadeInSection from '../common/FadeInSection';
 
 const About = () => {
   const highlights = [
-    "Gecertificeerde vakmensen voor elk project",
-    "Gebruik van hoogwaardige materialen",
-    "Stipte planning en oplevering",
-    "Zeer tevreden klantenkring"
+    "Specialist in nieuwbouw wandafwerking en plafondafwerking",
+    "Expert in airless spuiten en stucwerk",
+    "Hoogwaardige materialen en perfecte afwerking",
+    "Ruime ervaring met nieuwbouwprojecten door heel Nederland"
   ];
 
   return (
@@ -19,19 +19,18 @@ const About = () => {
             <FadeInSection direction="left">
               <SectionTitle
                 title="Over Ons"
-                subtitle="Experts in wandafwerking sinds 2008"
+                subtitle="Dé specialist voor nieuwbouw wandafwerking en plafondafwerking"
                 alignment="left"
               />
               
               <p className="text-gray-600 mt-6 mb-8">
-                Huisman Wandafwerking is een gerenommeerd familiebedrijf dat zich specialiseert in hoogwaardige
-                wandafwerking en schilderdiensten. Met jarenlange ervaring in de branche bieden wij
-                professionele oplossingen voor zowel particuliere als zakelijke klanten.
+                Huisman Wandafwerking is gespecialiseerd in wandafwerking, stucwerk en plafondafwerking voor woningen en bedrijfspanden. Wij verzorgen zowel nieuwbouw stucwerk als renovatie van bestaande wanden, met aandacht voor detail en afwerking.
               </p>
               <p className="text-gray-600 mb-8">
-                Onze vakspecialisten staan bekend om hun precisie, vakmanschap en kwaliteit. Wij werken 
-                uitsluitend met premium materialen en zorgen voor een perfecte afwerking bij elk project, 
-                groot of klein.
+                Heeft u een nieuwbouwwoning en bent u op zoek naar een betrouwbare partij voor de afwerking van uw wanden en plafonds? Dan bent u bij ons aan het juiste adres. Met jarenlange ervaring in nieuwbouwprojecten verzorgen wij professionele wandafwerking, plafondafwerking en airless spuiten. Wij zijn dé partij voor nieuwbouw afwerking van plafond en wanden.
+              </p>
+              <p className="text-gray-600 mb-8">
+                Bent u op zoek naar een ervaren stukadoor of wandafwerker die kwaliteit en betrouwbaarheid combineert? Dan bent u bij Huisman Wandafwerking aan het juiste adres.
               </p>
               
               <div className="space-y-3">
