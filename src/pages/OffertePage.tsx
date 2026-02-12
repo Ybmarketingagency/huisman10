@@ -39,7 +39,8 @@ const serviceNames: Record<string, string> = {
   'behanger-inhuren': 'Behanger inhuren (€19,95/m² + €125 opstartkosten)',
   'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)',
   'vloeren-leggen': 'Vloeren leggen (epoxy, pvc, laminaat) (Op aanvraag)',
-  'plafond-egaliseren': 'Plafond egaliseren (Op aanvraag)'
+  'plafond-egaliseren': 'Plafond egaliseren (Op aanvraag)',
+  'stukadoor-inhuren': 'Stukadoor inhuren (Op aanvraag)'
 };
 
 const OffertePage = () => {
@@ -85,7 +86,7 @@ const OffertePage = () => {
     setFormData(prev => {
       const newCalculation: AreaCalculation = {
         id: nextId,
-        service: prev.package || (prev.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren'].includes(s))[0] || ''),
+        service: prev.package || (prev.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s))[0] || ''),
         roomName: '',
         area: ''
       };
@@ -693,6 +694,36 @@ ${formData.comments || 'Geen opmerkingen'}
                     </div>
                   </div>
                 </label>
+
+                {/* Stukadoor Inhuren */}
+                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      value="stukadoor-inhuren"
+                      checked={formData.extraServices.includes('stukadoor-inhuren')}
+                      onChange={handleCheckboxChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Stukadoor Inhuren</div>
+                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
+                      </div>
+                      <p className="text-sm text-gray-700 mb-3 italic">
+                        Professionele stukadoors voor al uw stucwerk.
+                      </p>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Ervaren stukadoors met jarenlange expertise</li>
+                        <li>• Geschikt voor nieuwbouw en renovatie</li>
+                        <li>• Wandafwerking en plafondafwerking</li>
+                        <li>• Professioneel stucwerk en egaliseren</li>
+                        <li>• Strak en duurzaam eindresultaat</li>
+                        <li>• Flexibele planning afgestemd op uw project</li>
+                      </ul>
+                    </div>
+                  </div>
+                </label>
               </div>
             </div>
 
@@ -829,10 +860,10 @@ ${formData.comments || 'Geen opmerkingen'}
                               </option>
                             </optgroup>
                           )}
-                          {formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren'].includes(s)).length > 0 && (
+                          {formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s)).length > 0 && (
                             <optgroup label="Diensten">
                               {formData.extraServices
-                                .filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren'].includes(s))
+                                .filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s))
                                 .map(service => (
                                   <option key={service} value={service}>
                                     {serviceNames[service]}
@@ -886,13 +917,13 @@ ${formData.comments || 'Geen opmerkingen'}
                   type="button"
                   onClick={addAreaCalculation}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
-                  disabled={!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren'].includes(s)).length === 0}
+                  disabled={!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s)).length === 0}
                 >
                   <Plus className="w-5 h-5" />
                   <span className="font-medium">Voeg ruimte toe</span>
                 </button>
 
-                {(!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren'].includes(s)).length === 0) && (
+                {(!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s)).length === 0) && (
                   <p className="text-sm text-amber-600 text-center">
                     Selecteer eerst een pakket of dienst hierboven om ruimtes toe te voegen
                   </p>
