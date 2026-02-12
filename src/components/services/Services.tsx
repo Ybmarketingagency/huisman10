@@ -58,12 +58,6 @@ const Services = () => {
       description: "Voor wie een snelle, efficiënte maar vooral ook strakke wand- en plafondafwerking zoekt, is airless spuiten dé ideale oplossing.",
       imageSrc: "https://imgur.com/KzcqJKk.jpg",
       link: "/diensten/airless-spuiten"
-    },
-    {
-      title: "Stukadoor Inhuren",
-      description: "Op zoek naar een vakkundige stukadoor? Onze ervaren stukadoors leveren professioneel stucwerk op aanvraag.",
-      imageSrc: "https://imgur.com/dxyMfja.jpg",
-      link: "#contact"
     }
   ];
 
@@ -154,7 +148,7 @@ const Services = () => {
           </FadeInSection>
 
           {/* Desktop Grid */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
             {paintingServices.map((service, index) => (
               <FadeInSection key={`painting-${index}`} delay={index * 100}>
                 <ServiceCard
