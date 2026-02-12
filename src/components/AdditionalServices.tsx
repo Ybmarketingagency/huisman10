@@ -58,6 +58,23 @@ const AdditionalServices = () => {
         'Strakke afwerking binnen korte tijd'
       ],
       footerNote: 'Interesse in een vrijblijvende prijsopgave?'
+    },
+    {
+      title: 'Stukadoor Inhuren',
+      price: 'Op aanvraag',
+      unit: '',
+      priceNote: null,
+      description: 'Professioneel Stucwerk & Wandafwerking',
+      subtitle: null,
+      features: [
+        'Geschikt voor nieuwbouw en renovatie',
+        'Professionele en ervaren stukadoors',
+        'Strak en glad afgewerkte wanden en plafonds',
+        'Reparatie van scheuren en beschadigingen',
+        'Voorbereidend stucwerk voor schilderwerk',
+        'Hoogwaardige afwerking'
+      ],
+      footerNote: 'Interesse in een vrijblijvende prijsopgave?'
     }
   ];
 
@@ -74,7 +91,7 @@ const AdditionalServices = () => {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {services.map((service, index) => (
             <div key={index} className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
               <div className="text-center mb-4">
