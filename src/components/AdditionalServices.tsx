@@ -7,6 +7,23 @@ const AdditionalServices = () => {
 
   const services = [
     {
+      title: 'Stukadoor Inhuren',
+      price: 'Op aanvraag',
+      unit: '',
+      priceNote: null,
+      description: 'Professioneel Stucwerk & Wandafwerking',
+      subtitle: null,
+      features: [
+        'Geschikt voor nieuwbouw en renovatie',
+        'Professionele en ervaren stukadoors',
+        'Strak en glad afgewerkte wanden en plafonds',
+        'Reparatie van scheuren en beschadigingen',
+        'Voorbereidend stucwerk voor schilderwerk',
+        'Hoogwaardige afwerking'
+      ],
+      footerNote: 'Interesse in een vrijblijvende prijsopgave?'
+    },
+    {
       title: 'Muren Schilderen',
       price: 'Op aanvraag',
       unit: '',
@@ -56,23 +73,6 @@ const AdditionalServices = () => {
         'Egaal, streeploos en zeer dekkend resultaat',
         'Uitermate geschikt voor zolderkappen, nieuwbouwwoningen en renovatie',
         'Strakke afwerking binnen korte tijd'
-      ],
-      footerNote: 'Interesse in een vrijblijvende prijsopgave?'
-    },
-    {
-      title: 'Stukadoor Inhuren',
-      price: 'Op aanvraag',
-      unit: '',
-      priceNote: null,
-      description: 'Professioneel Stucwerk & Wandafwerking',
-      subtitle: null,
-      features: [
-        'Geschikt voor nieuwbouw en renovatie',
-        'Professionele en ervaren stukadoors',
-        'Strak en glad afgewerkte wanden en plafonds',
-        'Reparatie van scheuren en beschadigingen',
-        'Voorbereidend stucwerk voor schilderwerk',
-        'Hoogwaardige afwerking'
       ],
       footerNote: 'Interesse in een vrijblijvende prijsopgave?'
     }
