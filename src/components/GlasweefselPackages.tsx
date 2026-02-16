@@ -18,7 +18,7 @@ const GlasweefselPackages = () => {
   const packages = [
     {
       title: "Glasweefsel Behanger Inhuren",
-      price: "€9,50",
+      price: "€8,50",
       description: "Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar glasweefsel wil laten aanbrengen.",
       features: [
         'Wanden professioneel schuren',

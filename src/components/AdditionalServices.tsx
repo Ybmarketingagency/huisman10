@@ -8,9 +8,9 @@ const AdditionalServices = () => {
   const services = [
     {
       title: 'Muren Schilderen',
-      price: '€11,50',
-      unit: '/m²',
-      priceNote: 'excl. BTW | vanaf 100m²',
+      price: 'Op aanvraag',
+      unit: '',
+      priceNote: null,
       description: 'Professionele schilders voor strak, egaal en duurzaam schilderwerk.',
       subtitle: 'Geschikt voor: renovatie, nieuwbouw, opfrissen van bestaande wanden of na renovlies.',
       features: [
@@ -24,13 +24,13 @@ const AdditionalServices = () => {
         'Geen aanbetaling',
         'Naden en kieren kitten'
       ],
-      footerNote: null
+      footerNote: 'Interesse in een vrijblijvende prijsopgave?'
     },
     {
       title: 'Behanger Inhuren',
-      price: '€19,95',
-      unit: '/m²',
-      priceNote: 'excl. BTW | vanaf 100m² | + €125 opstartkosten',
+      price: 'Op aanvraag',
+      unit: '',
+      priceNote: null,
       description: null,
       subtitle: 'Aanbrengen van door u zelf aangeschaft behang',
       features: [

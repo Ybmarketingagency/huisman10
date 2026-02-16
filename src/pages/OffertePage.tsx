@@ -26,17 +26,17 @@ interface FormData {
 }
 
 const packageNames: Record<string, string> = {
-  comfort: 'Renovlies Behanger Inhuren (€11,50/m²)',
+  comfort: 'Renovlies Behanger Inhuren (€8,50/m²)',
   pro: 'Pakket Renovlies Compleet (€19,50/m²)',
   master: 'Pakket Renovlies Ultra (€22,50/m²)',
-  'glasweefsel-comfort': 'Glasweefsel Behanger Inhuren (€9,50/m²)',
+  'glasweefsel-comfort': 'Glasweefsel Behanger Inhuren (€8,50/m²)',
   'glasweefsel-pro': 'Pakket Glasweefsel Compleet (€17,50/m²)',
   'glasweefsel-master': 'Pakket Glasweefsel Ultra (€20,50/m²)'
 };
 
 const serviceNames: Record<string, string> = {
-  'muren-schilderen': 'Muren schilderen (€11,50/m²)',
-  'behanger-inhuren': 'Behanger inhuren (€19,95/m² + €125 opstartkosten)',
+  'muren-schilderen': 'Muren schilderen (Op aanvraag)',
+  'behanger-inhuren': 'Behanger inhuren (Op aanvraag)',
   'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)',
   'vloeren-leggen': 'Vloeren leggen (epoxy, pvc, laminaat) (Op aanvraag)',
   'plafond-egaliseren': 'Plafond egaliseren (Op aanvraag)',
@@ -86,7 +86,7 @@ const OffertePage = () => {
     setFormData(prev => {
       const newCalculation: AreaCalculation = {
         id: nextId,
-        service: prev.package || (prev.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s))[0] || ''),
+        service: prev.package || (prev.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s))[0] || ''),
         roomName: '',
         area: ''
       };
@@ -100,34 +100,25 @@ const OffertePage = () => {
 
   const calculateEstimate = () => {
     let total = 0;
-    let hasBehanger = false;
 
     formData.areaCalculations.forEach(calc => {
       const area = parseFloat(calc.area) || 0;
 
       if (calc.service === 'comfort') {
-        total += area * 11.50;
+        total += area * 8.50;
       } else if (calc.service === 'pro') {
         total += area * 19.50;
       } else if (calc.service === 'master') {
         total += area * 22.50;
       } else if (calc.service === 'glasweefsel-comfort') {
-        total += area * 9.50;
+        total += area * 8.50;
       } else if (calc.service === 'glasweefsel-pro') {
         total += area * 17.50;
       } else if (calc.service === 'glasweefsel-master') {
         total += area * 20.50;
-      } else if (calc.service === 'muren-schilderen') {
-        total += area * 11.50;
-      } else if (calc.service === 'behanger-inhuren') {
-        total += area * 19.95;
-        hasBehanger = true;
       }
+      // muren-schilderen en behanger-inhuren zijn nu "op aanvraag" dus niet in berekening
     });
-
-    if (hasBehanger) {
-      total += 125;
-    }
 
     return total;
   };
@@ -307,7 +298,7 @@ ${formData.comments || 'Geen opmerkingen'}
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Renovlies Behanger Inhuren</div>
                         <div>
-                          <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
+                          <div className="font-bold text-emerald-700 text-lg">€8,50/m²</div>
                           <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
                         </div>
                       </div>
@@ -432,7 +423,7 @@ ${formData.comments || 'Geen opmerkingen'}
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Glasweefsel Behanger Inhuren</div>
                         <div>
-                          <div className="font-bold text-emerald-700 text-lg">€9,50/m²</div>
+                          <div className="font-bold text-emerald-700 text-lg">€8,50/m²</div>
                           <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
                         </div>
                       </div>
@@ -554,10 +545,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€11,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
-                        </div>
+                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
                         Professionele schilders voor strak, egaal en duurzaam schilderwerk. Geschikt voor: renovatie, nieuwbouw, opfrissen van bestaande wanden of na renovlies.
@@ -591,10 +579,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€19,95/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m² | + €125 opstartkosten</div>
-                        </div>
+                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Aanbrengen van door u zelf aangeschaft behang</li>
@@ -860,10 +845,10 @@ ${formData.comments || 'Geen opmerkingen'}
                               </option>
                             </optgroup>
                           )}
-                          {formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s)).length > 0 && (
+                          {formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s)).length > 0 && (
                             <optgroup label="Diensten">
                               {formData.extraServices
-                                .filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s))
+                                .filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s))
                                 .map(service => (
                                   <option key={service} value={service}>
                                     {serviceNames[service]}
@@ -917,13 +902,13 @@ ${formData.comments || 'Geen opmerkingen'}
                   type="button"
                   onClick={addAreaCalculation}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
-                  disabled={!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s)).length === 0}
+                  disabled={!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s)).length === 0}
                 >
                   <Plus className="w-5 h-5" />
                   <span className="font-medium">Voeg ruimte toe</span>
                 </button>
 
-                {(!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren'].includes(s)).length === 0) && (
+                {(!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s)).length === 0) && (
                   <p className="text-sm text-amber-600 text-center">
                     Selecteer eerst een pakket of dienst hierboven om ruimtes toe te voegen
                   </p>
