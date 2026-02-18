@@ -246,6 +246,16 @@ ${formData.comments || 'Geen opmerkingen'}
         });
       }
 
+      // Google Ads conversie tracking
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        const estimatedValue = calculateEstimate();
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-17738015375/f_jzCIH57OgZELzMjIQ-',
+          'value': estimatedValue > 0 ? estimatedValue : 1.0,
+          'currency': 'EUR'
+        });
+      }
+
       alert('Bedankt voor uw aanvraag! We nemen zo snel mogelijk contact met u op.');
       setFormData({
         package: '',
