@@ -60,6 +60,23 @@ const AdditionalServices = () => {
       footerNote: 'Vertel ons meer over uw project en ontvang een onafhankelijke, duidelijke offerte op maat – volledig afgestemd op uw situatie en wensen.'
     },
     {
+      title: 'Plafond Spuiten',
+      price: 'Op aanvraag',
+      unit: '',
+      priceNote: null,
+      description: 'Professioneel & Strak Plafondwerk',
+      subtitle: null,
+      features: [
+        'Egaal, dekkend en streeploos resultaat',
+        'Snel en efficiënt uitgevoerd',
+        'Professionele en ervaren specialisten',
+        'Geschikt voor nieuwbouw en renovatie',
+        'Alle plafondtypes en oppervlakken',
+        'Inclusief voor- en nabehandeling'
+      ],
+      footerNote: 'Interesse in een vrijblijvende prijsopgave?'
+    },
+    {
       title: 'Airless Spuiter Inhuren',
       price: 'Op aanvraag',
       unit: '',
@@ -91,7 +108,7 @@ const AdditionalServices = () => {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
           {services.map((service, index) => (
             <div key={index} className="bg-white rounded-lg shadow-xl p-6 transform transition-all duration-300 hover:scale-105 flex flex-col">
               <div className="text-center mb-4">
