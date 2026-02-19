@@ -4,13 +4,9 @@ import SectionTitle from '../common/SectionTitle';
 import ServiceCard from './ServiceCard';
 import FadeInSection from '../common/FadeInSection';
 
-const PAINTING_VISIBLE = 3;
-
 const Services = () => {
   const [wallpaperSlide, setWallpaperSlide] = useState(0);
   const [paintingSlide, setPaintingSlide] = useState(0);
-  const [paintingDesktopOffset, setPaintingDesktopOffset] = useState(0);
-
   const wallpaperServices = [
     {
       title: "Behanger Inhuren",
@@ -62,16 +58,8 @@ const Services = () => {
       description: "Voor wie een snelle, efficiënte maar vooral ook strakke wand- en plafondafwerking zoekt, is airless spuiten dé ideale oplossing.",
       imageSrc: "https://imgur.com/KzcqJKk.jpg",
       link: "/diensten/airless-spuiten"
-    },
-    {
-      title: "Plafond Spuiten",
-      description: "Professioneel plafond spuiten voor een strak, egaal en dekkend resultaat. Snel en efficiënt uitgevoerd door onze ervaren specialisten.",
-      imageSrc: "https://imgur.com/KzcqJKk.jpg",
-      link: "/diensten/airless-spuiten"
     }
   ];
-
-  const maxDesktopOffset = paintingServices.length - PAINTING_VISIBLE;
 
   return (
     <section id="services" className="py-12 md:py-16 bg-[#d1d1d1]">
@@ -122,6 +110,7 @@ const Services = () => {
               </div>
             </div>
 
+            {/* Navigation Buttons */}
             <button
               onClick={() => setWallpaperSlide((prev) => (prev - 1 + wallpaperServices.length) % wallpaperServices.length)}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
@@ -137,6 +126,7 @@ const Services = () => {
               <ChevronRight size={20} />
             </button>
 
+            {/* Dots Indicator */}
             <div className="flex justify-center gap-2 mt-4">
               {wallpaperServices.map((_, index) => (
                 <button
@@ -157,74 +147,28 @@ const Services = () => {
             <h2 className="text-2xl font-semibold text-emerald-700 mb-8">Schilderswerk</h2>
           </FadeInSection>
 
-          {/* Desktop Slider - 3 zichtbaar, pijltjes voor de 4e */}
-          <div className="hidden md:block relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-300 ease-in-out gap-8"
-                style={{ transform: `translateX(calc(-${paintingDesktopOffset} * (100% / ${PAINTING_VISIBLE} + 8px / ${PAINTING_VISIBLE})))` }}
-              >
-                {paintingServices.map((service, index) => (
-                  <div
-                    key={`painting-desktop-${index}`}
-                    className="flex-shrink-0"
-                    style={{ width: `calc((100% - ${(PAINTING_VISIBLE - 1) * 2}rem) / ${PAINTING_VISIBLE})` }}
-                  >
-                    <ServiceCard
-                      title={service.title}
-                      description={service.description}
-                      imageSrc={service.imageSrc}
-                      link={service.link}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {paintingDesktopOffset > 0 && (
-              <button
-                onClick={() => setPaintingDesktopOffset((prev) => Math.max(0, prev - 1))}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
-                aria-label="Vorige dienst"
-              >
-                <ChevronLeft size={20} />
-              </button>
-            )}
-            {paintingDesktopOffset < maxDesktopOffset && (
-              <button
-                onClick={() => setPaintingDesktopOffset((prev) => Math.min(maxDesktopOffset, prev + 1))}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
-                aria-label="Volgende dienst"
-              >
-                <ChevronRight size={20} />
-              </button>
-            )}
-
-            <div className="flex justify-center gap-2 mt-6">
-              {paintingServices.map((_, index) => {
-                if (index > maxDesktopOffset) return null;
-                return (
-                  <button
-                    key={index}
-                    onClick={() => setPaintingDesktopOffset(index)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      paintingDesktopOffset === index ? 'bg-emerald-700' : 'bg-gray-400'
-                    }`}
-                    aria-label={`Ga naar positie ${index + 1}`}
-                  />
-                );
-              })}
-            </div>
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+            {paintingServices.map((service, index) => (
+              <FadeInSection key={`painting-${index}`} delay={index * 100}>
+                <ServiceCard
+                  title={service.title}
+                  description={service.description}
+                  imageSrc={service.imageSrc}
+                  link={service.link}
+                />
+              </FadeInSection>
+            ))}
           </div>
 
-          {/* Mobile Carousel - alleen de eerste 3 (zonder Plafond Spuiten) */}
+          {/* Mobile Carousel */}
           <div className="md:hidden relative max-w-sm mx-auto">
             <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${paintingSlide * 100}%)` }}
               >
-                {paintingServices.slice(0, 3).map((service, index) => (
+                {paintingServices.map((service, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-2">
                     <ServiceCard
                       title={service.title}
@@ -237,23 +181,25 @@ const Services = () => {
               </div>
             </div>
 
+            {/* Navigation Buttons */}
             <button
-              onClick={() => setPaintingSlide((prev) => (prev - 1 + 3) % 3)}
+              onClick={() => setPaintingSlide((prev) => (prev - 1 + paintingServices.length) % paintingServices.length)}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
               aria-label="Vorige dienst"
             >
               <ChevronLeft size={20} />
             </button>
             <button
-              onClick={() => setPaintingSlide((prev) => (prev + 1) % 3)}
+              onClick={() => setPaintingSlide((prev) => (prev + 1) % paintingServices.length)}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
               aria-label="Volgende dienst"
             >
               <ChevronRight size={20} />
             </button>
 
+            {/* Dots Indicator */}
             <div className="flex justify-center gap-2 mt-4">
-              {paintingServices.slice(0, 3).map((_, index) => (
+              {paintingServices.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setPaintingSlide(index)}
