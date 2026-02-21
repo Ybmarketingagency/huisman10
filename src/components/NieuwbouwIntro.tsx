@@ -18,12 +18,8 @@ const NieuwbouwIntro = () => {
 
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-10">
             <div className="prose max-w-none">
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Huisman Wandafwerking is gespecialiseerd in professionele <strong>wandafwerking</strong> en <strong>plafondafwerking</strong> voor nieuwbouwwoningen en bedrijfspanden. Onze <strong>professionele stukadoors</strong> hebben jarenlange ervaring in de nieuwbouwsector en leveren hoogwaardige afwerking die perfect aansluit bij uw project.
-              </p>
-
               <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                Heeft u een nieuwbouwwoning en bent u op zoek naar een betrouwbare partij voor de <strong>wand- en plafondafwerking</strong>? Dan bent u bij ons aan het juiste adres. Wij verzorgen zowel <strong>airless spuiten</strong> als traditioneel schilderwerk, en combineren dit met glasweefsel, renovlies en andere hoogwaardige wandbedekkingen.
+                Huismanwandafwerking verzorgt complete <strong>wand- en plafondafwerking van A tot Z</strong>. Wij behangen, schilderen en spuiten met oog voor detail en een strak eindresultaat. Of het nu gaat om <strong>renovlies, glad stucwerk, sauswerk of spuitwerk</strong> – wij zorgen voor perfect afgewerkte wanden en plafonds die direct klaar zijn voor gebruik. Met vakmanschap, duidelijke afspraken en een nette werkwijze leveren wij kwaliteit waar u jarenlang plezier van heeft.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mb-8">
