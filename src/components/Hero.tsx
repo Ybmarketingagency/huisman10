@@ -13,31 +13,14 @@ const Hero = () => {
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % 3);
+    setCurrentSlide((prev) => (prev + 1) % 2);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + 3) % 3);
+    setCurrentSlide((prev) => (prev - 1 + 2) % 2);
   };
 
   const packages = [
-    {
-      title: "Renovlies Behanger Inhuren",
-      price: "€8,50",
-      description: "Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.",
-      features: [
-        'Wanden professioneel schuren',
-        'Aanbrengen van 150 grams renovlies',
-        'Professionele renovlies specialisten',
-        'Inclusief materiaal: renovlies 150 grams + lijm',
-        'Bouwafval wordt netjes afgevoerd',
-        'Korte wachttijd',
-        'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
-        'Geen aanbetaling',
-        '12 maanden garantie'
-      ],
-      highlighted: false
-    },
     {
       title: "Pakket Renovlies Compleet",
       price: "€19,50",
@@ -106,48 +89,7 @@ const Hero = () => {
         {/* Packages Section - Desktop only */}
         <div className="hidden md:block relative z-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-              {/* Pakket Comfort */}
-              <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 flex flex-col">
-                <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Renovlies Behanger Inhuren</h2>
-                  <div>
-                    <span className="text-2xl font-bold text-white">€8,50</span>
-                    <span className="text-sm text-gray-300">/m²</span>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
-                  <p className="text-xs text-gray-200 mt-2 leading-relaxed">
-                    Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
-                  </p>
-                </div>
-
-                <div className="space-y-1.5 mb-4 flex-grow">
-                  {[
-                    'Wanden professioneel schuren',
-                    'Aanbrengen van 150 grams renovlies',
-                    'Professionele renovlies specialisten',
-                    'Inclusief materiaal: renovlies 150 grams + lijm',
-                    'Bouwafval wordt netjes afgevoerd',
-                    'Korte wachttijd',
-                    'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
-                    'Geen aanbetaling',
-                    '12 maanden garantie'
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-gray-100">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  to="/offerte"
-                  className="block w-full bg-emerald-700 hover:bg-emerald-800 text-white text-center font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-sm mt-auto"
-                >
-                  Offerte aanvragen
-                </Link>
-              </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
               {/* Pakket Pro */}
               <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 border-2 border-emerald-500 flex flex-col">
                 <div className="text-center mb-3">
