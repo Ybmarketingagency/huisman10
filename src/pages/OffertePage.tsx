@@ -26,15 +26,12 @@ interface FormData {
 }
 
 const packageNames: Record<string, string> = {
-  comfort: 'Renovlies Behanger Inhuren (€8,50/m²)',
   pro: 'Pakket Renovlies Compleet (€19,50/m²)',
-  master: 'Pakket Renovlies Ultra (€22,50/m²)',
-  'glasweefsel-comfort': 'Glasweefsel Behanger Inhuren (€8,50/m²)',
-  'glasweefsel-pro': 'Pakket Glasweefsel Compleet (€17,50/m²)',
-  'glasweefsel-master': 'Pakket Glasweefsel Ultra (€20,50/m²)'
+  master: 'Pakket Renovlies Ultra (€22,50/m²)'
 };
 
 const serviceNames: Record<string, string> = {
+  'glasweefsel-behang': 'Glasweefsel behang (Op aanvraag)',
   'muren-schilderen': 'Muren schilderen (Op aanvraag)',
   'behanger-inhuren': 'Behanger inhuren (Op aanvraag)',
   'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)',
@@ -105,20 +102,11 @@ const OffertePage = () => {
     formData.areaCalculations.forEach(calc => {
       const area = parseFloat(calc.area) || 0;
 
-      if (calc.service === 'comfort') {
-        total += area * 8.50;
-      } else if (calc.service === 'pro') {
+      if (calc.service === 'pro') {
         total += area * 19.50;
       } else if (calc.service === 'master') {
         total += area * 22.50;
-      } else if (calc.service === 'glasweefsel-comfort') {
-        total += area * 8.50;
-      } else if (calc.service === 'glasweefsel-pro') {
-        total += area * 17.50;
-      } else if (calc.service === 'glasweefsel-master') {
-        total += area * 20.50;
       }
-      // muren-schilderen en behanger-inhuren zijn nu "op aanvraag" dus niet in berekening
     });
 
     return total;
@@ -294,43 +282,6 @@ ${formData.comments || 'Geen opmerkingen'}
               <p className="text-sm text-gray-600 mb-4">Selecteer een renovlies pakket of gebruik alleen de diensten.</p>
 
               <div className="space-y-4">
-                {/* Pakket Comfort */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="comfort"
-                      checked={formData.package === 'comfort'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Renovlies Behanger Inhuren</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€8,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar renovlies wil laten aanbrengen.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden professioneel schuren</li>
-                        <li>• Aanbrengen van 150 grams renovlies</li>
-                        <li>• Professionele renovlies specialisten</li>
-                        <li>• Inclusief materiaal: renovlies 150 grams + lijm</li>
-                        <li>• Bouwafval wordt netjes afgevoerd</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
-                        <li>• Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
                 {/* Pakket Pro */}
                 <label className="block p-5 border-2 border-emerald-700 rounded-lg cursor-pointer hover:border-emerald-800 transition-colors bg-emerald-50">
                   <div className="flex items-start">
@@ -415,134 +366,36 @@ ${formData.comments || 'Geen opmerkingen'}
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Glasweefsel Pakketten (optioneel)</h2>
-              <p className="text-sm text-gray-600 mb-4">Glasweefsel is €2 per m² goedkoper dan renovlies.</p>
-
-              <div className="space-y-4">
-                {/* Glasweefsel Comfort */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="glasweefsel-comfort"
-                      checked={formData.package === 'glasweefsel-comfort'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Glasweefsel Behanger Inhuren</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€8,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Ideaal voor: nieuwbouw, renovatie, strakke wanden en snelle opleveringen. Dé beste keuze voor wie snel en betaalbaar glasweefsel wil laten aanbrengen.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden professioneel schuren</li>
-                        <li>• Aanbrengen van glasweefsel</li>
-                        <li>• Professionele glasweefsel specialisten</li>
-                        <li>• Inclusief materiaal: glasweefsel + lijm</li>
-                        <li>• Bouwafval wordt netjes afgevoerd</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
-                        <li>• Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Glasweefsel Pro */}
-                <label className="block p-5 border-2 border-emerald-700 rounded-lg cursor-pointer hover:border-emerald-800 transition-colors bg-emerald-50">
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="glasweefsel-pro"
-                      checked={formData.package === 'glasweefsel-pro'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Glasweefsel Compleet</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€17,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden professioneel schuren</li>
-                        <li>• Professionele glasweefsel specialisten</li>
-                        <li>• Aanbrengen van glasweefsel</li>
-                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
-                        <li>• Alle naden en kieren professioneel gekit</li>
-                        <li>• Dekkend schilderen in 1 kleur naar keuze</li>
-                        <li>• Inclusief materiaal: glasweefsel + lijm + kit + schrobklasse 1 muurverf</li>
-                        <li>• Bouwafval wordt netjes afgevoerd</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
-                        <li>• Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Glasweefsel Master */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="glasweefsel-master"
-                      checked={formData.package === 'glasweefsel-master'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Glasweefsel Ultra</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€20,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden professioneel schuren</li>
-                        <li>• Professionele glasweefsel specialisten</li>
-                        <li>• Aanbrengen van glasweefsel</li>
-                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
-                        <li>• Alle naden en kieren professioneel gekit</li>
-                        <li>• Dekkend schilderen in maximaal 3 kleuren naar keuze</li>
-                        <li>• Inclusief materiaal: glasweefsel + lijm + kit + schrobklasse 1 muurverf</li>
-                        <li>• Bouwafval wordt netjes afgevoerd</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
-                        <li>• Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-              </div>
-            </div>
-
-            <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Diensten (optioneel)</h2>
               <p className="text-sm text-gray-600 mb-4">U kunt meerdere diensten selecteren.</p>
               <div className="space-y-4">
+                {/* Glasweefsel Behang */}
+                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      value="glasweefsel-behang"
+                      checked={formData.extraServices.includes('glasweefsel-behang')}
+                      onChange={handleCheckboxChange}
+                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
+                    />
+                    <div className="ml-3 flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-bold text-gray-800 text-lg">Glasweefsel Behang</div>
+                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
+                      </div>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Duurzame en sterke wandbekleding</li>
+                        <li>• Ideaal voor nieuwbouw en renovatie</li>
+                        <li>• Egale ondergrond voor schilderwerk</li>
+                        <li>• Professionele glasweefsel specialisten</li>
+                        <li>• Geschikt voor wanden en plafonds</li>
+                        <li>• Strak en duurzaam eindresultaat</li>
+                      </ul>
+                    </div>
+                  </div>
+                </label>
+
                 {/* Muren Schilderen */}
                 <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
                   <div className="flex items-start">

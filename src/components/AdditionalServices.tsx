@@ -10,6 +10,23 @@ const AdditionalServices = () => {
 
   const services = [
     {
+      title: 'Glasweefsel Behang',
+      price: 'Op aanvraag',
+      unit: '',
+      priceNote: null,
+      description: 'Professionele Glasweefsel Wandafwerking',
+      subtitle: null,
+      features: [
+        'Duurzame en sterke wandbekleding',
+        'Ideaal voor nieuwbouw en renovatie',
+        'Egale ondergrond voor schilderwerk',
+        'Professionele glasweefsel specialisten',
+        'Geschikt voor wanden en plafonds',
+        'Strak en duurzaam eindresultaat'
+      ],
+      footerNote: 'Interesse in een vrijblijvende prijsopgave?'
+    },
+    {
       title: 'Stukadoor Inhuren',
       price: 'Op aanvraag',
       unit: '',

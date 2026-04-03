@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import NieuwbouwIntro from './components/NieuwbouwIntro';
 import AdditionalServices from './components/AdditionalServices';
-import GlasweefselPackages from './components/GlasweefselPackages';
 import Services from './components/services/Services';
 import About from './components/about/About';
 import ConstructionTypes from './components/construction/ConstructionTypes';
@@ -72,7 +71,6 @@ function App() {
             <>
               <Hero />
               <NieuwbouwIntro />
-              <GlasweefselPackages />
               <About />
               <Services />
               <AdditionalServices />
