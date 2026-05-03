@@ -8,9 +8,9 @@ const BinnenSchilderwerk = () => {
         <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
           <div className="relative h-[300px] rounded-lg overflow-hidden mb-8">
-            <img 
+            <img
               src="https://imgur.com/NPeFZys.jpg"
-              alt="Interior Painting" 
+              alt="Interior Painting"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -19,7 +19,7 @@ const BinnenSchilderwerk = () => {
               </h1>
             </div>
           </div>
-          
+
           <p className="text-gray-600 mb-12 text-lg">
             Een nieuwe laag verf kan wonderen doen voor het interieur van uw woning of bedrijfspand. Bij Huisman Wandafwerking leveren we professioneel binnenschilderwerk dat uw ruimte niet alleen verfraait, maar ook beschermt.
           </p>
@@ -34,9 +34,9 @@ const BinnenSchilderwerk = () => {
               </p>
             </div>
             <div className="relative h-[250px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/tQ609AJ.jpg"
-                alt="Interior Painting Process" 
+                alt="Interior Painting Process"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -63,9 +63,9 @@ const BinnenSchilderwerk = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
             <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/NPeFZys.jpg"
-                alt="Paint Materials" 
+                alt="Paint Materials"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -76,8 +76,8 @@ const BinnenSchilderwerk = () => {
               <p className="text-gray-600 mb-6">
                 We maken gebruik van hoogwaardige verf en materialen die bestand zijn tegen slijtage en verkleuring. Of u nu gaat voor mat, zijdeglans, of hoogglans; wij hebben de juiste opties voor u.
               </p>
-              <Link 
-                to="/offerte" 
+              <Link
+                to="/offerte"
                 className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-3 px-8 rounded-md transition-colors"
               >
                 Vraag een Offerte Aan

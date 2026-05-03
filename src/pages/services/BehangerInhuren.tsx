@@ -8,9 +8,9 @@ const BehangerInhuren = () => {
         <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
           <div className="relative h-[300px] rounded-lg overflow-hidden mb-8">
-            <img 
+            <img
               src="https://imgur.com/DkCqDEp.jpg"
-              alt="Professional Wallpaper Installation" 
+              alt="Professional Wallpaper Installation"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -19,16 +19,16 @@ const BehangerInhuren = () => {
               </h1>
             </div>
           </div>
-          
+
           <p className="text-gray-600 mb-12 text-lg">
             Overweegt u om uw muren te verfraaien met een nieuw laagje behang, maar mist u de ervaring of het zelfvertrouwen om dit zelf te doen? Geen zorgen, bij Huisman Wandafwerking hebben we de perfecte oplossing voor u.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="relative h-[250px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/J6gyUvj.jpg"
-                alt="Professional Wallpaper Service" 
+                alt="Professional Wallpaper Service"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -76,17 +76,17 @@ const BehangerInhuren = () => {
               <p className="text-gray-600 mb-6">
                 Als u overweegt behang aan te schaffen maar niet zeker weet welke soort het beste bij uw wensen past, zijn wij hier om u te helpen. Onze experts kunnen u adviseren over alle aspecten van behangkeuze om te voorkomen dat u een miskoop doet. Neem vrijblijvend contact met ons op voor een gedegen advies op maat.
               </p>
-              <Link 
-                to="/offerte" 
+              <Link
+                to="/offerte"
                 className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-3 px-8 rounded-md transition-colors"
               >
                 Vraag een Offerte Aan
               </Link>
             </div>
             <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/DkCqDEp.jpg"
-                alt="Wallpaper Consultation" 
+                alt="Wallpaper Consultation"
                 className="w-full h-full object-cover"
               />
             </div>

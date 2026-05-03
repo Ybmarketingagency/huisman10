@@ -8,9 +8,9 @@ const Glasweefsel = () => {
         <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
           <div className="relative h-[300px] rounded-lg overflow-hidden mb-8">
-            <img 
+            <img
               src="https://imgur.com/yiRcg6Y.jpg"
-              alt="Glasweefsel Installation" 
+              alt="Glasweefsel Installation"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -19,16 +19,16 @@ const Glasweefsel = () => {
               </h1>
             </div>
           </div>
-          
+
           <p className="text-gray-600 mb-12 text-lg">
             Op zoek naar een elegante wandafwerking met een unieke structuur? Glasweefselbehang is uw ideale keuze. Bij Huisman Wandafwerking zijn we experts in het aanbrengen van dit veelzijdige materiaal, verkrijgbaar in verschillende structuren zoals visgraat, ruit en zigzag.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="relative h-[250px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/KzcqJKk.jpg"
-                alt="Glasweefsel Texture" 
+                alt="Glasweefsel Texture"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -45,7 +45,7 @@ const Glasweefsel = () => {
           <h2 className="text-2xl font-semibold text-emerald-700 mb-6">
             Waarom Kiezen voor Glasweefselbehang bij Huisman Wandafwerking?
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <div className="bg-gray-200 p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-medium text-emerald-700 mb-2">Unieke Structuren</h3>
@@ -73,17 +73,17 @@ const Glasweefsel = () => {
               <p className="text-gray-600 mb-6">
                 Glasweefselbehang is in de basis wit maar kan moeiteloos in elke gewenste kleur worden geschilderd. Het vereist echter ervaring om de verf goed te verdelen over de gestructureerde ondergrond. Ons team van ervaren schilders en behangers zorgt voor een vlekkeloos eindresultaat.
               </p>
-              <Link 
-                to="/offerte" 
+              <Link
+                to="/offerte"
                 className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-3 px-8 rounded-md transition-colors"
               >
                 Vraag een Offerte Aan
               </Link>
             </div>
             <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/aEMX98E.jpg"
-                alt="Glasweefsel Color Options" 
+                alt="Glasweefsel Color Options"
                 className="w-full h-full object-cover"
               />
             </div>

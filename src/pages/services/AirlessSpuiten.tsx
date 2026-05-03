@@ -8,9 +8,9 @@ const AirlessSpuiten = () => {
         <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
           <div className="relative h-[300px] rounded-lg overflow-hidden mb-8">
-            <img 
+            <img
               src="https://imgur.com/F8WYK4c.jpg"
-              alt="Airless Spraying" 
+              alt="Airless Spraying"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -19,16 +19,16 @@ const AirlessSpuiten = () => {
               </h1>
             </div>
           </div>
-          
+
           <p className="text-gray-600 mb-12 text-lg">
             Voor wie een snelle, efficiënte maar vooral ook strakke wand- en plafondafwerking zoekt, is airless spuiten de ideale oplossing. Huisman Wandafwerking is uw expert in deze moderne techniek, die zorgt voor een onberispelijk en duurzaam resultaat.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="relative h-[250px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/CvVMPpL.jpg"
-                alt="Airless Spraying Technique" 
+                alt="Airless Spraying Technique"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -69,17 +69,17 @@ const AirlessSpuiten = () => {
               <p className="text-gray-600 mb-6">
                 We maken gebruik van kwalitatief hoogstaande verfsoorten die zorgen voor een langdurig en kleurvast resultaat. Ons brede kleurenpalet biedt opties voor elke smaak en elk interieur.
               </p>
-              <Link 
-                to="/offerte" 
+              <Link
+                to="/offerte"
                 className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-3 px-8 rounded-md transition-colors"
               >
                 Vraag een Offerte Aan
               </Link>
             </div>
             <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/F8WYK4c.jpg"
-                alt="Paint Colors and Materials" 
+                alt="Paint Colors and Materials"
                 className="w-full h-full object-cover"
               />
             </div>

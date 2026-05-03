@@ -1,300 +1,118 @@
-import React, { useState } from 'react';
-import { ChevronDown, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Layers, Grid2X2, Scissors, Wind, Hammer, Droplets, HelpCircle } from 'lucide-react';
+
+const services = [
+  {
+    name: 'Renovlies',
+    icon: Layers,
+    href: '/diensten/renovlies-specialist',
+  },
+  {
+    name: 'Glasweefsel schilderen',
+    icon: Grid2X2,
+    href: '/diensten/glasweefsel-specialist',
+  },
+  {
+    name: 'Behanger',
+    icon: Scissors,
+    href: '/diensten/behanger-specialist',
+  },
+  {
+    name: 'Airless spuiten',
+    icon: Wind,
+    href: '/diensten/airless-specialist',
+  },
+  {
+    name: 'Stukadoor',
+    icon: Hammer,
+    href: '/diensten/stukadoor',
+  },
+  {
+    name: 'Plafond / wanden spuiten',
+    icon: Droplets,
+    href: '/diensten/plafond-spuiten',
+  },
+];
 
 const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % 2);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + 2) % 2);
-  };
-
-  const packages = [
-    {
-      title: "Pakket Renovlies Compleet",
-      price: "€19,50",
-      description: "Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.",
-      features: [
-        'Wanden professioneel schuren',
-        'Professionele renovlies specialisten',
-        'Aanbrengen van 150 grams renovlies',
-        'Professionele schilders voor strak en duurzaam schilderwerk',
-        'Alle naden en kieren professioneel gekit',
-        'Dekkend schilderen in 1 kleur naar keuze',
-        'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
-        'Bouwafval wordt netjes afgevoerd',
-        'Korte wachttijd',
-        'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
-        'Geen aanbetaling',
-        '12 maanden garantie'
-      ],
-      highlighted: true
-    },
-    {
-      title: "Pakket Renovlies Ultra",
-      price: "€22,50",
-      description: "Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.",
-      features: [
-        'Wanden professioneel schuren',
-        'Professionele renovlies specialisten',
-        'Aanbrengen van 150 grams renovlies',
-        'Professionele schilders voor strak en duurzaam schilderwerk',
-        'Alle naden en kieren professioneel gekit',
-        'Dekkend schilderen in maximaal 3 kleuren naar keuze',
-        'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
-        'Bouwafval wordt netjes afgevoerd',
-        'Korte wachttijd',
-        'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
-        'Geen aanbetaling',
-        '12 maanden garantie'
-      ],
-      highlighted: false
-    }
-  ];
-
   return (
-    <>
-      {/* Hero Section - Slightly shorter */}
-      <div className="relative h-[85vh] w-full">
-        {/* Hero Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-          style={{
-            backgroundImage: "url('https://imgur.com/3NM402m.jpg')",
-          }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        </div>
+    <div className="relative min-h-screen w-full flex items-center">
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('https://imgur.com/3NM402m.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-60" />
+      </div>
 
-        {/* Company Name - Desktop only */}
-        <div className="hidden md:block relative z-20 pt-24 pb-6">
-          <div className="container mx-auto px-4">
-            <h1 className="text-5xl font-bold text-center text-emerald-500">
+      {/* Content */}
+      <div className="relative z-10 w-full pt-24 pb-12 px-4">
+        <div className="max-w-4xl mx-auto">
+
+          {/* Title */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-emerald-700 mb-3">
               Huisman Wandafwerking
             </h1>
+            <p className="text-white text-lg md:text-xl opacity-90">
+              Specialist in wandafwerking — precies wat u nodig heeft
+            </p>
           </div>
-        </div>
 
-        {/* Packages Section - Desktop only */}
-        <div className="hidden md:block relative z-20">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {/* Pakket Pro */}
-              <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 border-2 border-emerald-500 flex flex-col">
-                <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Compleet</h2>
-                  <div>
-                    <span className="text-2xl font-bold text-white">€19,50</span>
-                    <span className="text-sm text-gray-300">/m²</span>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
-                  <p className="text-xs text-gray-200 mt-2 leading-relaxed">
-                    Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
-                  </p>
-                </div>
-
-                <div className="space-y-1.5 mb-4 flex-grow">
-                  {[
-                    'Wanden professioneel schuren',
-                    'Professionele renovlies specialisten',
-                    'Aanbrengen van 150 grams renovlies',
-                    'Professionele schilders voor strak en duurzaam schilderwerk',
-                    'Alle naden en kieren professioneel gekit',
-                    'Dekkend schilderen in 1 kleur naar keuze',
-                    'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
-                    'Bouwafval wordt netjes afgevoerd',
-                    'Korte wachttijd',
-                    'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
-                    'Geen aanbetaling',
-                    '12 maanden garantie'
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-gray-100">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
+          {/* Service Grid — like a phone home screen */}
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3 mb-3">
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
                 <Link
-                  to="/offerte"
-                  className="block w-full bg-emerald-700 hover:bg-emerald-800 text-white text-center font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-sm mt-auto"
+                  key={service.name}
+                  to={service.href}
+                  className="flex flex-col items-center gap-2 bg-black bg-opacity-55 backdrop-blur-sm hover:bg-opacity-75 border border-white border-opacity-10 rounded-2xl p-3 md:p-4 transition-all duration-200 hover:scale-105 group"
                 >
-                  Offerte aanvragen
-                </Link>
-              </div>
-
-              {/* Pakket Master */}
-              <div className="bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 transform transition-all duration-300 hover:scale-105 flex flex-col">
-                <div className="text-center mb-3">
-                  <h2 className="text-xl font-bold text-emerald-500 mb-1">Pakket Renovlies Ultra</h2>
-                  <div>
-                    <span className="text-2xl font-bold text-white">€22,50</span>
-                    <span className="text-sm text-gray-300">/m²</span>
+                  <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-700 group-hover:bg-emerald-600 rounded-xl flex items-center justify-center transition-colors duration-200">
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
-                  <p className="text-xs text-gray-200 mt-2 leading-relaxed">
-                    Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
-                  </p>
-                </div>
-
-                <div className="space-y-1.5 mb-4 flex-grow">
-                  {[
-                    'Wanden professioneel schuren',
-                    'Professionele renovlies specialisten',
-                    'Aanbrengen van 150 grams renovlies',
-                    'Professionele schilders voor strak en duurzaam schilderwerk',
-                    'Alle naden en kieren professioneel gekit',
-                    'Dekkend schilderen in maximaal 3 kleuren naar keuze',
-                    'Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf',
-                    'Bouwafval wordt netjes afgevoerd',
-                    'Korte wachttijd',
-                    'Geen verborgen kosten (incl. voorrij- en parkeerkosten)',
-                    'Geen aanbetaling',
-                    '12 maanden garantie'
-                  ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-gray-100">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  to="/offerte"
-                  className="block w-full bg-emerald-700 hover:bg-emerald-800 text-white text-center font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-sm mt-auto"
-                >
-                  Offerte aanvragen
+                  <span className="text-white text-xs text-center leading-tight font-medium">
+                    {service.name}
+                  </span>
                 </Link>
-              </div>
-            </div>
+              );
+            })}
           </div>
-        </div>
 
-        {/* Hero Content - Only visible on mobile */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 text-center md:hidden">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Specialist in Behang, Stuc en Schilderwerk
-          </h1>
-          <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl">
-            Vakmanschap en kwaliteit voor uw woning of bedrijf
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              to="/offerte"
-              className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 text-lg"
-            >
-              Offerte aanvragen
-            </Link>
-            <button
-              onClick={scrollToServices}
-              className="bg-white hover:bg-gray-100 text-emerald-700 font-semibold py-3 px-8 rounded-lg transition-colors duration-300 text-lg"
-            >
-              Bekijk diensten
-            </button>
-          </div>
-        </div>
-
-        {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce md:hidden">
-          <button
-            onClick={scrollToServices}
-            className="text-white focus:outline-none"
-            aria-label="Scroll naar beneden"
+          {/* "Not listed?" tile */}
+          <a
+            href="#contact"
+            className="flex items-center justify-center gap-3 bg-black bg-opacity-55 backdrop-blur-sm hover:bg-opacity-75 border border-emerald-500 border-opacity-40 rounded-2xl p-4 mb-8 transition-all duration-200 hover:scale-[1.02] group w-full"
           >
-            <ChevronDown size={36} />
-          </button>
-        </div>
-      </div>
-
-      {/* Packages Section - Below hero on mobile only */}
-      <div className="md:hidden relative bg-[#d1d1d1]">
-        <div className="container mx-auto px-4 py-8">
-          <div className="relative max-w-md mx-auto">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {packages.map((pkg, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-2">
-                    <div className={`bg-black bg-opacity-80 backdrop-blur-sm rounded-lg shadow-2xl p-5 flex flex-col ${pkg.highlighted ? 'border-2 border-emerald-500' : ''}`}>
-                      <div className="text-center mb-3">
-                        <h2 className="text-xl font-bold text-emerald-500 mb-1">{pkg.title}</h2>
-                        <div>
-                          <span className="text-2xl font-bold text-white">{pkg.price}</span>
-                          <span className="text-sm text-gray-300">/m²</span>
-                        </div>
-                        <p className="text-xs text-gray-400 mt-1">excl. BTW | vanaf 100m²</p>
-                        <p className="text-xs text-gray-200 mt-2 leading-relaxed">
-                          {pkg.description}
-                        </p>
-                      </div>
-
-                      <div className="space-y-1.5 mb-4 flex-grow">
-                        {pkg.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-xs text-gray-100">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <Link
-                        to="/offerte"
-                        className="block w-full bg-emerald-700 hover:bg-emerald-800 text-white text-center font-semibold py-2 px-4 rounded-lg transition-colors duration-300 text-sm mt-auto"
-                      >
-                        Offerte aanvragen
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="w-10 h-10 bg-emerald-700 group-hover:bg-emerald-600 rounded-xl flex items-center justify-center transition-colors duration-200 flex-shrink-0">
+              <HelpCircle className="w-5 h-5 text-white" />
             </div>
+            <span className="text-white text-sm md:text-base font-medium">
+              Staat uw dienst er niet bij? Vraag het ons
+            </span>
+          </a>
 
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
-              aria-label="Vorig pakket"
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/diensten/binnen-schilderwerk"
+              className="bg-emerald-700 hover:bg-emerald-600 text-white font-semibold py-4 px-7 rounded-xl transition-colors duration-200 text-center text-sm md:text-base shadow-lg"
             >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-full shadow-lg transition-colors z-10"
-              aria-label="Volgend pakket"
+              Ik wil mijn muren laten beschilderen
+            </Link>
+            <Link
+              to="/diensten/behanger-inhuren"
+              className="bg-white hover:bg-gray-100 text-emerald-800 font-semibold py-4 px-7 rounded-xl transition-colors duration-200 text-center text-sm md:text-base shadow-lg"
             >
-              <ChevronRight size={24} />
-            </button>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-4">
-              {packages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    currentSlide === index ? 'bg-emerald-500' : 'bg-gray-400'
-                  }`}
-                  aria-label={`Ga naar pakket ${index + 1}`}
-                />
-              ))}
-            </div>
+              Ik wil mijn muren laten behangen
+            </Link>
           </div>
+
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -8,9 +8,9 @@ const Renovlies = () => {
         <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
           <div className="relative h-[300px] rounded-lg overflow-hidden mb-8">
-            <img 
+            <img
               src="https://imgur.com/64Q5VEL.jpg"
-              alt="Renovlies Installation" 
+              alt="Renovlies Installation"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -19,7 +19,7 @@ const Renovlies = () => {
               </h1>
             </div>
           </div>
-          
+
           <p className="text-gray-600 mb-12 text-lg">
             Zoekt u een alternatief voor stucwerk dat zowel stijlvol als functioneel is? Dan is Renovliesbehang de perfecte keuze voor u. Bij Huisman Wandafwerking leveren we superstrak en naadloos Renovliesbehang, aangebracht door ons ervaren team van professionals.
           </p>
@@ -34,9 +34,9 @@ const Renovlies = () => {
               </p>
             </div>
             <div className="relative h-[250px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/O7YDsMd.jpg"
-                alt="Renovlies Example" 
+                alt="Renovlies Example"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -45,7 +45,7 @@ const Renovlies = () => {
           <h2 className="text-2xl font-semibold text-emerald-700 mb-6">
             Waarom Kiezen voor Renovliesbehang bij Huisman Wandafwerking?
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             <div className="bg-gray-200 p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-medium text-emerald-700 mb-2">Strak en Naadloos</h3>
@@ -75,9 +75,9 @@ const Renovlies = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
             <div className="relative h-[300px] rounded-lg overflow-hidden">
-              <img 
+              <img
                 src="https://imgur.com/64Q5VEL.jpg"
-                alt="Renovlies Durability" 
+                alt="Renovlies Durability"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -88,8 +88,8 @@ const Renovlies = () => {
               <p className="text-gray-600 mb-6">
                 Een van de meest onderschatte voordelen van Renovliesbehang is de duurzaamheid. Het materiaal is sterker dan stucwerk en is daarom minder gevoelig voor beschadigingen. Bovendien heeft het een brandvertragende en isolerende werking, wat bijdraagt aan de veiligheid en het comfort van uw woning.
               </p>
-              <Link 
-                to="/offerte" 
+              <Link
+                to="/offerte"
                 className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-3 px-8 rounded-md transition-colors"
               >
                 Vraag een Offerte Aan
