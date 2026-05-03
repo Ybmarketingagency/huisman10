@@ -70,7 +70,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="font-sans antialiased overflow-x-hidden bg-[#8c8c8c]">
+      <div className="font-sans antialiased overflow-x-hidden bg-stone-100">
         <Navbar />
         <Routes>
           <Route path="/" element={
