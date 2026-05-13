@@ -26,14 +26,13 @@ interface FormData {
 }
 
 const packageNames: Record<string, string> = {
-  pro: 'Pakket Renovlies Compleet (€19,50/m²)',
-  master: 'Pakket Renovlies Ultra (€22,50/m²)'
+  'renovlies-allround': 'Renovlies Allround Pakket (€22,50/m²)',
+  'glasweefsel-allround': 'Glasweefsel Allround Pakket (€22,50/m²)',
 };
 
 const serviceNames: Record<string, string> = {
-  'glasweefsel-behang': 'Glasweefsel behang (Op aanvraag)',
-  'muren-schilderen': 'Muren schilderen (Op aanvraag)',
-  'behanger-inhuren': 'Behanger inhuren (Op aanvraag)',
+  'muren-schilderen': 'Ik wil mijn muren/plafond laten schilderen (Op aanvraag)',
+  'behanger-inhuren': 'Ik wil mijn muren/plafond laten behangen (Op aanvraag)',
   'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)',
   'vloeren-leggen': 'Vloeren leggen (epoxy, pvc, laminaat) (Op aanvraag)',
   'plafond-egaliseren': 'Plafond egaliseren (Op aanvraag)',
@@ -84,7 +83,7 @@ const OffertePage = () => {
     setFormData(prev => {
       const newCalculation: AreaCalculation = {
         id: nextId,
-        service: prev.package || (prev.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s))[0] || ''),
+        service: prev.package || (prev.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s))[0] || ''),
         roomName: '',
         area: ''
       };
@@ -102,9 +101,7 @@ const OffertePage = () => {
     formData.areaCalculations.forEach(calc => {
       const area = parseFloat(calc.area) || 0;
 
-      if (calc.service === 'pro') {
-        total += area * 19.50;
-      } else if (calc.service === 'master') {
+      if (calc.service === 'renovlies-allround' || calc.service === 'glasweefsel-allround') {
         total += area * 22.50;
       }
     });
@@ -282,80 +279,70 @@ ${formData.comments || 'Geen opmerkingen'}
               <p className="text-sm text-gray-600 mb-4">Selecteer een renovlies pakket of gebruik alleen de diensten.</p>
 
               <div className="space-y-4">
-                {/* Pakket Pro */}
-                <label className="block p-5 border-2 border-emerald-700 rounded-lg cursor-pointer hover:border-emerald-800 transition-colors bg-emerald-50">
+                {/* Renovlies Allround Pakket */}
+                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.package === 'renovlies-allround' ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
                   <div className="flex items-start">
                     <input
                       type="radio"
                       name="package"
-                      value="pro"
-                      checked={formData.package === 'pro'}
+                      value="renovlies-allround"
+                      checked={formData.package === 'renovlies-allround'}
                       onChange={handleInputChange}
                       className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Compleet</div>
+                        <div className="font-bold text-gray-800 text-lg">Renovlies Allround Pakket</div>
                         <div>
-                          <div className="font-bold text-emerald-700 text-lg">€19,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
+                          <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
+                          <div className="text-xs text-gray-600 text-right">excl. BTW</div>
                         </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
-                        Onze meest gekozen optie voor een volledig afgewerkt resultaat inclusief schilderwerk. Voordeel: uw wanden zijn direct klaar, strak geschilderd én volledig afgewerkt.
+                        Alles-in-één pakket voor nieuwbouwwoningen. Renovlies plaatsen én afsausen in uw gewenste kleur — één vaste prijs, zonder verrassingen.
                       </p>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden professioneel schuren</li>
-                        <li>• Professionele renovlies specialisten</li>
-                        <li>• Aanbrengen van 150 grams renovlies</li>
-                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
-                        <li>• Alle naden en kieren professioneel gekit</li>
-                        <li>• Dekkend schilderen in 1 kleur naar keuze</li>
-                        <li>• Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf</li>
-                        <li>• Bouwafval wordt netjes afgevoerd</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
-                        <li>• Geen aanbetaling</li>
+                        <li>• Renovlies professioneel plaatsen op alle wanden</li>
+                        <li>• Volledig afsausen in gewenste kleur</li>
+                        <li>• Sigma muurverf schrobklasse 1</li>
+                        <li>• Keuze uit 1 basiskleur + 2 extra kleuren</li>
+                        <li>• Inclusief materiaal: renovlies + lijm + Sigma verf</li>
+                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
                         <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
                   </div>
                 </label>
 
-                {/* Pakket Master */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                {/* Glasweefsel Allround Pakket */}
+                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.package === 'glasweefsel-allround' ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
                   <div className="flex items-start">
                     <input
                       type="radio"
                       name="package"
-                      value="master"
-                      checked={formData.package === 'master'}
+                      value="glasweefsel-allround"
+                      checked={formData.package === 'glasweefsel-allround'}
                       onChange={handleInputChange}
                       className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Pakket Renovlies Ultra</div>
+                        <div className="font-bold text-gray-800 text-lg">Glasweefsel Allround Pakket</div>
                         <div>
                           <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW | vanaf 100m²</div>
+                          <div className="text-xs text-gray-600 text-right">excl. BTW</div>
                         </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
-                        Voor wie maximale afwerking en kleurvariatie wenst. Perfect voor nieuwbouwwoningen. Ideaal voor: complete afwerking met meerdere kleuren en premium uitstraling.
+                        Ideaal voor renovatie of muren met een minder goede ondergrond. Glasweefsel overbrugt oneffenheden en scheuren — inclusief schilderwerk voor een vaste prijs.
                       </p>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden professioneel schuren</li>
-                        <li>• Professionele renovlies specialisten</li>
-                        <li>• Aanbrengen van 150 grams renovlies</li>
-                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
-                        <li>• Alle naden en kieren professioneel gekit</li>
-                        <li>• Dekkend schilderen in maximaal 3 kleuren naar keuze</li>
-                        <li>• Inclusief materiaal: renovlies + lijm + kit + schrobklasse 1 muurverf</li>
-                        <li>• Bouwafval wordt netjes afgevoerd</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
-                        <li>• Geen aanbetaling</li>
+                        <li>• Glasweefsel professioneel plaatsen op alle wanden</li>
+                        <li>• Volledig afsausen in gewenste kleur</li>
+                        <li>• Sigma muurverf schrobklasse 1</li>
+                        <li>• Keuze uit 1 basiskleur + 2 extra kleuren</li>
+                        <li>• Overbrugt oneffenheden en kleine scheuren</li>
+                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
                         <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
@@ -369,35 +356,8 @@ ${formData.comments || 'Geen opmerkingen'}
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Diensten (optioneel)</h2>
               <p className="text-sm text-gray-600 mb-4">U kunt meerdere diensten selecteren.</p>
               <div className="space-y-4">
-                {/* Glasweefsel Behang */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="glasweefsel-behang"
-                      checked={formData.extraServices.includes('glasweefsel-behang')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Glasweefsel Behang</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Duurzame en sterke wandbekleding</li>
-                        <li>• Ideaal voor nieuwbouw en renovatie</li>
-                        <li>• Egale ondergrond voor schilderwerk</li>
-                        <li>• Professionele glasweefsel specialisten</li>
-                        <li>• Geschikt voor wanden en plafonds</li>
-                        <li>• Strak en duurzaam eindresultaat</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Muren Schilderen */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                {/* Muren/Plafond Schilderen */}
+                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.extraServices.includes('muren-schilderen') ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
                   <div className="flex items-start">
                     <input
                       type="checkbox"
@@ -408,30 +368,25 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
+                        <div className="font-bold text-gray-800 text-lg">Ik wil mijn muren/plafond laten schilderen</div>
                         <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
-                        Professionele schilders voor strak, egaal en duurzaam schilderwerk. Geschikt voor: renovatie, nieuwbouw, opfrissen van bestaande wanden of na renovlies.
+                        Professionele schilders voor strak, egaal en duurzaam schilderwerk. Geschikt voor renovatie, nieuwbouw, opfrissen van bestaande wanden of na renovlies.
                       </p>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden professioneel schuren</li>
-                        <li>• Professionele schilders voor strak en duurzaam schilderwerk</li>
-                        <li>• Alle naden en kieren professioneel gekit</li>
-                        <li>• Dekkend schilderen in 1 kleur naar keuze</li>
-                        <li>• Inclusief materiaal: schrobklasse 1 muurverf + kit + afplak materiaal</li>
-                        <li>• Bouwafval wordt netjes afgevoerd</li>
-                        <li>• Korte wachttijd</li>
-                        <li>• Geen verborgen kosten (incl. voorrij- en parkeerkosten)</li>
-                        <li>• Geen aanbetaling</li>
+                        <li>• Wanden en/of plafond professioneel schuren</li>
+                        <li>• Dekkend schilderen in gewenste kleur</li>
+                        <li>• Inclusief schrobklasse 1 muurverf</li>
+                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
                         <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
                   </div>
                 </label>
 
-                {/* Behanger Inhuren */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
+                {/* Muren/Plafond Behangen */}
+                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.extraServices.includes('behanger-inhuren') ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
                   <div className="flex items-start">
                     <input
                       type="checkbox"
@@ -442,16 +397,16 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
+                        <div className="font-bold text-gray-800 text-lg">Ik wil mijn muren/plafond laten behangen</div>
                         <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Aanbrengen van door u zelf aangeschaft behang</li>
-                        <li>• Geschikt voor grote en kleine projecten</li>
+                        <li>• Geschikt voor alle behangsoorten, ook luxe en exclusief</li>
                         <li>• Professionele en ervaren behangers</li>
-                        <li>• Snelle en efficiënte uitvoering</li>
                         <li>• Strak en vakkundig eindresultaat</li>
-                        <li>• Flexibele planning, afgestemd op uw project</li>
+                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
+                        <li>• 12 maanden garantie</li>
                       </ul>
                     </div>
                   </div>
@@ -739,10 +694,10 @@ ${formData.comments || 'Geen opmerkingen'}
                               </option>
                             </optgroup>
                           )}
-                          {formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s)).length > 0 && (
+                          {formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s)).length > 0 && (
                             <optgroup label="Diensten">
                               {formData.extraServices
-                                .filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s))
+                                .filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s))
                                 .map(service => (
                                   <option key={service} value={service}>
                                     {serviceNames[service]}
@@ -796,13 +751,13 @@ ${formData.comments || 'Geen opmerkingen'}
                   type="button"
                   onClick={addAreaCalculation}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
-                  disabled={!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s)).length === 0}
+                  disabled={!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s)).length === 0}
                 >
                   <Plus className="w-5 h-5" />
                   <span className="font-medium">Voeg ruimte toe</span>
                 </button>
 
-                {(!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren'].includes(s)).length === 0) && (
+                {(!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s)).length === 0) && (
                   <p className="text-sm text-amber-600 text-center">
                     Selecteer eerst een pakket of dienst hierboven om ruimtes toe te voegen
                   </p>
