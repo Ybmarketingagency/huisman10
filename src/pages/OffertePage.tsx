@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Layers, Grid2X2, Paintbrush, Scissors } from 'lucide-react';
 
 interface AreaCalculation {
   id: number;
@@ -58,6 +58,24 @@ const OffertePage = () => {
   });
 
   const [nextId, setNextId] = useState(1);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const quickSelect = (type: 'package' | 'service', value: string) => {
+    if (type === 'package') {
+      setFormData(prev => ({ ...prev, package: value, extraServices: [] }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        package: '',
+        extraServices: prev.extraServices.includes(value)
+          ? prev.extraServices
+          : [...prev.extraServices, value],
+      }));
+    }
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -269,10 +287,85 @@ ${formData.comments || 'Geen opmerkingen'}
     <div className="min-h-screen bg-[#d1d1d1] pt-20 pb-12">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold text-emerald-700 mb-8 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-emerald-700 mb-3 text-center">
             Offerte aanvragen
           </h1>
+          <p className="text-center text-gray-600 mb-8">Kies wat u zoekt — we vullen het formulier al voor u in.</p>
 
+          {/* Quick-select tiles */}
+          <div className="grid grid-cols-2 gap-3 mb-8">
+            {[
+              {
+                icon: Layers,
+                label: 'Renovlies Allround Pakket',
+                sub: '€22,50/m² · plaatsen + sausen',
+                type: 'package' as const,
+                value: 'renovlies-allround',
+                img: 'https://imgur.com/130MQxa.jpg',
+              },
+              {
+                icon: Grid2X2,
+                label: 'Glasweefsel Allround Pakket',
+                sub: '€22,50/m² · plaatsen + sausen',
+                type: 'package' as const,
+                value: 'glasweefsel-allround',
+                img: 'https://imgur.com/m7wjcxN.jpg',
+              },
+              {
+                icon: Paintbrush,
+                label: 'Muren/plafond laten schilderen',
+                sub: 'Op aanvraag',
+                type: 'service' as const,
+                value: 'muren-schilderen',
+                img: 'https://imgur.com/USExe76.jpg',
+              },
+              {
+                icon: Scissors,
+                label: 'Muren/plafond laten behangen',
+                sub: 'Op aanvraag',
+                type: 'service' as const,
+                value: 'behanger-inhuren',
+                img: 'https://imgur.com/WDPnN4C.jpg',
+              },
+            ].map(({ icon: Icon, label, sub, type, value, img }) => {
+              const isActive =
+                (type === 'package' && formData.package === value) ||
+                (type === 'service' && formData.extraServices.includes(value));
+              return (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => quickSelect(type, value)}
+                  className={`relative overflow-hidden rounded-2xl text-left transition-all duration-200 hover:scale-[1.02] shadow-md ${isActive ? 'ring-4 ring-emerald-500 ring-offset-2' : ''}`}
+                >
+                  {/* Background photo */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${img}')` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+                  {/* Active check */}
+                  {isActive && (
+                    <div className="absolute top-2 right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center z-10">
+                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  )}
+                  {/* Content */}
+                  <div className="relative z-10 p-4 pt-10 md:pt-14">
+                    <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center mb-2">
+                      <Icon className="w-4 h-4 text-white" />
+                    </div>
+                    <p className="text-white font-bold text-sm md:text-base leading-tight">{label}</p>
+                    <p className="text-emerald-300 text-xs mt-1">{sub}</p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <div ref={formRef} />
           <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 md:p-8 space-y-8">
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Kies uw pakket (optioneel)</h2>
