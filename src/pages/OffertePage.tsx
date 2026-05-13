@@ -40,10 +40,10 @@ const serviceNames: Record<string, string> = {
 };
 
 const MAIN_TILES = [
-  { icon: Layers, label: 'Renovlies Allround Pakket', sub: '€22,50/m² · plaatsen + sausen', type: 'package' as const, value: 'renovlies-allround', img: 'https://imgur.com/130MQxa.jpg' },
-  { icon: Grid2X2, label: 'Glasweefsel Allround Pakket', sub: '€22,50/m² · plaatsen + sausen', type: 'package' as const, value: 'glasweefsel-allround', img: 'https://imgur.com/m7wjcxN.jpg' },
-  { icon: Paintbrush, label: 'Muren/plafond laten schilderen', sub: 'Op aanvraag', type: 'service' as const, value: 'muren-schilderen', img: 'https://imgur.com/USExe76.jpg' },
-  { icon: Scissors, label: 'Muren/plafond laten behangen', sub: 'Op aanvraag', type: 'service' as const, value: 'behanger-inhuren', img: 'https://imgur.com/WDPnN4C.jpg' },
+  { icon: Layers, label: 'Renovlies Allround Pakket', sub: '€22,50/m² · plaatsen + sausen', value: 'renovlies-allround', img: 'https://imgur.com/130MQxa.jpg' },
+  { icon: Grid2X2, label: 'Glasweefsel Allround Pakket', sub: '€22,50/m² · plaatsen + sausen', value: 'glasweefsel-allround', img: 'https://imgur.com/m7wjcxN.jpg' },
+  { icon: Paintbrush, label: 'Muren/plafond laten schilderen', sub: 'Op aanvraag', value: 'muren-schilderen', img: 'https://imgur.com/USExe76.jpg' },
+  { icon: Scissors, label: 'Muren/plafond laten behangen', sub: 'Op aanvraag', value: 'behanger-inhuren', img: 'https://imgur.com/WDPnN4C.jpg' },
 ];
 
 const EXTRA_SERVICES = [
@@ -82,18 +82,13 @@ const OffertePage = () => {
 
   const goTo = (n: number) => { setStep(n); scrollTop(); };
 
-  const toggleTile = (type: 'package' | 'service', value: string) => {
-    if (type === 'package') {
-      setFormData(prev => ({ ...prev, package: prev.package === value ? '' : value, extraServices: [] }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        package: '',
-        extraServices: prev.extraServices.includes(value)
-          ? prev.extraServices.filter(s => s !== value)
-          : [...prev.extraServices, value],
-      }));
-    }
+  const toggleTile = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      extraServices: prev.extraServices.includes(value)
+        ? prev.extraServices.filter(s => s !== value)
+        : [...prev.extraServices, value],
+    }));
   };
 
   const toggleExtra = (value: string) => {
@@ -117,7 +112,7 @@ const OffertePage = () => {
   const addRoom = () => {
     setFormData(prev => ({
       ...prev,
-      areaCalculations: [...prev.areaCalculations, { id: nextId, service: prev.package || '', roomName: '', area: '' }],
+      areaCalculations: [...prev.areaCalculations, { id: nextId, service: prev.extraServices.find(s => ['renovlies-allround','glasweefsel-allround'].includes(s)) || '', roomName: '', area: '' }],
     }));
     setNextId(p => p + 1);
   };
@@ -132,7 +127,7 @@ const OffertePage = () => {
     return sum + (['renovlies-allround', 'glasweefsel-allround'].includes(c.service) ? area * 22.5 : 0);
   }, 0);
 
-  const step1Valid = formData.package !== '' || formData.extraServices.length > 0;
+  const step1Valid = formData.extraServices.length > 0;
   const step2Valid = formData.name && formData.email && formData.phone && formData.street && formData.houseNumber && formData.postcode && formData.city;
 
   const uploadToImgur = async (file: File): Promise<string | null> => {
@@ -153,7 +148,7 @@ const OffertePage = () => {
       ? formData.areaCalculations.map((c, i) => `${i + 1}. ${c.roomName || 'Ruimte'} - ${c.area} m² (${packageNames[c.service] || serviceNames[c.service] || c.service})`).join('\n')
       : 'Niet opgegeven';
 
-    const msg = `Nieuwe offerte aanvraag\n\nPAKKET:\n${packageNames[formData.package] || 'Geen pakket'}\n\nDIENSTEN:\n${servicesText}\n\nCONTACT:\nNaam: ${formData.name}\nE-mail: ${formData.email}\nTelefoon: ${formData.phone}\nAdres: ${formData.street} ${formData.houseNumber}, ${formData.postcode} ${formData.city}\n\nOPPERVLAKTE:\n${areasText}\n\nFOTO:\n${imageUrl || 'Geen'}\n\nOPMERKINGEN:\n${formData.comments || 'Geen'}`;
+    const msg = `Nieuwe offerte aanvraag\n\nGEKOZEN DIENSTEN:\n${servicesText}\n\nCONTACT:\nNaam: ${formData.name}\nE-mail: ${formData.email}\nTelefoon: ${formData.phone}\nAdres: ${formData.street} ${formData.houseNumber}, ${formData.postcode} ${formData.city}\n\nOPPERVLAKTE:\n${areasText}\n\nFOTO:\n${imageUrl || 'Geen'}\n\nOPMERKINGEN:\n${formData.comments || 'Geen'}`;
 
     try {
       await emailjs.send('service_z20osse', 'template_ytp0ow4', { to_name: 'Huisman Wandafwerking', from_name: formData.name, from_email: formData.email, message: msg, reply_to: formData.email }, 'o1zr2f6mQFLqSAGyJ');
@@ -167,9 +162,9 @@ const OffertePage = () => {
     setSubmitting(false);
   };
 
-  const selectedLabel = formData.package
-    ? packageNames[formData.package]
-    : formData.extraServices.map(s => serviceNames[s]).join(', ');
+  const selectedLabel = formData.extraServices
+    .map(s => packageNames[s] || serviceNames[s] || s)
+    .join(', ');
 
   // ── Success screen ──────────────────────────────────────────────
   if (submitted) {
@@ -231,10 +226,10 @@ const OffertePage = () => {
 
               {/* Main 4 tiles */}
               <div className="grid grid-cols-2 gap-3 mb-4">
-                {MAIN_TILES.map(({ icon: Icon, label, sub, type, value, img }) => {
-                  const isActive = (type === 'package' && formData.package === value) || (type === 'service' && formData.extraServices.includes(value));
+                {MAIN_TILES.map(({ icon: Icon, label, sub, value, img }) => {
+                  const isActive = formData.extraServices.includes(value);
                   return (
-                    <button key={value} type="button" onClick={() => toggleTile(type, value)}
+                    <button key={value} type="button" onClick={() => toggleTile(value)}
                       className={`relative overflow-hidden rounded-2xl text-left transition-all duration-200 hover:scale-[1.02] shadow-md ${isActive ? 'ring-4 ring-emerald-500 ring-offset-2' : ''}`}>
                       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${img}')` }} />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
@@ -367,7 +362,9 @@ const OffertePage = () => {
                           <select value={calc.service} onChange={e => updateRoom(calc.id, 'service', e.target.value)}
                             className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
                             <option value="">Kies</option>
-                            {formData.package && <option value={formData.package}>{packageNames[formData.package]?.split(' (')[0]}</option>}
+                            {formData.extraServices.filter(s => ['renovlies-allround','glasweefsel-allround'].includes(s)).map(s => (
+                              <option key={s} value={s}>{packageNames[s]?.split(' (')[0]}</option>
+                            ))}
                           </select>
                         </div>
                         <div className="col-span-4">
@@ -390,7 +387,7 @@ const OffertePage = () => {
                   </div>
                 )}
 
-                {formData.package && (
+                {formData.extraServices.some(s => ['renovlies-allround','glasweefsel-allround'].includes(s)) && (
                   <button type="button" onClick={addRoom}
                     className="w-full flex items-center justify-center gap-2 py-2.5 border-2 border-dashed border-emerald-300 text-emerald-600 rounded-xl hover:bg-emerald-50 transition-colors text-sm font-medium">
                     <Plus className="w-4 h-4" /> Ruimte toevoegen
@@ -413,7 +410,7 @@ const OffertePage = () => {
 
                 {/* File upload */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Plattegrond uploaden</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Plattegrond uploaden <span className="text-gray-400 font-normal">(optioneel)</span></label>
                   <label className="flex flex-col items-center justify-center w-full py-6 border-2 border-dashed border-gray-200 rounded-xl cursor-pointer hover:border-emerald-400 hover:bg-emerald-50 transition-colors">
                     <svg className="w-8 h-8 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -458,6 +455,7 @@ const OffertePage = () => {
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Dienst / Pakket</p>
                     <p className="text-sm font-medium text-gray-800">{selectedLabel || '—'}</p>
+
                   </div>
                   <button onClick={() => goTo(1)} className="text-xs text-emerald-600 underline flex-shrink-0 ml-4">Wijzigen</button>
                 </div>

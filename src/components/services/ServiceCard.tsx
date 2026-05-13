@@ -7,21 +7,27 @@ interface ServiceCardProps {
   description: string;
   imageSrc: string;
   link: string;
+  price?: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, imageSrc, link }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, imageSrc, link, price }) => {
   return (
-    <Link 
-      to={link} 
+    <Link
+      to={link}
       className="block group bg-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col"
     >
       <div className="relative h-56 overflow-hidden">
-        <img 
-          src={imageSrc} 
-          alt={title} 
+        <img
+          src={imageSrc}
+          alt={title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+        {price && (
+          <div className="absolute top-3 left-3 bg-emerald-700 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow">
+            {price}
+          </div>
+        )}
       </div>
       <div className="p-6 flex-grow bg-gray-200">
         <div className="flex items-center justify-between mb-2">

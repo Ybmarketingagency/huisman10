@@ -25,7 +25,8 @@ const Services = () => {
       title: "Glasweefsel Behang",
       description: "Op zoek naar een elegante wandafwerking met een unieke structuur? Glasweefsel behang is uw ideale keuze.",
       imageSrc: "https://imgur.com/yiRcg6Y.jpg",
-      link: "/diensten/glasweefsel"
+      link: "/diensten/glasweefsel",
+      price: "€22,50/m²"
     },
     {
       title: "Behangploeg",
@@ -86,6 +87,7 @@ const Services = () => {
                   description={service.description}
                   imageSrc={service.imageSrc}
                   link={service.link}
+                  price={(service as any).price}
                 />
               </FadeInSection>
             ))}
@@ -155,6 +157,7 @@ const Services = () => {
                   description={service.description}
                   imageSrc={service.imageSrc}
                   link={service.link}
+                  price={(service as any).price}
                 />
               </FadeInSection>
             ))}

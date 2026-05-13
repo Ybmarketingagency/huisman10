@@ -11,9 +11,9 @@ const AdditionalServices = () => {
   const services = [
     {
       title: 'Glasweefsel Behang',
-      price: 'Op aanvraag',
-      unit: '',
-      priceNote: null,
+      price: '€22,50',
+      unit: '/m²',
+      priceNote: 'plaatsen + sausen · excl. BTW',
       description: 'Professionele Glasweefsel Wandafwerking',
       subtitle: null,
       features: [

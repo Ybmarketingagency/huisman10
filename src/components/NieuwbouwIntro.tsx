@@ -78,6 +78,22 @@ const NieuwbouwIntro = () => {
                 </div>
               </div>
 
+              {/* Merkpartners */}
+              <div className="border border-gray-200 rounded-lg px-6 py-5 mb-6">
+                <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold text-center mb-4">Wij werken uitsluitend met</p>
+                <div className="flex items-center justify-center gap-8">
+                  <div className="text-center">
+                    <div className="text-2xl font-black text-gray-800 tracking-tight">SIKKENS</div>
+                    <div className="text-xs text-gray-400 mt-0.5">Premium verfmerk</div>
+                  </div>
+                  <div className="w-px h-10 bg-gray-200" />
+                  <div className="text-center">
+                    <div className="text-2xl font-black text-gray-800 tracking-tight">SIGMA</div>
+                    <div className="text-xs text-gray-400 mt-0.5">Premium verfmerk</div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-gradient-to-r from-emerald-700 to-emerald-600 text-white rounded-lg p-6 text-center">
                 <p className="text-lg font-semibold">
                   Van nieuwbouwwoningen tot grootschalige projecten – wij leveren strakke, duurzame afwerking waar u jarenlang plezier van heeft.
