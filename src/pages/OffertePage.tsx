@@ -31,8 +31,8 @@ const packageNames: Record<string, string> = {
 };
 
 const serviceNames: Record<string, string> = {
-  'muren-schilderen': 'Ik wil mijn muren/plafond laten schilderen (Op aanvraag)',
-  'behanger-inhuren': 'Ik wil mijn muren/plafond laten behangen (Op aanvraag)',
+  'muren-schilderen': 'Muren schilderen (Op aanvraag)',
+  'behanger-inhuren': 'Behanger inhuren (Op aanvraag)',
   'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)',
   'vloeren-leggen': 'Vloeren leggen (epoxy, pvc, laminaat) (Op aanvraag)',
   'plafond-egaliseren': 'Plafond egaliseren (Op aanvraag)',
@@ -368,7 +368,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Ik wil mijn muren/plafond laten schilderen</div>
+                        <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
                         <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3 italic">
@@ -397,7 +397,7 @@ ${formData.comments || 'Geen opmerkingen'}
                     />
                     <div className="ml-3 flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Ik wil mijn muren/plafond laten behangen</div>
+                        <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
                         <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
                       </div>
                       <ul className="text-sm text-gray-600 space-y-1">

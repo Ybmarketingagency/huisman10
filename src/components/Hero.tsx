@@ -99,13 +99,13 @@ const Hero = () => {
               to="/diensten/binnen-schilderwerk"
               className="bg-emerald-700 hover:bg-emerald-600 text-white font-semibold py-4 px-7 rounded-xl transition-colors duration-200 text-center text-sm md:text-base shadow-lg"
             >
-              Ik wil mijn muren laten beschilderen
+              Ik wil mijn muren/plafond laten schilderen
             </Link>
             <Link
               to="/diensten/behanger-inhuren"
               className="bg-white hover:bg-gray-100 text-emerald-800 font-semibold py-4 px-7 rounded-xl transition-colors duration-200 text-center text-sm md:text-base shadow-lg border-2 border-emerald-700"
             >
-              Ik wil mijn muren laten behangen
+              Ik wil mijn muren/plafond laten behangen
             </Link>
           </div>
 
