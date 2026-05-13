@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Plus, Trash2, Layers, Grid2X2, Paintbrush, Scissors } from 'lucide-react';
+import { Plus, Trash2, Layers, Grid2X2, Paintbrush, Scissors, Wind, Hammer, ChevronRight, ChevronLeft, Check, Phone } from 'lucide-react';
 
 interface AreaCalculation {
   id: number;
@@ -12,7 +12,6 @@ interface AreaCalculation {
 interface FormData {
   package: string;
   extraServices: string[];
-  otherService: string;
   name: string;
   email: string;
   phone: string;
@@ -31,20 +30,42 @@ const packageNames: Record<string, string> = {
 };
 
 const serviceNames: Record<string, string> = {
-  'muren-schilderen': 'Muren schilderen (Op aanvraag)',
-  'behanger-inhuren': 'Behanger inhuren (Op aanvraag)',
-  'airless-spuiten': 'Airless spuiten van zolderkappen (Op aanvraag)',
-  'vloeren-leggen': 'Vloeren leggen (epoxy, pvc, laminaat) (Op aanvraag)',
-  'plafond-egaliseren': 'Plafond egaliseren (Op aanvraag)',
-  'plafond-spuiten': 'Plafond spuiten (Op aanvraag)',
-  'stukadoor-inhuren': 'Stukadoor inhuren (Op aanvraag)'
+  'muren-schilderen': 'Muren/plafond schilderen',
+  'behanger-inhuren': 'Muren/plafond behangen',
+  'airless-spuiten': 'Airless spuiten',
+  'stukadoor-inhuren': 'Stukadoor inhuren',
+  'plafond-spuiten': 'Plafond spuiten',
+  'vloeren-leggen': 'Vloeren leggen',
+  'plafond-egaliseren': 'Plafond egaliseren',
 };
 
+const MAIN_TILES = [
+  { icon: Layers, label: 'Renovlies Allround Pakket', sub: '€22,50/m² · plaatsen + sausen', type: 'package' as const, value: 'renovlies-allround', img: 'https://imgur.com/130MQxa.jpg' },
+  { icon: Grid2X2, label: 'Glasweefsel Allround Pakket', sub: '€22,50/m² · plaatsen + sausen', type: 'package' as const, value: 'glasweefsel-allround', img: 'https://imgur.com/m7wjcxN.jpg' },
+  { icon: Paintbrush, label: 'Muren/plafond laten schilderen', sub: 'Op aanvraag', type: 'service' as const, value: 'muren-schilderen', img: 'https://imgur.com/USExe76.jpg' },
+  { icon: Scissors, label: 'Muren/plafond laten behangen', sub: 'Op aanvraag', type: 'service' as const, value: 'behanger-inhuren', img: 'https://imgur.com/WDPnN4C.jpg' },
+];
+
+const EXTRA_SERVICES = [
+  { value: 'airless-spuiten', label: 'Airless spuiten', icon: Wind },
+  { value: 'stukadoor-inhuren', label: 'Stukadoor inhuren', icon: Hammer },
+  { value: 'plafond-spuiten', label: 'Plafond spuiten', icon: Paintbrush },
+  { value: 'vloeren-leggen', label: 'Vloeren leggen', icon: Grid2X2 },
+  { value: 'plafond-egaliseren', label: 'Plafond egaliseren', icon: Layers },
+];
+
+const STEPS = ['Dienst', 'Gegevens', 'Project', 'Versturen'];
+
 const OffertePage = () => {
+  const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [nextId, setNextId] = useState(1);
+  const topRef = useRef<HTMLDivElement>(null);
+
   const [formData, setFormData] = useState<FormData>({
     package: '',
     extraServices: [],
-    otherService: '',
     name: '',
     email: '',
     phone: '',
@@ -54,901 +75,430 @@ const OffertePage = () => {
     city: '',
     areaCalculations: [],
     floorPlan: null,
-    comments: ''
+    comments: '',
   });
 
-  const [nextId, setNextId] = useState(1);
-  const formRef = useRef<HTMLDivElement>(null);
+  const scrollTop = () => setTimeout(() => topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
 
-  const quickSelect = (type: 'package' | 'service', value: string) => {
+  const goTo = (n: number) => { setStep(n); scrollTop(); };
+
+  const toggleTile = (type: 'package' | 'service', value: string) => {
     if (type === 'package') {
-      setFormData(prev => ({ ...prev, package: value, extraServices: [] }));
+      setFormData(prev => ({ ...prev, package: prev.package === value ? '' : value, extraServices: [] }));
     } else {
       setFormData(prev => ({
         ...prev,
         package: '',
         extraServices: prev.extraServices.includes(value)
-          ? prev.extraServices
+          ? prev.extraServices.filter(s => s !== value)
           : [...prev.extraServices, value],
       }));
     }
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 50);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const toggleExtra = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      extraServices: prev.extraServices.includes(value)
+        ? prev.extraServices.filter(s => s !== value)
+        : [...prev.extraServices, value],
+    }));
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFormData(prev => ({ ...prev, floorPlan: file }));
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, floorPlan: e.target.files?.[0] || null }));
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
+  const addRoom = () => {
     setFormData(prev => ({
       ...prev,
-      extraServices: checked
-        ? [...prev.extraServices, value]
-        : prev.extraServices.filter(service => service !== value)
+      areaCalculations: [...prev.areaCalculations, { id: nextId, service: prev.package || '', roomName: '', area: '' }],
     }));
+    setNextId(p => p + 1);
   };
 
-  const addAreaCalculation = () => {
-    setFormData(prev => {
-      const newCalculation: AreaCalculation = {
-        id: nextId,
-        service: prev.package || (prev.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s))[0] || ''),
-        roomName: '',
-        area: ''
-      };
-      return {
-        ...prev,
-        areaCalculations: [...prev.areaCalculations, newCalculation]
-      };
-    });
-    setNextId(prev => prev + 1);
+  const removeRoom = (id: number) => setFormData(prev => ({ ...prev, areaCalculations: prev.areaCalculations.filter(c => c.id !== id) }));
+
+  const updateRoom = (id: number, field: keyof AreaCalculation, value: string) =>
+    setFormData(prev => ({ ...prev, areaCalculations: prev.areaCalculations.map(c => c.id === id ? { ...c, [field]: value } : c) }));
+
+  const estimate = () => formData.areaCalculations.reduce((sum, c) => {
+    const area = parseFloat(c.area) || 0;
+    return sum + (['renovlies-allround', 'glasweefsel-allround'].includes(c.service) ? area * 22.5 : 0);
+  }, 0);
+
+  const step1Valid = formData.package !== '' || formData.extraServices.length > 0;
+  const step2Valid = formData.name && formData.email && formData.phone && formData.street && formData.houseNumber && formData.postcode && formData.city;
+
+  const uploadToImgur = async (file: File): Promise<string | null> => {
+    const fd = new FormData();
+    fd.append('image', file);
+    try {
+      const res = await fetch('https://api.imgur.com/3/image', { method: 'POST', headers: { Authorization: 'Client-ID 546c25a59c58ad7' }, body: fd });
+      const data = await res.json();
+      return data.success ? data.data.link : null;
+    } catch { return null; }
   };
 
-  const calculateEstimate = () => {
-    let total = 0;
+  const handleSubmit = async () => {
+    setSubmitting(true);
+    const imageUrl = formData.floorPlan ? await uploadToImgur(formData.floorPlan) : null;
+    const servicesText = formData.extraServices.map(s => serviceNames[s] || s).join(', ') || 'Geen';
+    const areasText = formData.areaCalculations.length
+      ? formData.areaCalculations.map((c, i) => `${i + 1}. ${c.roomName || 'Ruimte'} - ${c.area} m² (${packageNames[c.service] || serviceNames[c.service] || c.service})`).join('\n')
+      : 'Niet opgegeven';
 
-    formData.areaCalculations.forEach(calc => {
-      const area = parseFloat(calc.area) || 0;
-
-      if (calc.service === 'renovlies-allround' || calc.service === 'glasweefsel-allround') {
-        total += area * 22.50;
-      }
-    });
-
-    return total;
-  };
-
-  const removeAreaCalculation = (id: number) => {
-    setFormData(prev => ({
-      ...prev,
-      areaCalculations: prev.areaCalculations.filter(calc => calc.id !== id)
-    }));
-  };
-
-  const updateAreaCalculation = (id: number, field: keyof AreaCalculation, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      areaCalculations: prev.areaCalculations.map(calc =>
-        calc.id === id ? { ...calc, [field]: value } : calc
-      )
-    }));
-  };
-
-  const uploadImageToImgur = async (file: File): Promise<string | null> => {
-    const formData = new FormData();
-    formData.append('image', file);
+    const msg = `Nieuwe offerte aanvraag\n\nPAKKET:\n${packageNames[formData.package] || 'Geen pakket'}\n\nDIENSTEN:\n${servicesText}\n\nCONTACT:\nNaam: ${formData.name}\nE-mail: ${formData.email}\nTelefoon: ${formData.phone}\nAdres: ${formData.street} ${formData.houseNumber}, ${formData.postcode} ${formData.city}\n\nOPPERVLAKTE:\n${areasText}\n\nFOTO:\n${imageUrl || 'Geen'}\n\nOPMERKINGEN:\n${formData.comments || 'Geen'}`;
 
     try {
-      const response = await fetch('https://api.imgur.com/3/image', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Client-ID 546c25a59c58ad7',
-        },
-        body: formData,
-      });
-
-      const data = await response.json();
-      if (data.success && data.data) {
-        return data.data.link;
-      }
-      return null;
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      return null;
+      await emailjs.send('service_z20osse', 'template_ytp0ow4', { to_name: 'Huisman Wandafwerking', from_name: formData.name, from_email: formData.email, message: msg, reply_to: formData.email }, 'o1zr2f6mQFLqSAGyJ');
+      if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Offerte Aanvraag', value: estimate(), currency: 'EUR' });
+      if ((window as any).gtag) (window as any).gtag('event', 'conversion', { send_to: 'AW-17738015375/f_jzCIH57OgZELzMjIQ-', value: estimate() || 1, currency: 'EUR' });
+      setSubmitted(true);
+      scrollTop();
+    } catch {
+      alert('Er is een fout opgetreden. Probeer het later opnieuw of bel ons: 078-3690154');
     }
+    setSubmitting(false);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const selectedLabel = formData.package
+    ? packageNames[formData.package]
+    : formData.extraServices.map(s => serviceNames[s]).join(', ');
 
-    let extraServicesText = formData.extraServices.length > 0
-      ? formData.extraServices.map(service => serviceNames[service] || service).join(', ')
-      : 'Geen';
-
-    if (formData.otherService) {
-      extraServicesText += extraServicesText === 'Geen'
-        ? formData.otherService
-        : `, ${formData.otherService}`;
-    }
-
-    let imageUrl: string | null = null;
-
-    if (formData.floorPlan) {
-      imageUrl = await uploadImageToImgur(formData.floorPlan);
-      console.log('Uploaded image URL:', imageUrl);
-    }
-
-    // Maak oppervlakte berekeningen tekst
-    let areaCalculationsText = 'Geen berekeningen opgegeven';
-    if (formData.areaCalculations.length > 0) {
-      areaCalculationsText = formData.areaCalculations
-        .map((calc, index) => {
-          const serviceName = packageNames[calc.service] || serviceNames[calc.service] || calc.service;
-          return `${index + 1}. ${calc.roomName || 'Naamloze ruimte'} - ${calc.area} m² (${serviceName})`;
-        })
-        .join('\n');
-    }
-
-    // Maak een complete message body met alle informatie
-    const messageBody = `
-Nieuwe offerte aanvraag van:
-
-GEKOZEN PAKKET:
-${packageNames[formData.package] || 'Geen renovlies pakket geselecteerd'}
-
-DIENSTEN:
-${extraServicesText}
-
-CONTACTGEGEVENS:
-Naam: ${formData.name}
-E-mail: ${formData.email}
-Telefoon: ${formData.phone}
-Adres: ${formData.street} ${formData.houseNumber}, ${formData.postcode} ${formData.city}
-
-OPPERVLAKTE BEREKENINGEN:
-${areaCalculationsText}
-${formData.areaCalculations.length === 0 && !formData.floorPlan ? '\nPlattegrond geüpload (zie hieronder)' : ''}
-
-GEÜPLOADE FOTO:
-${imageUrl || 'Geen foto geüpload'}
-
-OPMERKINGEN:
-${formData.comments || 'Geen opmerkingen'}
-    `.trim();
-
-    const templateParams = {
-      to_name: 'Huisman Wandafwerking',
-      from_name: formData.name,
-      from_email: formData.email,
-      message: messageBody,
-      reply_to: formData.email
-    };
-
-    try {
-      await emailjs.send(
-        'service_z20osse',
-        'template_ytp0ow4',
-        templateParams,
-        'o1zr2f6mQFLqSAGyJ'
-      );
-
-      if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'Lead', {
-          content_name: 'Offerte Aanvraag',
-          content_category: 'Quote Request',
-          value: calculateEstimate(),
-          currency: 'EUR'
-        });
-      }
-
-      // Google Ads conversie tracking
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        const estimatedValue = calculateEstimate();
-        (window as any).gtag('event', 'conversion', {
-          'send_to': 'AW-17738015375/f_jzCIH57OgZELzMjIQ-',
-          'value': estimatedValue > 0 ? estimatedValue : 1.0,
-          'currency': 'EUR'
-        });
-      }
-
-      alert('Bedankt voor uw aanvraag! We nemen zo snel mogelijk contact met u op.');
-      setFormData({
-        package: '',
-        extraServices: [],
-        otherService: '',
-        name: '',
-        email: '',
-        phone: '',
-        street: '',
-        houseNumber: '',
-        postcode: '',
-        city: '',
-        areaCalculations: [],
-        floorPlan: null,
-        comments: ''
-      });
-      setNextId(1);
-    } catch (error) {
-      console.error('Error sending email:', error);
-      alert('Er is een fout opgetreden bij het verzenden van uw aanvraag. Probeer het later opnieuw.');
-    }
-  };
+  // ── Success screen ──────────────────────────────────────────────
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-stone-50 pt-20 pb-12 flex items-center justify-center">
+        <div className="max-w-md mx-auto text-center px-4">
+          <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Check className="w-10 h-10 text-emerald-600" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Aanvraag verstuurd!</h2>
+          <p className="text-gray-600 mb-2">Bedankt, <strong>{formData.name}</strong>. We nemen binnen 24 uur contact met u op.</p>
+          <p className="text-gray-500 text-sm mb-8">U ontvangt ook een bevestiging op <strong>{formData.email}</strong>.</p>
+          <a href="tel:0786690154" className="inline-flex items-center gap-2 bg-emerald-700 text-white font-bold py-3 px-7 rounded-xl">
+            <Phone className="w-4 h-4" /> Liever bellen? 078-3690154
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-[#d1d1d1] pt-20 pb-12">
-      <div className="container mx-auto px-4 md:px-6">
+    <div className="min-h-screen bg-stone-50 pt-20 pb-12">
+      <div ref={topRef} className="container mx-auto px-4 md:px-6">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold text-emerald-700 mb-3 text-center">
-            Offerte aanvragen
-          </h1>
-          <p className="text-center text-gray-600 mb-8">Kies wat u zoekt — we vullen het formulier al voor u in.</p>
 
-          {/* Quick-select tiles */}
-          <div className="grid grid-cols-2 gap-3 mb-8">
-            {[
-              {
-                icon: Layers,
-                label: 'Renovlies Allround Pakket',
-                sub: '€22,50/m² · plaatsen + sausen',
-                type: 'package' as const,
-                value: 'renovlies-allround',
-                img: 'https://imgur.com/130MQxa.jpg',
-              },
-              {
-                icon: Grid2X2,
-                label: 'Glasweefsel Allround Pakket',
-                sub: '€22,50/m² · plaatsen + sausen',
-                type: 'package' as const,
-                value: 'glasweefsel-allround',
-                img: 'https://imgur.com/m7wjcxN.jpg',
-              },
-              {
-                icon: Paintbrush,
-                label: 'Muren/plafond laten schilderen',
-                sub: 'Op aanvraag',
-                type: 'service' as const,
-                value: 'muren-schilderen',
-                img: 'https://imgur.com/USExe76.jpg',
-              },
-              {
-                icon: Scissors,
-                label: 'Muren/plafond laten behangen',
-                sub: 'Op aanvraag',
-                type: 'service' as const,
-                value: 'behanger-inhuren',
-                img: 'https://imgur.com/WDPnN4C.jpg',
-              },
-            ].map(({ icon: Icon, label, sub, type, value, img }) => {
-              const isActive =
-                (type === 'package' && formData.package === value) ||
-                (type === 'service' && formData.extraServices.includes(value));
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-emerald-700 mb-1">Offerte aanvragen</h1>
+            <p className="text-gray-500 text-sm">Gratis · Vrijblijvend · Binnen 24 uur reactie</p>
+          </div>
+
+          {/* Progress bar */}
+          <div className="flex items-center gap-1 mb-8">
+            {STEPS.map((label, i) => {
+              const n = i + 1;
+              const done = step > n;
+              const active = step === n;
               return (
-                <button
-                  key={value}
-                  type="button"
-                  onClick={() => quickSelect(type, value)}
-                  className={`relative overflow-hidden rounded-2xl text-left transition-all duration-200 hover:scale-[1.02] shadow-md ${isActive ? 'ring-4 ring-emerald-500 ring-offset-2' : ''}`}
-                >
-                  {/* Background photo */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${img}')` }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
-                  {/* Active check */}
-                  {isActive && (
-                    <div className="absolute top-2 right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center z-10">
-                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
+                <React.Fragment key={label}>
+                  <div className="flex flex-col items-center flex-shrink-0">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${done ? 'bg-emerald-600 text-white' : active ? 'bg-emerald-700 text-white' : 'bg-gray-200 text-gray-400'}`}>
+                      {done ? <Check className="w-4 h-4" /> : n}
                     </div>
-                  )}
-                  {/* Content */}
-                  <div className="relative z-10 p-4 pt-10 md:pt-14">
-                    <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center mb-2">
-                      <Icon className="w-4 h-4 text-white" />
-                    </div>
-                    <p className="text-white font-bold text-sm md:text-base leading-tight">{label}</p>
-                    <p className="text-emerald-300 text-xs mt-1">{sub}</p>
+                    <span className={`text-xs mt-1 font-medium hidden sm:block ${active ? 'text-emerald-700' : 'text-gray-400'}`}>{label}</span>
                   </div>
-                </button>
+                  {i < STEPS.length - 1 && (
+                    <div className={`flex-1 h-1 rounded-full mx-1 transition-colors ${done ? 'bg-emerald-600' : 'bg-gray-200'}`} />
+                  )}
+                </React.Fragment>
               );
             })}
           </div>
 
-          <div ref={formRef} />
-          <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 md:p-8 space-y-8">
+          {/* ── STEP 1: Dienst ── */}
+          {step === 1 && (
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Kies uw pakket (optioneel)</h2>
-              <p className="text-sm text-gray-600 mb-4">Selecteer een renovlies pakket of gebruik alleen de diensten.</p>
+              <h2 className="text-lg font-bold text-gray-800 mb-1">Wat kan Huisman voor u doen?</h2>
+              <p className="text-sm text-gray-500 mb-5">Kies een of meerdere opties — u kunt altijd combineren.</p>
 
-              <div className="space-y-4">
-                {/* Renovlies Allround Pakket */}
-                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.package === 'renovlies-allround' ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="renovlies-allround"
-                      checked={formData.package === 'renovlies-allround'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Renovlies Allround Pakket</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW</div>
+              {/* Main 4 tiles */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                {MAIN_TILES.map(({ icon: Icon, label, sub, type, value, img }) => {
+                  const isActive = (type === 'package' && formData.package === value) || (type === 'service' && formData.extraServices.includes(value));
+                  return (
+                    <button key={value} type="button" onClick={() => toggleTile(type, value)}
+                      className={`relative overflow-hidden rounded-2xl text-left transition-all duration-200 hover:scale-[1.02] shadow-md ${isActive ? 'ring-4 ring-emerald-500 ring-offset-2' : ''}`}>
+                      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${img}')` }} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+                      {isActive && (
+                        <div className="absolute top-2 right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center z-10">
+                          <Check className="w-4 h-4 text-white" strokeWidth={3} />
                         </div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Alles-in-één pakket voor nieuwbouwwoningen. Renovlies plaatsen én afsausen in uw gewenste kleur — één vaste prijs, zonder verrassingen.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Renovlies professioneel plaatsen op alle wanden</li>
-                        <li>• Volledig afsausen in gewenste kleur</li>
-                        <li>• Sigma muurverf schrobklasse 1</li>
-                        <li>• Keuze uit 1 basiskleur + 2 extra kleuren</li>
-                        <li>• Inclusief materiaal: renovlies + lijm + Sigma verf</li>
-                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Glasweefsel Allround Pakket */}
-                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.package === 'glasweefsel-allround' ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
-                  <div className="flex items-start">
-                    <input
-                      type="radio"
-                      name="package"
-                      value="glasweefsel-allround"
-                      checked={formData.package === 'glasweefsel-allround'}
-                      onChange={handleInputChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Glasweefsel Allround Pakket</div>
-                        <div>
-                          <div className="font-bold text-emerald-700 text-lg">€22,50/m²</div>
-                          <div className="text-xs text-gray-600 text-right">excl. BTW</div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Ideaal voor renovatie of muren met een minder goede ondergrond. Glasweefsel overbrugt oneffenheden en scheuren — inclusief schilderwerk voor een vaste prijs.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Glasweefsel professioneel plaatsen op alle wanden</li>
-                        <li>• Volledig afsausen in gewenste kleur</li>
-                        <li>• Sigma muurverf schrobklasse 1</li>
-                        <li>• Keuze uit 1 basiskleur + 2 extra kleuren</li>
-                        <li>• Overbrugt oneffenheden en kleine scheuren</li>
-                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Diensten (optioneel)</h2>
-              <p className="text-sm text-gray-600 mb-4">U kunt meerdere diensten selecteren.</p>
-              <div className="space-y-4">
-                {/* Muren/Plafond Schilderen */}
-                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.extraServices.includes('muren-schilderen') ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="muren-schilderen"
-                      checked={formData.extraServices.includes('muren-schilderen')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Muren Schilderen</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Professionele schilders voor strak, egaal en duurzaam schilderwerk. Geschikt voor renovatie, nieuwbouw, opfrissen van bestaande wanden of na renovlies.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Wanden en/of plafond professioneel schuren</li>
-                        <li>• Dekkend schilderen in gewenste kleur</li>
-                        <li>• Inclusief schrobklasse 1 muurverf</li>
-                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Muren/Plafond Behangen */}
-                <label className={`block p-5 border-2 rounded-lg cursor-pointer transition-colors ${formData.extraServices.includes('behanger-inhuren') ? 'border-emerald-700 bg-emerald-50' : 'border-gray-300 hover:border-emerald-700'}`}>
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="behanger-inhuren"
-                      checked={formData.extraServices.includes('behanger-inhuren')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Behanger Inhuren</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Aanbrengen van door u zelf aangeschaft behang</li>
-                        <li>• Geschikt voor alle behangsoorten, ook luxe en exclusief</li>
-                        <li>• Professionele en ervaren behangers</li>
-                        <li>• Strak en vakkundig eindresultaat</li>
-                        <li>• Geen verborgen kosten · Geen aanbetaling</li>
-                        <li>• 12 maanden garantie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Airless Spuiter */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="airless-spuiten"
-                      checked={formData.extraServices.includes('airless-spuiten')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Airless Spuiter</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Perfect geschikt voor grote oppervlakken, wanden en plafonds</li>
-                        <li>• Professionele en ervaren airless spuiters</li>
-                        <li>• Snelle en efficiënte uitvoering dankzij geavanceerde apparatuur</li>
-                        <li>• Egaal, streeploos en zeer dekkend resultaat</li>
-                        <li>• Uitermate geschikt voor zolderkappen, nieuwbouwwoningen en renovatie</li>
-                        <li>• Strakke afwerking binnen korte tijd</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Vloeren Leggen */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="vloeren-leggen"
-                      checked={formData.extraServices.includes('vloeren-leggen')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Vloeren Leggen</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Professioneel vloeren leggen voor elk type vloer.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Epoxy vloeren voor garages en bedrijfshallen</li>
-                        <li>• PVC vloeren voor kantoren en woonruimtes</li>
-                        <li>• Laminaat vloeren voor elke ruimte</li>
-                        <li>• Professionele en ervaren vloerleggers</li>
-                        <li>• Strakke afwerking en duurzaam resultaat</li>
-                        <li>• Advies over de beste vloerkeuze voor uw situatie</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Plafond Egaliseren */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="plafond-egaliseren"
-                      checked={formData.extraServices.includes('plafond-egaliseren')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Plafond Egaliseren</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Maak uw plafond weer strak en egaal.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Professioneel plafond egaliseren</li>
-                        <li>• Geschikt voor alle soorten plafonds</li>
-                        <li>• Oneffenheden en scheuren worden verholpen</li>
-                        <li>• Strak en egaal eindresultaat</li>
-                        <li>• Klaar voor behangen of schilderen</li>
-                        <li>• Ervaren vakmannen voor het beste resultaat</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Stukadoor Inhuren */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="stukadoor-inhuren"
-                      checked={formData.extraServices.includes('stukadoor-inhuren')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Stukadoor Inhuren</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Professionele stukadoors voor al uw stucwerk.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Ervaren stukadoors met jarenlange expertise</li>
-                        <li>• Geschikt voor nieuwbouw en renovatie</li>
-                        <li>• Wandafwerking en plafondafwerking</li>
-                        <li>• Professioneel stucwerk en egaliseren</li>
-                        <li>• Strak en duurzaam eindresultaat</li>
-                        <li>• Flexibele planning afgestemd op uw project</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-
-                {/* Plafond Spuiten */}
-                <label className="block p-5 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-emerald-700 transition-colors">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      value="plafond-spuiten"
-                      checked={formData.extraServices.includes('plafond-spuiten')}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-emerald-700 focus:ring-emerald-700 rounded mt-1"
-                    />
-                    <div className="ml-3 flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="font-bold text-gray-800 text-lg">Plafond Spuiten</div>
-                        <div className="font-bold text-emerald-700 text-lg">Op aanvraag</div>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-3 italic">
-                        Professioneel plafond spuiten voor een strak, egaal en dekkend resultaat.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Professionele airless spuittechniek voor plafonds</li>
-                        <li>• Egaal en streeploos resultaat</li>
-                        <li>• Geschikt voor alle soorten plafonds</li>
-                        <li>• Snelle uitvoering dankzij geavanceerde apparatuur</li>
-                        <li>• Inclusief afdekkingsmateriaal voor vloeren en meubels</li>
-                        <li>• Ervaren specialisten voor het beste eindresultaat</li>
-                      </ul>
-                    </div>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Uw gegevens</h2>
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Naam <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    E-mail <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Telefoon <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="street" className="block text-sm font-medium text-gray-700 mb-1">
-                    Straatnaam <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="street"
-                    name="street"
-                    value={formData.street}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Bijv. Hoofdstraat"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="houseNumber" className="block text-sm font-medium text-gray-700 mb-1">
-                    Huisnummer <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="houseNumber"
-                    name="houseNumber"
-                    value={formData.houseNumber}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Bijv. 123"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="postcode" className="block text-sm font-medium text-gray-700 mb-1">
-                    Postcode <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="postcode"
-                    name="postcode"
-                    value={formData.postcode}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Bijv. 1234 AB"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
-                    Stad/Plaats <span className="text-red-600">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Bijv. Hengelo"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Oppervlakte Berekening</h2>
-              <p className="text-sm text-gray-600 mb-4">Voeg ruimtes toe met de gewenste dienst en oppervlakte in m². Of upload een plattegrond zodat wij dit kunnen berekenen.</p>
-
-              <div className="space-y-4">
-                {formData.areaCalculations.map((calc) => (
-                  <div key={calc.id} className="p-4 border-2 border-gray-300 rounded-lg bg-gray-50">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-                      <div className="md:col-span-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Dienst
-                        </label>
-                        <select
-                          value={calc.service}
-                          onChange={(e) => updateAreaCalculation(calc.id, 'service', e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                        >
-                          <option value="">Selecteer dienst</option>
-                          {formData.package && (
-                            <optgroup label="Geselecteerd Pakket">
-                              <option value={formData.package}>
-                                {packageNames[formData.package]}
-                              </option>
-                            </optgroup>
-                          )}
-                          {formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s)).length > 0 && (
-                            <optgroup label="Diensten">
-                              {formData.extraServices
-                                .filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s))
-                                .map(service => (
-                                  <option key={service} value={service}>
-                                    {serviceNames[service]}
-                                  </option>
-                                ))}
-                            </optgroup>
-                          )}
-                        </select>
-                      </div>
-                      <div className="md:col-span-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Ruimte naam
-                        </label>
-                        <input
-                          type="text"
-                          value={calc.roomName}
-                          onChange={(e) => updateAreaCalculation(calc.id, 'roomName', e.target.value)}
-                          placeholder="Bijv. Woonkamer"
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                        />
-                      </div>
-                      <div className="md:col-span-3">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Oppervlakte (m²)
-                        </label>
-                        <input
-                          type="number"
-                          value={calc.area}
-                          onChange={(e) => updateAreaCalculation(calc.id, 'area', e.target.value)}
-                          step="0.01"
-                          min="0"
-                          placeholder="Bijv. 25"
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                        />
-                      </div>
-                      <div className="md:col-span-1 flex items-end">
-                        <button
-                          type="button"
-                          onClick={() => removeAreaCalculation(calc.id)}
-                          className="w-full p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                          title="Verwijder"
-                        >
-                          <Trash2 className="w-5 h-5 mx-auto" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-
-                <button
-                  type="button"
-                  onClick={addAreaCalculation}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-dashed border-emerald-700 text-emerald-700 rounded-lg hover:bg-emerald-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
-                  disabled={!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s)).length === 0}
-                >
-                  <Plus className="w-5 h-5" />
-                  <span className="font-medium">Voeg ruimte toe</span>
-                </button>
-
-                {(!formData.package && formData.extraServices.filter(s => !['airless-spuiten', 'vloeren-leggen', 'plafond-egaliseren', 'plafond-spuiten', 'stukadoor-inhuren', 'muren-schilderen', 'behanger-inhuren', 'glasweefsel-behang'].includes(s)).length === 0) && (
-                  <p className="text-sm text-amber-600 text-center">
-                    Selecteer eerst een pakket of dienst hierboven om ruimtes toe te voegen
-                  </p>
-                )}
-
-                {formData.areaCalculations.length > 0 && calculateEstimate() > 0 && (
-                  <div className="p-4 bg-emerald-50 border-2 border-emerald-700 rounded-lg">
-                    <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold text-gray-800">Geschatte totaalprijs:</span>
-                      <span className="text-2xl font-bold text-emerald-700">
-                        €{calculateEstimate().toFixed(2).replace('.', ',')}
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-600 mt-2">
-                      Dit is een indicatie op basis van de ingevoerde oppervlaktes. De exacte prijs wordt bepaald na een opname.
-                    </p>
-                  </div>
-                )}
-
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">of</span>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="floorPlan" className="block text-sm font-medium text-gray-700 mb-1">
-                    Upload plattegrond (optioneel)
-                  </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-emerald-500 transition-colors">
-                    <div className="space-y-1 text-center">
-                      <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth={2}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <div className="flex text-sm text-gray-600">
-                        <label
-                          htmlFor="floorPlan"
-                          className="relative cursor-pointer bg-white rounded-md font-medium text-emerald-700 hover:text-emerald-800 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-emerald-500"
-                        >
-                          <span>Upload een bestand</span>
-                          <input
-                            id="floorPlan"
-                            name="floorPlan"
-                            type="file"
-                            accept="image/*,.pdf"
-                            onChange={handleFileChange}
-                            className="sr-only"
-                          />
-                        </label>
-                        <p className="pl-1">of sleep het hier naartoe</p>
-                      </div>
-                      <p className="text-xs text-gray-500">PNG, JPG, PDF tot 10MB</p>
-                      {formData.floorPlan && (
-                        <p className="text-sm text-emerald-700 font-medium mt-2">
-                          Bestand geselecteerd: {formData.floorPlan.name}
-                        </p>
                       )}
-                    </div>
+                      <div className="relative z-10 p-4 pt-10 md:pt-14">
+                        <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center mb-2">
+                          <Icon className="w-4 h-4 text-white" />
+                        </div>
+                        <p className="text-white font-bold text-sm md:text-base leading-tight">{label}</p>
+                        <p className="text-emerald-300 text-xs mt-1">{sub}</p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Extra services compact */}
+              <div className="mb-6">
+                <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-2">Overige diensten</p>
+                <div className="flex flex-wrap gap-2">
+                  {EXTRA_SERVICES.map(({ value, label, icon: Icon }) => {
+                    const active = formData.extraServices.includes(value);
+                    return (
+                      <button key={value} type="button" onClick={() => toggleExtra(value)}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-full border-2 text-sm font-medium transition-all ${active ? 'border-emerald-600 bg-emerald-50 text-emerald-700' : 'border-gray-200 text-gray-600 hover:border-emerald-400'}`}>
+                        <Icon className="w-4 h-4" />
+                        {label}
+                        {active && <Check className="w-3 h-3" strokeWidth={3} />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <button onClick={() => goTo(2)} disabled={!step1Valid}
+                className="w-full flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-600 disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold py-4 px-8 rounded-xl transition-colors text-base">
+                Doorgaan <ChevronRight className="w-5 h-5" />
+              </button>
+              {!step1Valid && <p className="text-center text-sm text-amber-600 mt-2">Selecteer eerst een dienst of pakket</p>}
+            </div>
+          )}
+
+          {/* ── STEP 2: Gegevens ── */}
+          {step === 2 && (
+            <div>
+              <h2 className="text-lg font-bold text-gray-800 mb-1">Uw contactgegevens</h2>
+              <p className="text-sm text-gray-500 mb-5">Zodat we u snel een offerte kunnen sturen.</p>
+
+              {/* Selected service summary */}
+              {selectedLabel && (
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 mb-5 text-sm text-emerald-700 font-medium">
+                  ✓ {selectedLabel}
+                </div>
+              )}
+
+              <div className="bg-white rounded-2xl shadow-sm p-6 space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Naam <span className="text-red-500">*</span></label>
+                    <input type="text" name="name" value={formData.name} onChange={handleInput} required placeholder="Jan de Vries"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Telefoon <span className="text-red-500">*</span></label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInput} required placeholder="06-12345678"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">E-mailadres <span className="text-red-500">*</span></label>
+                  <input type="email" name="email" value={formData.email} onChange={handleInput} required placeholder="jan@email.nl"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm" />
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Straatnaam <span className="text-red-500">*</span></label>
+                    <input type="text" name="street" value={formData.street} onChange={handleInput} required placeholder="Hoofdstraat"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Huisnr. <span className="text-red-500">*</span></label>
+                    <input type="text" name="houseNumber" value={formData.houseNumber} onChange={handleInput} required placeholder="12A"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Postcode <span className="text-red-500">*</span></label>
+                    <input type="text" name="postcode" value={formData.postcode} onChange={handleInput} required placeholder="1234 AB"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Plaats <span className="text-red-500">*</span></label>
+                    <input type="text" name="city" value={formData.city} onChange={handleInput} required placeholder="Dordrecht"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm" />
                   </div>
                 </div>
               </div>
-            </div>
 
+              <div className="flex gap-3 mt-5">
+                <button onClick={() => goTo(1)} className="flex items-center gap-1 px-5 py-3 border-2 border-gray-200 rounded-xl text-gray-600 font-medium hover:border-gray-300 transition-colors">
+                  <ChevronLeft className="w-4 h-4" /> Terug
+                </button>
+                <button onClick={() => goTo(3)} disabled={!step2Valid}
+                  className="flex-1 flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-600 disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+                  Doorgaan <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* ── STEP 3: Project ── */}
+          {step === 3 && (
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Opmerkingen</h2>
-              <textarea
-                name="comments"
-                value={formData.comments}
-                onChange={handleInputChange}
-                rows={5}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-700 focus:border-transparent"
-                placeholder="Voeg hier eventuele opmerkingen toe..."
-              />
-            </div>
+              <h2 className="text-lg font-bold text-gray-800 mb-1">Uw project (optioneel)</h2>
+              <p className="text-sm text-gray-500 mb-5">Voeg ruimtes toe voor een prijsindicatie, of upload een plattegrond. U kunt dit ook overslaan.</p>
 
-            <div className="text-center pt-4">
-              <button
-                type="submit"
-                className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-12 rounded-md transition-colors text-lg"
-              >
-                Verstuur offerte
-              </button>
+              <div className="bg-white rounded-2xl shadow-sm p-6 space-y-5">
+                {/* Area rows */}
+                {formData.areaCalculations.length > 0 && (
+                  <div className="space-y-3">
+                    {formData.areaCalculations.map((calc) => (
+                      <div key={calc.id} className="grid grid-cols-12 gap-2 items-end">
+                        <div className="col-span-4">
+                          <label className="block text-xs font-medium text-gray-500 mb-1">Dienst</label>
+                          <select value={calc.service} onChange={e => updateRoom(calc.id, 'service', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                            <option value="">Kies</option>
+                            {formData.package && <option value={formData.package}>{packageNames[formData.package]?.split(' (')[0]}</option>}
+                          </select>
+                        </div>
+                        <div className="col-span-4">
+                          <label className="block text-xs font-medium text-gray-500 mb-1">Ruimte</label>
+                          <input type="text" value={calc.roomName} onChange={e => updateRoom(calc.id, 'roomName', e.target.value)}
+                            placeholder="Woonkamer" className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500" />
+                        </div>
+                        <div className="col-span-3">
+                          <label className="block text-xs font-medium text-gray-500 mb-1">m²</label>
+                          <input type="number" value={calc.area} onChange={e => updateRoom(calc.id, 'area', e.target.value)}
+                            placeholder="25" min="0" className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500" />
+                        </div>
+                        <div className="col-span-1 flex justify-center pb-0.5">
+                          <button type="button" onClick={() => removeRoom(calc.id)} className="p-2 text-red-400 hover:text-red-600 transition-colors">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {formData.package && (
+                  <button type="button" onClick={addRoom}
+                    className="w-full flex items-center justify-center gap-2 py-2.5 border-2 border-dashed border-emerald-300 text-emerald-600 rounded-xl hover:bg-emerald-50 transition-colors text-sm font-medium">
+                    <Plus className="w-4 h-4" /> Ruimte toevoegen
+                  </button>
+                )}
+
+                {estimate() > 0 && (
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-700">Geschatte prijs</span>
+                    <span className="text-xl font-bold text-emerald-700">€{estimate().toFixed(2).replace('.', ',')}</span>
+                  </div>
+                )}
+
+                {/* Divider */}
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 border-t border-gray-100" />
+                  <span className="text-xs text-gray-400">of</span>
+                  <div className="flex-1 border-t border-gray-100" />
+                </div>
+
+                {/* File upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Plattegrond uploaden</label>
+                  <label className="flex flex-col items-center justify-center w-full py-6 border-2 border-dashed border-gray-200 rounded-xl cursor-pointer hover:border-emerald-400 hover:bg-emerald-50 transition-colors">
+                    <svg className="w-8 h-8 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    {formData.floorPlan
+                      ? <span className="text-emerald-600 font-medium text-sm">{formData.floorPlan.name}</span>
+                      : <><span className="text-sm text-emerald-600 font-medium">Klik om te uploaden</span><span className="text-xs text-gray-400 mt-1">PNG, JPG of PDF · max 10MB</span></>}
+                    <input type="file" accept="image/*,.pdf" onChange={handleFile} className="sr-only" />
+                  </label>
+                </div>
+
+                {/* Comments */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Opmerkingen</label>
+                  <textarea name="comments" value={formData.comments} onChange={handleInput} rows={3}
+                    placeholder="Bijv. type woning, bijzonderheden, gewenste kleuren..."
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm resize-none" />
+                </div>
+              </div>
+
+              <div className="flex gap-3 mt-5">
+                <button onClick={() => goTo(2)} className="flex items-center gap-1 px-5 py-3 border-2 border-gray-200 rounded-xl text-gray-600 font-medium hover:border-gray-300 transition-colors">
+                  <ChevronLeft className="w-4 h-4" /> Terug
+                </button>
+                <button onClick={() => goTo(4)}
+                  className="flex-1 flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl transition-colors">
+                  Controleren <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
             </div>
-          </form>
+          )}
+
+          {/* ── STEP 4: Samenvatting & verzenden ── */}
+          {step === 4 && (
+            <div>
+              <h2 className="text-lg font-bold text-gray-800 mb-1">Controleer uw aanvraag</h2>
+              <p className="text-sm text-gray-500 mb-5">Alles klopt? Dan versturen we het direct.</p>
+
+              <div className="bg-white rounded-2xl shadow-sm divide-y divide-gray-100 overflow-hidden mb-5">
+                {/* Dienst */}
+                <div className="px-5 py-4 flex justify-between items-start">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Dienst / Pakket</p>
+                    <p className="text-sm font-medium text-gray-800">{selectedLabel || '—'}</p>
+                  </div>
+                  <button onClick={() => goTo(1)} className="text-xs text-emerald-600 underline flex-shrink-0 ml-4">Wijzigen</button>
+                </div>
+                {/* Gegevens */}
+                <div className="px-5 py-4 flex justify-between items-start">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Contactgegevens</p>
+                    <p className="text-sm font-medium text-gray-800">{formData.name}</p>
+                    <p className="text-sm text-gray-500">{formData.email}</p>
+                    <p className="text-sm text-gray-500">{formData.phone}</p>
+                    <p className="text-sm text-gray-500">{formData.street} {formData.houseNumber}, {formData.postcode} {formData.city}</p>
+                  </div>
+                  <button onClick={() => goTo(2)} className="text-xs text-emerald-600 underline flex-shrink-0 ml-4">Wijzigen</button>
+                </div>
+                {/* Project */}
+                <div className="px-5 py-4 flex justify-between items-start">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Project</p>
+                    {formData.areaCalculations.length > 0
+                      ? formData.areaCalculations.map((c, i) => <p key={i} className="text-sm text-gray-700">{c.roomName || 'Ruimte'}: {c.area} m²</p>)
+                      : <p className="text-sm text-gray-400">{formData.floorPlan ? `Plattegrond: ${formData.floorPlan.name}` : 'Geen oppervlakte opgegeven'}</p>}
+                    {formData.comments && <p className="text-sm text-gray-500 mt-1 italic">"{formData.comments}"</p>}
+                    {estimate() > 0 && <p className="text-sm font-bold text-emerald-700 mt-1">Schatting: €{estimate().toFixed(2).replace('.', ',')}</p>}
+                  </div>
+                  <button onClick={() => goTo(3)} className="text-xs text-emerald-600 underline flex-shrink-0 ml-4">Wijzigen</button>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <button onClick={() => goTo(3)} className="flex items-center gap-1 px-5 py-3 border-2 border-gray-200 rounded-xl text-gray-600 font-medium hover:border-gray-300 transition-colors">
+                  <ChevronLeft className="w-4 h-4" /> Terug
+                </button>
+                <button onClick={handleSubmit} disabled={submitting}
+                  className="flex-1 flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-600 disabled:bg-emerald-400 text-white font-bold py-4 px-6 rounded-xl transition-colors text-base">
+                  {submitting ? 'Versturen...' : <><Check className="w-5 h-5" /> Offerte versturen</>}
+                </button>
+              </div>
+              <p className="text-center text-xs text-gray-400 mt-3">Geen aanbetaling · Vrijblijvend · Binnen 24 uur reactie</p>
+            </div>
+          )}
+
         </div>
       </div>
     </div>
