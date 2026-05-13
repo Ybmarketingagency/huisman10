@@ -6,32 +6,32 @@ const services = [
   {
     name: 'Renovlies',
     href: '/diensten/renovlies-specialist',
-    img: 'https://imgur.com/64Q5VEL.jpg',
+    img: 'https://imgur.com/130MQxa.jpg',
   },
   {
-    name: 'Glasweefsel schilderen',
-    href: '/diensten/glasweefsel-specialist',
-    img: 'https://imgur.com/yiRcg6Y.jpg',
-  },
-  {
-    name: 'Behanger',
-    href: '/diensten/behanger-specialist',
-    img: 'https://imgur.com/DkCqDEp.jpg',
+    name: 'Vescom behang',
+    href: '/diensten/vescom',
+    img: 'https://imgur.com/8Ez6whf.jpg',
   },
   {
     name: 'Airless spuiten',
     href: '/diensten/airless-specialist',
-    img: 'https://imgur.com/F8WYK4c.jpg',
+    img: 'https://imgur.com/USExe76.jpg',
+  },
+  {
+    name: 'Zolderplaten afwerking',
+    href: '/diensten/zolderplaten',
+    img: 'https://imgur.com/KMMc5gM.jpg',
   },
   {
     name: 'Stukadoor',
     href: '/diensten/stukadoor',
-    img: 'https://imgur.com/NPeFZys.jpg',
+    img: 'https://imgur.com/7ZXYxvt.jpg',
   },
   {
-    name: 'Plafond / wanden spuiten',
-    href: '/diensten/plafond-spuiten',
-    img: 'https://imgur.com/CvVMPpL.jpg',
+    name: 'Glasweefsel',
+    href: '/diensten/glasweefsel-specialist',
+    img: 'https://imgur.com/m7wjcxN.jpg',
   },
 ];
 

@@ -1,19 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Phone, Shield, Clock, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, Phone, Shield, Clock, Star, ChevronDown, ChevronUp, Wrench, Package } from 'lucide-react';
 
 const faqs = [
   {
-    q: 'Wat is het verschil tussen glasweefsel en renovlies?',
-    a: 'Glasweefsel heeft een zichtbare structuur (zoals visgraat of ruit) en wordt geschilderd. Renovlies is gladder en lijkt meer op stucwerk. Glasweefsel is ideaal voor muren met kleine oneffenheden die u wilt camoufleren met een decoratieve structuur.'
+    q: 'Is glasweefsel ook geschikt voor muren met scheuren of oneffenheden?',
+    a: 'Ja, dat is juist de kracht van glasweefsel. Door de vezelversterkte structuur overbrugt het kleine scheuren en oneffenheden die bij renovlies of schilderwerk zichtbaar zouden blijven. Ideaal voor oudere woningen en renovaties met een minder goede ondergrond.'
+  },
+  {
+    q: 'Wat is inbegrepen in het Glasweefsel Allround Pakket?',
+    a: 'Het pakket omvat het volledig plaatsen van het glasweefselbehang én het afsausen in uw gewenste kleur — alles voor één vaste prijs van €22,50 per m². Wij werken uitsluitend met Sigma muurverf (schrobklasse 1). U kiest uit 1 basiskleur en 2 extra kleuren. Geen verborgen kosten, geen aanbetaling.'
   },
   {
     q: 'Kan glasweefsel in elke kleur worden geschilderd?',
-    a: 'Ja, glasweefsel is in de basis wit en kan in elke kleur worden geschilderd. Het vereist wel ervaring om de verf goed te verdelen over de structuur. Ons team zorgt voor een egaal en mooi eindresultaat.'
+    a: 'Ja. Glasweefsel is in de basis wit en kan in elke kleur worden geschilderd. Het vereist wel ervaring om de verf goed te verdelen over de structuur. Ons team zorgt voor een egaal en mooi eindresultaat.'
   },
   {
-    q: 'Hoe lang duurt het plaatsen van glasweefsel?',
-    a: 'Afhankelijk van de oppervlakte en staat van de muren. Een gemiddelde woonkamer is doorgaans binnen één à twee dagen klaar. Wij geven altijd een realistische planning op voorhand.'
+    q: 'Is glasweefsel ook geschikt voor nieuwbouw?',
+    a: 'Absoluut. Glasweefsel werkt prima in nieuwbouw, maar is bij uitstek geschikt voor renovatie of muren met een minder goede ondergrond. Waar renovlies een gladde muur vereist, overbrugt glasweefsel oneffenheden dankzij zijn structuur.'
   }
 ];
 
@@ -27,7 +31,7 @@ const GlasweefselSpecialist = () => {
 
           {/* Partner Banner */}
           <div className="bg-emerald-700 text-white rounded-2xl p-8 text-center mb-6 shadow-lg">
-            <p className="text-sm uppercase tracking-widest text-emerald-200 mb-2 font-medium">Uw vakspecialist</p>
+            <p className="text-sm uppercase tracking-widest text-emerald-200 mb-2 font-medium">Uw vakspecialist renovatie</p>
             <h2 className="text-2xl md:text-3xl font-bold mb-3">
               Huisman Wandafwerking is uw partner in glasweefsel schilderen
             </h2>
@@ -62,7 +66,7 @@ const GlasweefselSpecialist = () => {
             <img src="https://imgur.com/yiRcg6Y.jpg" alt="Glasweefsel schilderen" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center gap-4 px-4">
               <h1 className="text-3xl md:text-4xl font-bold text-white text-center">
-                Glasweefsel Aanbrengen & Schilderen — Decoratief en Duurzaam
+                Glasweefsel Aanbrengen & Schilderen — Plaatsen én Sausen voor een Vaste Prijs
               </h1>
               <Link
                 to="/offerte"
@@ -74,22 +78,81 @@ const GlasweefselSpecialist = () => {
           </div>
 
           {/* Intro */}
-          <p className="text-gray-700 mb-10 text-lg leading-relaxed">
-            Glasweefselbehang combineert decoratieve uitstraling met praktische voordelen. Wij zijn experts in het aanbrengen én professioneel schilderen van glasweefsel — zodat u een strak, egaal resultaat krijgt dat tientallen jaren meegaat.
+          <p className="text-gray-700 mb-8 text-lg leading-relaxed">
+            Glasweefsel is <strong>dé oplossing voor muren met een minder goede ondergrond</strong>. Waar stucwerk of renovlies tekortschiet bij oneffenheden en kleine scheuren, overbrugt glasweefsel deze dankzij zijn vezelversterkte structuur — en ziet het er na het schilderen prachtig uit. Huisman Wandafwerking plaatst het glasweefsel én verft het in uw gewenste kleur, alles voor één vaste prijs.
           </p>
 
-          {/* Key Benefits */}
+          {/* Allround Pakket highlight card */}
+          <div className="bg-white border-2 border-emerald-600 rounded-2xl p-6 mb-8 shadow-md">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-emerald-700 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Package className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-emerald-600 font-semibold">Populair pakket</p>
+                <h2 className="text-xl font-bold text-gray-900">Glasweefsel Allround Pakket — Renovatie & Nieuwbouw</h2>
+              </div>
+            </div>
+
+            <p className="text-gray-600 mb-5 text-sm leading-relaxed">
+              Speciaal voor woningen met een minder goede ondergrond, renovatieprojecten of muren met kleine scheuren en oneffenheden. Ook uitstekend inzetbaar in nieuwbouw. Één prijs, één aannemer — van plaatsen tot de laatste laag verf.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+              {[
+                'Glasweefsel plaatsen op alle wanden',
+                'Volledig afsausen in gewenste kleur',
+                'Sigma muurverf schrobklasse 1',
+                'Keuze uit 1 basiskleur + 2 extra kleuren',
+                'Vaste prijs — geen verborgen kosten',
+                'Voor particulieren én zakelijke markt',
+                'Ideaal bij renovatie & slechte ondergrond',
+                'Geen aanbetaling — betalen na oplevering',
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-gray-100">
+              <div>
+                <p className="text-3xl font-bold text-emerald-700">€ 22,50 <span className="text-base font-normal text-gray-500">per m²</span></p>
+                <p className="text-xs text-gray-400 mt-0.5">Plaatsen + sausen inclusief · Sigma verf inclusief</p>
+              </div>
+              <Link
+                to="/offerte"
+                className="bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-3 px-7 rounded-xl transition-colors duration-200 shadow-md text-sm whitespace-nowrap"
+              >
+                Pakket aanvragen →
+              </Link>
+            </div>
+          </div>
+
+          {/* Renovatie section */}
           <div className="bg-white rounded-2xl p-6 mb-8 shadow-sm">
-            <h2 className="text-xl font-bold text-emerald-700 mb-4">Voordelen van glasweefsel schilderen</h2>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-9 h-9 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Wrench className="w-5 h-5 text-emerald-700" />
+              </div>
+              <h2 className="text-xl font-bold text-emerald-700">Waarom glasweefsel bij renovatie?</h2>
+            </div>
+            <p className="text-gray-600 text-sm leading-relaxed mb-4">
+              Oudere woningen en gerenoveerde panden hebben vaak muren die niet meer perfect vlak zijn. Kleine scheuren, oneffenheden, oud schilderwerk of een poreuze ondergrond maken een gladde afwerking lastig. Glasweefsel lost dit op: de vezelversterkte structuur overbrugt oneffenheden en zorgt alsnog voor een strak, egaal eindresultaat.
+            </p>
+            <p className="text-gray-600 text-sm leading-relaxed mb-5">
+              Na het aanbrengen wordt het glasweefsel geschilderd in uw gewenste kleur. Het resultaat is sterk, krasvast en tientallen jaren mooi — ook bij moeilijke ondergronden.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
-                'Decoratieve structuur in diverse patronen (visgraat, ruit, zigzag)',
-                'Ideaal voor muren met kleine oneffenheden',
+                'Overbrugt oneffenheden en kleine scheuren',
+                'Ideaal voor renovatie met slechte ondergrond',
+                'Decoratieve structuur in diverse patronen',
                 'In elke kleur te schilderen',
-                'Zeer sterk en krasvast eindresultaat',
-                'Brandwerend en vezelversterkt',
+                'Zeer sterk, krasvast en brandwerend',
                 'Langere levensduur dan gewoon schilderwerk',
-                'Geschikt voor wanden én plafonds',
+                'Ook geschikt voor nieuwbouw',
                 '12 maanden garantie op het werk',
               ].map((item) => (
                 <div key={item} className="flex items-start gap-2">
@@ -137,7 +200,7 @@ const GlasweefselSpecialist = () => {
           {/* Image + text */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
             <div className="relative h-[280px] rounded-xl overflow-hidden">
-              <img src="https://imgur.com/KzcqJKk.jpg" alt="Glasweefsel structuur" className="w-full h-full object-cover" />
+              <img src="https://imgur.com/KzcqJKk.jpg" alt="Glasweefsel structuur resultaat" className="w-full h-full object-cover" />
             </div>
             <div>
               <h2 className="text-xl font-bold text-emerald-700 mb-3">Professioneel geschilderd — perfect egaal</h2>
@@ -145,7 +208,7 @@ const GlasweefselSpecialist = () => {
                 Glasweefsel schilderen vereist ervaring: de verf moet gelijkmatig in de structuur worden aangebracht zonder dat de textuur verloren gaat. Ons team heeft honderden projecten afgewerkt en kent precies de juiste techniek.
               </p>
               <p className="text-gray-600">
-                Wij adviseren u ook over de beste structuur en kleur voor uw ruimte, zodat het eindresultaat precies is wat u voor ogen had.
+                Wij werken uitsluitend met <strong>Sigma muurverf schrobklasse 1</strong> — een kwalitatieve, duurzame verf die goed bestand is tegen dagelijks gebruik en eenvoudig schoon te houden is.
               </p>
             </div>
           </div>
@@ -155,9 +218,9 @@ const GlasweefselSpecialist = () => {
             <h2 className="text-xl font-bold text-emerald-700 mb-5 text-center">Wat onze klanten zeggen</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { name: 'Familie de Boer', text: 'Prachtig resultaat! De glasweefsel is strak geschilderd en de structuur ziet er geweldig uit. Echt aanrader.', score: 5 },
-                { name: 'K. Smits', text: 'Professioneel team, kwamen op afgesproken tijd en lieten alles netjes achter. Absoluut tevreden.', score: 5 },
-                { name: 'T. van der Berg', text: 'Goed advies gekregen over welke structuur bij mijn muren past. Eindresultaat is precies wat ik wilde.', score: 5 },
+                { name: 'Familie de Boer', text: 'Onze muren hadden veel kleine oneffenheden na de renovatie. Na het glasweefsel zie je er niets meer van. Geweldig resultaat!', score: 5 },
+                { name: 'K. Smits', text: 'Professioneel team, kwamen op afgesproken tijd en lieten alles netjes achter. Absoluut tevreden over het pakket.', score: 5 },
+                { name: 'T. van der Berg', text: 'Goed advies gekregen — glasweefsel was de juiste keuze voor onze oudere woning. Eindresultaat is precies wat ik wilde.', score: 5 },
               ].map(({ name, text, score }) => (
                 <div key={name} className="bg-white rounded-xl p-5 shadow-sm">
                   <div className="flex gap-1 mb-2">
