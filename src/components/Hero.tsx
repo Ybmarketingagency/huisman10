@@ -9,9 +9,9 @@ const services = [
     img: 'https://imgur.com/130MQxa.jpg',
   },
   {
-    name: 'Vescom behang',
-    href: '/diensten/vescom',
-    img: 'https://imgur.com/8Ez6whf.jpg',
+    name: 'Nieuwbouw',
+    href: '/nieuwbouw',
+    img: 'https://imgur.com/TnZinVI.jpg',
   },
   {
     name: 'Airless spuiten',
