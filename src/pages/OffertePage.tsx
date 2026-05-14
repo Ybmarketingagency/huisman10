@@ -397,7 +397,7 @@ const OffertePage = () => {
 
                 {estimate() > 0 && (
                   <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 flex justify-between items-center">
-                    <span className="text-sm font-medium text-gray-700">Geschatte prijs</span>
+                    <span className="text-sm font-medium text-gray-700">Geschatte prijs <span className="text-xs text-gray-400 font-normal">excl. BTW</span></span>
                     <span className="text-xl font-bold text-emerald-700">€{estimate().toFixed(2).replace('.', ',')}</span>
                   </div>
                 )}
