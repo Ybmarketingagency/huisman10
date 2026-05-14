@@ -35,7 +35,6 @@ const serviceNames: Record<string, string> = {
   'airless-spuiten': 'Airless spuiten',
   'stukadoor-inhuren': 'Stukadoor inhuren',
   'plafond-spuiten': 'Plafond spuiten',
-  'vloeren-leggen': 'Vloeren leggen',
   'plafond-egaliseren': 'Plafond egaliseren',
 };
 
@@ -50,7 +49,6 @@ const EXTRA_SERVICES = [
   { value: 'airless-spuiten', label: 'Airless spuiten', icon: Wind },
   { value: 'stukadoor-inhuren', label: 'Stukadoor inhuren', icon: Hammer },
   { value: 'plafond-spuiten', label: 'Plafond spuiten', icon: Paintbrush },
-  { value: 'vloeren-leggen', label: 'Vloeren leggen', icon: Grid2X2 },
   { value: 'plafond-egaliseren', label: 'Plafond egaliseren', icon: Layers },
 ];
 
@@ -349,7 +347,10 @@ const OffertePage = () => {
           {step === 3 && (
             <div>
               <h2 className="text-lg font-bold text-gray-800 mb-1">Uw project (optioneel)</h2>
-              <p className="text-sm text-gray-500 mb-5">Voeg ruimtes toe voor een prijsindicatie, of upload een plattegrond. U kunt dit ook overslaan.</p>
+              <p className="text-sm text-gray-500 mb-3">Voeg ruimtes toe voor een prijsindicatie, of upload een plattegrond of foto. U kunt dit ook overslaan.</p>
+              <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-5 text-sm text-amber-800">
+                💡 <strong>Prijsindicatie</strong> — Voeg hieronder uw ruimtes toe met het oppervlak (m²) om een schatting te zien op basis van €22,50/m².
+              </div>
 
               <div className="bg-white rounded-2xl shadow-sm p-6 space-y-5">
                 {/* Area rows */}
@@ -410,7 +411,7 @@ const OffertePage = () => {
 
                 {/* File upload */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Plattegrond uploaden <span className="text-gray-400 font-normal">(optioneel)</span></label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Plattegrond / foto's uploaden <span className="text-gray-400 font-normal">(optioneel)</span></label>
                   <label className="flex flex-col items-center justify-center w-full py-6 border-2 border-dashed border-gray-200 rounded-xl cursor-pointer hover:border-emerald-400 hover:bg-emerald-50 transition-colors">
                     <svg className="w-8 h-8 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />

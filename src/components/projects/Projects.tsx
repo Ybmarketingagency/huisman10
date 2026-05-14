@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SectionTitle from '../common/SectionTitle';
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 
@@ -68,12 +69,12 @@ const Projects = () => {
         </div>
         
         <div className="text-center mt-12">
-          <a 
-            href="#contact" 
+          <Link
+            to="/offerte"
             className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-3 px-6 rounded-md transition-all duration-300"
           >
             Vraag een Offerte Aan
-          </a>
+          </Link>
         </div>
       </div>
     </section>

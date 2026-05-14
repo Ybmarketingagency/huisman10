@@ -51,13 +51,19 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
 
           {/* Title */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 drop-shadow-lg">
               Huisman Wandafwerking
             </h1>
-            <p className="text-white text-lg md:text-xl opacity-90">
+            <p className="text-white text-lg md:text-xl opacity-90 mb-5">
               Specialist in wandafwerking — precies wat u nodig heeft
             </p>
+            <Link
+              to="/offerte"
+              className="inline-block bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-colors duration-200 text-base md:text-lg"
+            >
+              Gratis offerte aanvragen →
+            </Link>
           </div>
 
           {/* Service Grid — photo tiles */}
