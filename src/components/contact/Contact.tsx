@@ -59,7 +59,9 @@ ${formData.message || 'Geen bericht'}
       if (typeof window !== 'undefined' && (window as any).fbq) {
         (window as any).fbq('track', 'Lead', {
           content_name: 'Contact Formulier',
-          content_category: 'Contact Request'
+          content_category: 'Contact Request',
+          value: 1,
+          currency: 'EUR',
         });
       }
 

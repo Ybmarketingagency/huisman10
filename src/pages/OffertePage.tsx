@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { Plus, Trash2, Layers, Grid2X2, Paintbrush, Scissors, Wind, Hammer, ChevronRight, ChevronLeft, Check, Phone } from 'lucide-react';
 
@@ -76,6 +76,16 @@ const OffertePage = () => {
     comments: '',
   });
 
+  // ViewContent: pixel weet dat iemand de offertepagina heeft bezocht
+  useEffect(() => {
+    if ((window as any).fbq) {
+      (window as any).fbq('track', 'ViewContent', {
+        content_name: 'Offerte Pagina',
+        content_category: 'Lead Form',
+      });
+    }
+  }, []);
+
   const scrollTop = () => setTimeout(() => topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
 
   const goTo = (n: number) => { setStep(n); scrollTop(); };
@@ -150,7 +160,7 @@ const OffertePage = () => {
 
     try {
       await emailjs.send('service_z20osse', 'template_ytp0ow4', { to_name: 'Huisman Wandafwerking', from_name: formData.name, from_email: formData.email, message: msg, reply_to: formData.email }, 'o1zr2f6mQFLqSAGyJ');
-      if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Offerte Aanvraag', value: estimate(), currency: 'EUR' });
+      if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Offerte Aanvraag', value: estimate() || 1, currency: 'EUR' });
       if ((window as any).gtag) (window as any).gtag('event', 'conversion', { send_to: 'AW-17738015375/f_jzCIH57OgZELzMjIQ-', value: estimate() || 1, currency: 'EUR' });
       setSubmitted(true);
       scrollTop();
