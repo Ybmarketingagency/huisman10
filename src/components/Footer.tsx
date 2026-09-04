@@ -1,7 +1,34 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Music, ArrowUp } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+
+const footerServices = [
+  { name: 'Behangen', link: '/diensten/behanger-inhuren' },
+  { name: 'Renovlies', link: '/diensten/renovlies' },
+  { name: 'Glasweefsel Behang', link: '/diensten/glasweefsel' },
+  { name: 'Binnen Schilderwerk', link: '/diensten/binnen-schilderwerk' },
+  { name: 'Airless Spuiten', link: '/diensten/airless-spuiten' },
+  { name: 'Vescom Behang', link: '/diensten/vescom' },
+];
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (sectionId: string) => {
+    const scroll = () => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      // De homepage laadt afbeeldingen na, waardoor de pagina nog verschuift.
+      // Daarom een tweede keer scrollen zodra de layout is uitgezakt.
+      setTimeout(scroll, 100);
+      setTimeout(scroll, 800);
+    } else {
+      scroll();
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -47,24 +74,13 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Diensten</h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Behangen</a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Renovlies</a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Glasweefsel Behang</a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Binnen Schilderwerk</a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Airless Spuiten</a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Vescom Behang</a>
-              </li>
+              {footerServices.map((service) => (
+                <li key={service.link}>
+                  <Link to={service.link} className="text-gray-400 hover:text-white transition-colors">
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           
@@ -102,12 +118,12 @@ const Footer = () => {
               <p className="text-gray-400">Maandag t/m vrijdag: 07:00 - 17:00</p>
             </div>
             <div className="mt-4">
-              <a 
-                href="#contact" 
+              <button
+                onClick={() => scrollToSection('contact')}
                 className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-medium py-2 px-4 rounded-md transition-colors"
               >
                 Contact Opnemen
-              </a>
+              </button>
             </div>
           </div>
         </div>
