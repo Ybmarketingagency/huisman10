@@ -8,6 +8,16 @@ const subjects = new Map([
   ['offerte', 'Nieuwe offerteaanvraag via de website'],
 ]);
 
+const confirmations = new Map([
+  ['contact', 'Bedankt voor uw bericht. Wij nemen binnen 24 uur contact met u op.'],
+  ['offerte', 'Bedankt voor uw offerteaanvraag. Wij nemen binnen 24 uur contact met u op.'],
+]);
+
+const confirmationSubjects = new Map([
+  ['contact', 'Wij hebben uw bericht ontvangen'],
+  ['offerte', 'Wij hebben uw offerteaanvraag ontvangen'],
+]);
+
 export default async (request) => {
   if (request.method !== 'POST') {
     return new Response(null, { status: 405, headers: { Allow: 'POST' } });
@@ -65,6 +75,32 @@ export default async (request) => {
       console.error('Resend rejected the request', response.status, errorName, field ?? 'unspecified');
       return fail(502, 'resend_' + errorName + '_' + (field ?? 'unspecified'));
     }
+
+    try {
+      const confirmation = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + RESEND_API_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: RESEND_FROM_EMAIL,
+          to: [email.trim()],
+          reply_to: 'offerte@huismanwandafwerking.nl',
+          subject: confirmationSubjects.get(form),
+          text: confirmations.get(form) +
+            '\n\nBelt u liever direct? Bel ons op 078-3690154.' +
+            '\n\nUw gegevens:\n\n' + message +
+            '\n\nMet vriendelijke groet,\nHuisman Wandafwerking',
+        }),
+      });
+      if (!confirmation.ok) {
+        console.error('Confirmation email rejected', confirmation.status);
+      }
+    } catch {
+      console.error('Confirmation email failed');
+    }
+
     return new Response(null, { status: 204 });
   } catch {
     console.error('Resend request failed');
