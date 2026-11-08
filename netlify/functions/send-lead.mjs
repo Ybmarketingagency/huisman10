@@ -49,7 +49,11 @@ export default async (request) => {
     });
 
     if (!response.ok) {
-      console.error('Resend rejected the request', response.status);
+      const error = await response.json().catch(() => null);
+      const errorName = typeof error?.name === 'string' && /^[a-z_]{1,60}$/.test(error.name)
+        ? error.name
+        : 'unknown_error';
+      console.error('Resend rejected the request', response.status, errorName);
       return new Response(null, { status: 502 });
     }
     return new Response(null, { status: 204 });
