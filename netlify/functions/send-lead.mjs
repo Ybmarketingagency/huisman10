@@ -26,7 +26,8 @@ export default async (request) => {
     return new Response(null, { status: 400 });
   }
 
-  const { RESEND_API_KEY, RESEND_FROM_EMAIL } = process.env;
+  const RESEND_API_KEY = process.env.RESEND_API_KEY?.trim();
+  const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL?.trim();
   if (!RESEND_API_KEY || !RESEND_FROM_EMAIL) {
     console.error('Missing Resend configuration');
     return new Response(null, { status: 503 });
@@ -53,7 +54,10 @@ export default async (request) => {
       const errorName = typeof error?.name === 'string' && /^[a-z_]{1,60}$/.test(error.name)
         ? error.name
         : 'unknown_error';
-      console.error('Resend rejected the request', response.status, errorName);
+      const detail = typeof error?.message === 'string' ? error.message.toLowerCase() : '';
+      const field = ['api key', 'reply_to', 'reply-to', 'from', 'recipient', 'subject', 'text']
+        .find((name) => detail.includes(name));
+      console.error('Resend rejected the request', response.status, errorName, field ?? 'unspecified');
       return new Response(null, { status: 502 });
     }
     return new Response(null, { status: 204 });
