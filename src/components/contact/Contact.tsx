@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
-import emailjs from '@emailjs/browser';
+import { sendLead } from '../../lib/sendLead';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -40,21 +40,8 @@ BERICHT:
 ${formData.message || 'Geen bericht'}
     `.trim();
 
-    const templateParams = {
-      to_name: 'Huisman Wandafwerking',
-      from_name: formData.name,
-      from_email: formData.email,
-      message: messageBody,
-      reply_to: formData.email
-    };
-
     try {
-      await emailjs.send(
-        'service_z20osse',
-        'template_ytp0ow4',
-        templateParams,
-        'o1zr2f6mQFLqSAGyJ'
-      );
+      await sendLead('contact', formData.email, messageBody);
 
       if (typeof window !== 'undefined' && (window as any).fbq) {
         (window as any).fbq('track', 'Lead', {

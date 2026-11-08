@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+import { sendLead } from '../lib/sendLead';
 import { Plus, Trash2, Layers, Grid2X2, Paintbrush, Scissors, Wind, Hammer, ChevronRight, ChevronLeft, Check, Phone } from 'lucide-react';
 
 interface AreaCalculation {
@@ -159,7 +159,7 @@ const OffertePage = () => {
     const msg = `Nieuwe offerte aanvraag\n\nGEKOZEN DIENSTEN:\n${servicesText}\n\nCONTACT:\nNaam: ${formData.name}\nE-mail: ${formData.email}\nTelefoon: ${formData.phone}\nAdres: ${formData.street} ${formData.houseNumber}, ${formData.postcode} ${formData.city}\n\nOPPERVLAKTE:\n${areasText}\n\nFOTO:\n${imageUrl || 'Geen'}\n\nOPMERKINGEN:\n${formData.comments || 'Geen'}`;
 
     try {
-      await emailjs.send('service_z20osse', 'template_ytp0ow4', { to_name: 'Huisman Wandafwerking', from_name: formData.name, from_email: formData.email, message: msg, reply_to: formData.email }, 'o1zr2f6mQFLqSAGyJ');
+      await sendLead('offerte', formData.email, msg);
       if ((window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Offerte Aanvraag', value: estimate() || 1, currency: 'EUR' });
       if ((window as any).gtag) (window as any).gtag('event', 'conversion', { send_to: 'AW-17738015375/f_jzCIH57OgZELzMjIQ-', value: estimate() || 1, currency: 'EUR' });
       setSubmitted(true);
