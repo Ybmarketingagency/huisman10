@@ -6,6 +6,8 @@ export async function sendLead(form: 'contact' | 'offerte', email: string, messa
   });
 
   if (!response.ok) {
+    const info = await response.json().catch(() => null);
+    console.error('send-lead failed', response.status, info?.reason ?? 'no_reason');
     throw new Error('Form submission failed');
   }
 }

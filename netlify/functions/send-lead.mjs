@@ -1,3 +1,8 @@
+const fail = (status, reason) => new Response(JSON.stringify({ reason }), {
+  status,
+  headers: { 'Content-Type': 'application/json' },
+});
+
 const subjects = new Map([
   ['contact', 'Nieuw contactbericht via de website'],
   ['offerte', 'Nieuwe offerteaanvraag via de website'],
@@ -9,7 +14,7 @@ export default async (request) => {
   }
 
   if (request.headers.get('Origin') !== new URL(request.url).origin) {
-    return new Response(null, { status: 403 });
+    return fail(403, 'origin_mismatch');
   }
 
   let data;
@@ -30,7 +35,7 @@ export default async (request) => {
   const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL?.trim();
   if (!RESEND_API_KEY || !RESEND_FROM_EMAIL) {
     console.error('Missing Resend configuration');
-    return new Response(null, { status: 503 });
+    return fail(503, 'missing_config');
   }
 
   try {
@@ -58,11 +63,11 @@ export default async (request) => {
       const field = ['api key', 'reply_to', 'reply-to', 'from', 'recipient', 'subject', 'text']
         .find((name) => detail.includes(name));
       console.error('Resend rejected the request', response.status, errorName, field ?? 'unspecified');
-      return new Response(null, { status: 502 });
+      return fail(502, 'resend_' + errorName + '_' + (field ?? 'unspecified'));
     }
     return new Response(null, { status: 204 });
   } catch {
     console.error('Resend request failed');
-    return new Response(null, { status: 502 });
+    return fail(502, 'resend_unreachable');
   }
 };
