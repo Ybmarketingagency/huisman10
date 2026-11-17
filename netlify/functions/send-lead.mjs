@@ -86,6 +86,7 @@ export default async (request) => {
         body: JSON.stringify({
           from: RESEND_FROM_EMAIL,
           to: [email.trim()],
+          bcc: ['offerte@huismanwandafwerking.nl'],
           reply_to: 'offerte@huismanwandafwerking.nl',
           subject: confirmationSubjects.get(form),
           text: confirmations.get(form) +
